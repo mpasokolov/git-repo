@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="menu.js"></script>
+  </head>
+  <body>
+    <h1>Закажи гамбургер</h1>
+    <p>Собери свой гамбургер - конструктор бутерброда онлайн.</p>
+    <form action="#" method="post" id="form">
+      <label for="size">Размер: </label>
+      <select name="size" id="size">
+        <option value="small">Маленький - 50 руб, 20 ккал</option>
+        <option value="large">Большой - 100 руб, 40 ккал</option>
+      </select>
+      <p>
+        Начинка:
+        <input type="radio" name="stuffing" id="cheese" class="stuffing" checked>
+        <label for="cheese">Сыр (10руб, 20ккал)</label>
+        <input type="radio" name="stuffing" id="salad" class="stuffing">
+        <label for="salad">Салат (20руб, 5ккал)</label >
+        <input type="radio" name="stuffing" id="potato" class="stuffing">
+        <label for="potato">Картофель (15руб, 10ккал)</label>
+      </p>
+      <p>
+        Топпинги:
+        <input type="checkbox" name="topping" id="mayo" class="topping">
+        <label for="mayo">Майонез (20 руб, 5 ккал)</label>
+        <input type="checkbox" name="topping" id="spice" class="topping">
+        <label for="spice">Специи (15 руб, 0 ккал)</label>
+      </p>
+      <button name="calculate" id="calculate">Расчитать</button>
+    </form>
+    <div id="description" style="display: none">
+      <p>
+        Ваш гамбургер: Стоимость: <span id="price"></span> руб, Калории: <span id="calories"></span> ккал.
+      </p>
+      <p>
+        Bon Appetit!<br>
+        ----------------<br>
+        Size: <span id="check-size"></span><br>
+        Stuffing: <span id="check-stuffing"></span><br>
+        Topping: <span id="check-topping"></span><br>
+        Price: <span id="check-price"></span><br>
+        Calories: <span id="check-calories"></span><br>
+        ----------------
+      </p>
+    </div>
+  </body>
+</html>
