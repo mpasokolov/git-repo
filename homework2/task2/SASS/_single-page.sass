@@ -1,0 +1,215 @@
+@import "mixin"
+@import "vars"
+
+.bread-crumbs-block
+  background-color: #f8f3f4
+  height: 142px
+  &__caption
+    margin: 0
+  &__link
+    color: $color-pink
+    font-size: 24px
+    line-height: 20px
+    text-transform: uppercase
+    text-decoration: none
+    &:hover
+      color: $color-pink
+      text-decoration: none
+  &__nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 100%
+
+.bread-crumbs
+  &__list
+    display: flex
+    list-style-type: none
+    text-transform: uppercase
+    margin: 0
+  &__list-point
+    display: flex
+    color: #636363
+    &:hover .bread-crumbs__link
+      color: $color-pink
+      text-decoration: none
+    &::after
+      display: block
+      content: " /  "
+      color: #636363
+      margin: 0 2px
+    &_active .bread-crumbs__link
+      @include font(14px, 700, $color-pink)
+  &__link
+    @include font(14px, 300, #636363)
+    text-decoration: none
+    transition: color 0.5s
+
+.single-page-slider
+  background-color: #f7f7f7
+  padding-bottom: 42px
+  min-height: 724px
+  .carousel
+    margin-top: 0 !important
+  .carousel-inner
+    margin: 0 auto
+  img
+    height: 724px
+    width: 597px !important
+    margin: 0 auto
+
+
+.product-description
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-top: -91px
+  border: 1px solid #eaeaea
+  box-sizing: border-box
+  padding: 73px 0 122px 0 !important
+  margin-bottom: 119px
+  background-color: #ffffff
+  &__h2
+    position: relative
+    @include font(14px, 700, $color-pink)
+    border-bottom: 1px solid #eaeaea
+    padding-bottom: 15px
+    margin: 0 0 18px
+    &::after
+      position: absolute
+      content: ""
+      display: block
+      background-color: $color-pink
+      width: 63px
+      height: 3px
+      top: 31px
+      bottom: 0
+      left: 0
+      right: 0
+      margin: 0 auto
+  &__h3
+    @include font(18px, 900, #4d4d4d)
+    margin: 0 0 67px
+  &__text
+    width: 618px
+    @include font(14px, 300, #5e5e5e)
+    margin: 0 0 28px
+    text-align: center
+    box-sizing: border-box
+  &__hr
+    display: block
+    height: 2px
+    width: 642px
+    color: #eaeaea
+    margin-bottom: 63px
+  &__price
+    @include font(24px, 700, $color-pink)
+    margin-bottom: 47px
+  &__to-cart
+    width: 537px
+    display: block
+    padding: 16px 0
+    background-color: $color-pink
+    @include font(16px, 700, #ffffff)
+    box-sizing: border-box
+    text-align: center
+    text-decoration: none
+    transition: color 0.5s, border-color 0.5s, background-color 0.5s
+    &:hover
+      color: $color-pink
+      background-color: #ffffff
+      border: 1px solid $color-pink
+      text-decoration: none
+      padding: 15px 0
+  &__to-cart-basket
+    margin-right: 15px
+  &__made
+    display: flex
+    list-style-type: none
+    padding: 0
+    margin: 0 0 37px
+    span
+      @include font(14px, 700, #b9b9b9)
+  &__made-list:first-child
+    margin-right: 44px
+
+
+.item-description-form__group:hover .item-description-form__arrow::after
+  color: $color-pink
+
+.item-description-form
+  display: flex
+  justify-content: space-between
+  width: 537px
+  margin-top: 28px
+  margin-bottom: 28px
+  &__input
+    width: 144px
+    box-sizing: border-box
+    border: 1px solid #eaeaea
+    padding-left: 14px
+    padding-right: 18px
+    min-height: 35px
+    color:  #bcbcbc
+    transition: border-color 0.5s, color 0.5s
+    &:hover
+      color: $color-pink
+      border-color: $color-pink
+  &__label
+    position: relative
+    display: block
+    width: 144px
+    box-sizing: border-box
+    text-align: left
+  &__arrow
+    &::after
+      display: block
+      position: absolute
+      content: "\2335"
+      z-index: 2
+      color:  #bcbcbc
+      right: 9px
+      top: 33px
+      font-size: 14px
+      transition: color 0.5s
+  &__select
+    border: 1px solid #eaeaea
+    border-radius: 0
+    box-sizing: border-box
+    background-color: #ffffff
+    width: 144px
+    min-height: 35px
+    padding: 7px 18px 8px 14px
+    color:  #bcbcbc
+    @include font(13px, 400, #bcbcbc)
+    -webkit-appearance: none
+    line-height: 1em
+    /* for FF */
+    -moz-appearance: none
+    text-indent: 0.01px
+    text-overflow: ''
+    /* for IE */
+    -ms-appearance: none
+    appearance: none!important
+    outline: none
+    cursor: pointer
+    transition: border-color 0.5s, color 0.5s
+    &::-ms-expand
+      display: none
+    &:hover
+      color: $color-pink
+      border-color: $color-pink
+
+.recommend-items
+  margin-bottom: 113px
+  &__caption
+    @include font(24px, 900, #4d4d4d)
+    text-align: center
+    margin-bottom: 72px
+    text-transform: uppercase
+  &__list
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    min-height: 360px

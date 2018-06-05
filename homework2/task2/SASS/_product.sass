@@ -1,0 +1,314 @@
+@import "mixin"
+@import "vars"
+
+.product-main-nav
+  &__flex
+    margin-bottom: 18px
+    &:last-child
+      margin-bottom: 0
+
+.product-main-nav-block
+  &__caption
+    display: inline-flex
+    border-bottom: 1px solid #ebebeb
+    border-left: 5px solid $color-pink
+    box-sizing: border-box
+    width:  $product-sidebar-width
+    padding: 15px
+    outline: none
+    cursor: pointer
+    @include font(14px, 700, $color-pink)
+    text-transform: uppercase
+    &::-webkit-details-marker
+      display: none
+  &[open] .product-main-nav-block__caption
+    &:after
+      content: '\25be'
+      font-size: 14px
+      margin-left: 6px
+      transition: all 1s ease
+      transform: rotate(180deg)
+  &:not([open]) .product-main-nav-block__caption
+    &:after
+      content: '\25be'
+      font-size: 14px
+      margin-left: 6px
+      transition: all 1s ease
+      transform: rotate(360deg)
+  &__list
+    padding: 0 0 0 15px
+    margin: 22px 0 0
+    list-style-type: none
+    animation-name: details-animation
+    animation-duration: 1s
+  &__link
+    text-decoration: none
+    @include font(14px, 400, #6f6e6e)
+    line-height: 33px
+
+.product
+  display: flex
+  padding-top: 59px
+  &__right-flex
+    width: $site-width - 50px - $product-sidebar-width
+    display: flex
+    flex-direction: column
+    margin-left: 50px
+
+.product-form
+  margin-bottom: 48px
+  &__block
+    border: 0
+    padding: 0
+    margin-right: 29px
+    box-sizing: border-box
+    &:last-child
+      margin-right: 0
+  &__top
+    display: flex
+    justify-content: space-between
+    margin-bottom: 42px
+  &__bottom
+    display: flex
+    align-items: center
+    background-color:  #f3f3f3
+    padding: 10px
+
+.trend
+  width: ($site-width - 50px - $product-sidebar-width) / 3
+  &__caption
+    @include font(14px, 700, #6f6e6e)
+    line-height: 20px
+    text-transform: uppercase
+    margin-bottom: 24px
+  &__list
+    list-style-type: none
+    display: flex
+    padding: 0
+    margin: 0 0 13px
+    &:last-child
+      margin-bottom: 0
+  &__link
+    text-decoration: none
+    @include font(14px, 400, #6f6e6e)
+    transition: color 0.5s
+  &__list-point
+    border-right: 1px solid #dfdfdf
+    padding-right: 10px
+    padding-left: 10px
+    &:last-child
+      border-right: none
+    &:hover .trend__link
+      color: $color-pink
+
+
+.price
+  width: ($site-width - 50px - $product-sidebar-width) / 3
+  &__range
+    -webkit-appearance: none
+    -moz-appearance: none
+    width: 100%
+    background-color:  #f0f0f0
+    height: 6px
+    margin-bottom: 20px
+    cursor: pointer
+    &::-moz-range-track
+      background-color:  #f0f0f0
+      height: 6px
+      width: 100%
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      border-radius: 50%
+      background-color:  $color-pink
+      width: 14px
+      height: 14px
+    &::-moz-range-thumb
+      -moz-appearance: none
+      border-radius: 50%
+      background-color:  $color-pink
+      width: 14px
+      height: 14px
+    &::-ms-thumb
+      border-radius: 50%
+      background-color:  $color-pink
+      width: 14px
+      height: 14px
+    &::-ms-track
+      width: 100%
+      background: transparent
+      border-color: transparent
+      color: transparent
+  &__field
+    display: flex
+    justify-content: space-between
+  &__dollar-simbol
+    font-family: 'Open Sans', sans-serif
+    @include font(14px, 400, #6f6e6e)
+  &__caption
+    margin-bottom: 16px
+    @include font(14px, 700, #6f6e6e)
+    line-height: 20px
+    text-transform: uppercase
+  &__output
+    @include font(14px, 400, #6f6e6e)
+    margin-top: 21px
+
+.size
+  width: ($site-width - 50px - $product-sidebar-width) / 3
+  &__input
+    -webkit-appearance: none
+    -moz-appearance: none
+    border: 1px solid #ebebeb
+    box-sizing: border-box
+    background-color:  #ffffff
+    width: 13px
+    height: 13px
+    margin-right: 9px
+    cursor: pointer
+    transition: background-color 0.5s
+    &:checked
+      background-color: $color-pink
+  &__label
+    font-family: 'Open Sans', sans-serif
+    display: block
+    width: 65px
+    cursor: pointer
+    @include font(14px, 400, #6f6e6e)
+    margin-bottom: 13px
+  &__field
+    display: flex
+    flex-wrap: wrap
+    margin-top: 24px
+  &__caption
+    @include font(14px, 700, #6f6e6e)
+    line-height: 20px
+    text-transform: uppercase
+
+
+.sort-block
+  display: flex
+  &__select
+    border: none
+    border-top: 1px solid #ebebeb
+    border-bottom: 1px solid #ebebeb
+    border-right: 1px solid #ebebeb
+    padding: 10px 45px 10px 12px
+    border-radius: 0
+    box-sizing: border-box
+    background-color: #ffffff
+    @include font(14px, 400, #6f6e6e)
+    -webkit-appearance: none
+    margin-right: 10px
+    /* for FF */
+    -moz-appearance: none
+    text-indent: 0.01px
+    text-overflow: ''
+    /* for IE */
+    -ms-appearance: none
+    appearance: none!important
+    outline: none
+    cursor: pointer
+    &::-ms-expand
+      display: none
+  &__label
+    border: 1px solid #ebebeb
+    padding: 10px 12px
+    box-sizing: border-box
+    background-color: #ffffff
+    @include font(14px, 400, #6f6e6e)
+    margin: 0
+  &__arrow
+    position: relative
+    width: 0
+    height: 0
+    &:after
+      position: absolute
+      top: 8px
+      left: -32px
+      content: "\25be"
+
+
+.product-item-list
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+
+
+.product-right
+  &__nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 110px
+
+
+.product-item-list-nav
+  &__list
+    display: flex
+    list-style-type: none
+    margin: 0
+    padding: 15px
+    border-radius: 3px
+    border: 1px solid #ebebeb
+  &__link
+    text-decoration: none
+    transition: color 0.5s
+    @include font(16px, 300, #c4c4c4)
+  &__list-point
+    margin-right: 16px
+    color:  #c4c4c4
+    &_active-page .product-item-list-nav__link
+      color:  $color-pink
+    &:nth-child(8)
+      margin-right: 0
+    &:nth-child(7)
+      margin-right: 0
+    &:hover .product-item-list-nav__link
+      color:  $color-pink
+
+
+.view-all
+  display: block
+  padding: 16px 47px
+  border-radius: 3px
+  text-decoration: none
+  @include font(16px, 300, #ffffff)
+  background-color:  $color-pink
+  box-sizing: border-box
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s
+  &:hover
+    border-radius: 3px
+    padding: 15px 46px
+    border: 1px solid $color-pink
+    color:  $color-pink
+    background-color:  #ffffff
+
+
+.privileges
+  background-color:  #222224
+  &__flex
+    display: flex
+    justify-content: space-between
+
+.privilege-product
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin: 89px 81px 114px 0
+  &:last-child
+    margin-right: 0
+  &__article
+    text-align: center
+  &__caption
+    @include font(20px, 700, #fbfbfb)
+    margin: 0 0 21px
+  &__text
+    @include font(14px, 300, #fbfbfb)
+    line-height: 24px
+    margin: 0
+  &__logo1
+    margin-bottom: 32px
+  &__logo2
+    margin-bottom: 23px
+  &__logo3
+    margin-bottom: 29px
