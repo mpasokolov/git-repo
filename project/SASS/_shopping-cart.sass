@@ -1,0 +1,281 @@
+.form-adress::-webkit-input-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-adress::-moz-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-adress:-moz-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-adress:-ms-input-placeholder
+  @include font(13px, 300, #b1b1b1)
+
+.form-discont__input::-webkit-input-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-discont__input::-moz-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-discont__input:-moz-placeholder
+  @include font(13px, 300, #b1b1b1)
+.form-discont__input:-ms-input-placeholder
+  @include font(13px, 300, #b1b1b1)
+
+html, body
+  height: 100%
+
+.footer-flex
+  display: flex
+  flex-direction: column
+  min-height: 100%
+
+.content
+  flex: 1
+
+.shopping-list
+  &__button
+    padding: 20px 39px
+    text-transform: uppercase
+    border: 1px solid #eaeaea
+    box-sizing: border-box
+    @include font(14px, 700, #4a4a4a)
+    cursor: pointer
+    transition: color 0.5s, background-color 0.5s, border-color 0.5s
+    background-color: #ffffff
+    &:hover
+      background-color: $color-pink
+      border-color: $color-pink
+      color: #ffffff
+  &__button-flex
+    display: flex
+    justify-content: space-between
+    margin-bottom: 63px
+  &__table
+    margin-top: 68px
+    margin-bottom: 44px
+  &__form
+    display: flex
+    justify-content: space-between
+    margin-bottom: 79px
+
+
+.form-adress
+    width: 355px
+    display: flex
+    flex-direction: column
+    &__form
+      display: flex
+      flex-direction: column
+    &__caption
+      @include font(16px, 700, $color-black)
+      text-transform: uppercase
+      padding: 0
+      margin: 0 0 22px
+    &__select
+      padding: 16px 18px
+      border: 1px solid #eaeaea
+      @include font(13px, 300, #b1b1b1)
+      margin-bottom: 20px
+      border-radius: 0
+      transition: border-color 0.5s
+      &:hover
+        border-color: $color-pink
+    &__input
+      padding: 16px 18px
+      border: 1px solid #eaeaea
+      margin-bottom: 20px
+      transition: border-color 0.5s
+      &:hover
+        border-color: $color-pink
+      &:last-child
+        margin-bottom: 0
+      &::-webkit-input-placeholder
+        @include font(13px, 300, #b1b1b1)
+    &__button
+      padding: 12px 15px
+      border: 1px solid #eaeaea
+      box-sizing: border-box
+      @include font(11px, 700, #4a4a4a)
+      text-transform: uppercase
+      align-self: flex-start
+      margin-top: 23px
+      cursor: pointer
+      transition: color 0.5s, background-color 0.5s, border-color 0.5s
+      background-color: #ffffff
+      &:hover
+        background-color: $color-pink
+        border-color: $color-pink
+        color: #ffffff
+
+.form-discont
+  width: 355px
+  display: flex
+  flex-direction: column
+  &__form
+    display: flex
+    flex-direction: column
+  &__caption
+    @include font(16px, 700, $color-black)
+    text-transform: uppercase
+    padding: 0
+    margin: 0 0 28px
+  &__text
+    @include font(14px, 300, #000000)
+    padding: 0
+    margin: 0 0 24px
+  &__input
+    padding: 16px 18px
+    border: 1px solid #eaeaea
+    transition: border-color 0.5s, color 0.5s
+    &:hover
+      border-color: $color-pink
+  &__button
+    padding: 12px 15px
+    border: 1px solid #eaeaea
+    box-sizing: border-box
+    @include font(11px, 700, #4a4a4a)
+    text-transform: uppercase
+    align-self: flex-start
+    cursor: pointer
+    margin-top: 25px
+    transition: color 0.5s, background-color 0.5s, border-color 0.5s
+    background-color: #ffffff
+    &:hover
+      background-color: $color-pink
+      border-color: $color-pink
+      color: #ffffff
+
+.form-checkout
+  width: 360px
+  padding: 42px 43px
+  box-sizing: border-box
+  background-color:  #f5f3f3
+  text-align: right
+  display: flex
+  flex-direction: column
+  &__caption-h4
+    padding: 0
+    @include font(11px, 400, #4a4a4a)
+    margin: 0 0 14px
+  &__caption-h3
+    padding: 0
+    @include font(16px, 700, $color-black)
+    margin: 0
+  &__caption-h3-price
+    color:  #f16d7f
+    margin-left: 20px
+  &__caption-h4-price
+    margin-left: 20px
+  &__hr
+    background-color: #e2e2e2
+    color: #e2e2e2
+    margin: 22px 0 17px
+    height: 1px
+    border: none
+  &__button
+    display: block
+    text-decoration: none
+    text-align: center
+    @include font(16px, 700, #4a4a4a)
+    border: 1px solid #eaeaea
+    padding: 19px 0
+    box-sizing: border-box
+    text-transform: uppercase
+    cursor: pointer
+    transition: color 0.5s, background-color 0.5s, border-color 0.5s
+    background-color: #ffffff
+    &:hover
+      background-color: $color-pink
+      border-color: $color-pink
+      color: #ffffff
+
+
+.bought-table
+  width: 100%
+  border-collapse: collapse
+  table-layout: auto
+  &__cell-head
+    text-align: center
+    text-transform: uppercase
+    @include font(13px, 700, $color-black)
+    padding: 22px 0
+    &:first-of-type
+      text-align: left
+    &:last-of-type
+      text-align: right
+  &__row
+    margin: 22px 0
+    border-bottom: 1px solid #eaeaea
+  &__col1
+    width: 459px
+  &__col2
+    width: 183px
+  &__col3
+    width: 151px
+  &__col4
+    width: 136px
+
+.bought-item
+  &__img
+    width: 100px
+    height: 115px
+    transition: filter 0.5s
+  &__link
+    text-decoration: none
+    &:hover .bought-item__name
+      color: $color-pink
+    &:hover .bought-item__img
+      filter: brightness(90%)
+  &__product-details
+    display: flex
+  &__info
+    display: flex
+    flex-direction: column
+    margin-left: 21px
+    align-items: flex-start
+  &__block
+    text-align: center
+    vertical-align: middle
+    padding: 22px 0
+    box-sizing: border-box
+    @include font(13px, 400, #656565)
+    &_action
+      @include font(16px, 400, #656565)
+      cursor: pointer
+      transition: color 0.5s
+      background-color: #ffffff
+      &:hover
+        color: $color-pink
+    &:last-of-type
+      width: 1px
+      overflow: visible
+    &_number
+      border: 1px solid #eaeaea
+      box-sizing: border-box
+      width: 54px
+      height: 30px
+      text-align: center
+      @include font(13px, 400, #656565)
+      transition: border-color 0.5s
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+        display: none
+      &:hover
+        border-color: $color-pink
+  &__name
+    padding: 0
+    margin: 0
+    @include font(13px, 400, $color-black)
+    text-transform: uppercase
+    margin-bottom: 38px
+    margin-top: 13px
+    transition: color 0.5s
+
+  &__color
+    padding: 0
+    margin: 0
+    line-height: 20px
+    @include font(13px, 400, #575757)
+    &_info
+      @include font(13px, 300, #6f6e6e)
+  &__size
+    padding: 0
+    margin: 0
+    line-height: 20px
+    @include font(13px, 400, #575757)
+    &_info
+      @include font(13px, 300, #6f6e6e)

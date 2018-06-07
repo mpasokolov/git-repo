@@ -1,0 +1,420 @@
+@import "mixin"
+@import "vars"
+
+html, body
+  height: 100%
+
+.footer-flex
+  display: flex
+  flex-direction: column
+  min-height: 100%
+
+.content
+  flex: 1
+
+
+::-webkit-input-placeholder
+  font-size: 14px
+  color: #a4a4a4
+  line-height: 14px
+
+
+::-moz-placeholder
+  font-size: 14px
+  color: #a4a4a4
+  line-height: 14px
+
+\:-moz-placeholder
+  font-size: 14px
+  color: #a4a4a4
+  line-height: 14px
+
+\:-ms-input-placeholder
+  font-size: 14px
+  color: #a4a4a4
+  line-height: 14px
+
+.main-slider
+  background-color: #e8e8e8
+  height: 614px
+  &__image
+    height: 100%
+    background: url(../lesson5/img/man.png) -300px -51px
+  &__text
+    float: left
+    margin-top: 224px
+    border-left: 12px solid $color-pink
+    padding-left: 12px
+  &__h2
+    @include font(60px, 900, $color-black)
+    margin: 0 0 14px
+    text-align: left
+    line-height: 47px
+  &__h3
+    margin: 0
+    @include  font(40px, 900, $color-black)
+    line-height: 33px
+  &__word
+    @include  font(40px, 900, $color-pink)
+
+.offers-flex
+  margin-top: 97px
+  margin-bottom: 99px
+  &__left
+    margin-right: 21px
+
+.offers
+  display: flex
+  justify-content: center
+  &__link
+    text-decoration: none
+  &__big
+    width: 560px
+    height: 542px
+    background-color: $color-black
+    transition: transform 0.5s
+    &:hover
+      transform: scale(1.02, 1.02)
+  &__small
+    background-color: $color-black
+    width: 560px
+    height: 261px
+    transition: transform 0.5s
+    &:hover
+      transform: scale(1.02, 1.02)
+  &__logo
+    margin-top: 26px
+    padding: 16px 19px
+    box-sizing: border-box
+  &__man
+    background: url(../lesson5/img/offer-for-man.png)
+    border: 1px solid #ffffff
+  &__accesories
+    background: url(../lesson5/img/offers-acc.png)
+    border: 1px solid #ffffff
+  &__woman
+    background: url(../lesson5/img/offers-woman.png)
+    border: 1px solid #ffffff
+  &__kids
+    background: url(../lesson5/img/offers-kids.png)
+    border: 1px solid #ffffff
+  &__logo-man
+    background-color: #ffffff
+    width: 175px
+    height: 82px
+  &__logo-woman
+    background-color: #ffffff
+    width: 162px
+    height: 82px
+  &__logo-accesories
+    background-color: #ffffff
+    width: 225px
+    height: 82px
+  &__logo-kids
+    background-color: #ffffff
+    width: 180px
+    height: 82px
+  &__text-down
+    @include font(30px, 900, $color-pink)
+    text-transform: uppercase
+    margin: 0
+  &__text-up
+    @include font(18px, 900, $color-pink)
+    text-transform: uppercase
+    margin: 0
+  > div > a > div:first-child
+    margin-bottom: 20px
+
+
+.featured-items
+  margin-bottom: 113px
+  &__caption
+    @include font(30px, 700, $color-black)
+    text-align: center
+    margin: 0 0 16px
+  &__text
+    @include font(14px, 400, #9f9f9f)
+    text-align: center
+    margin: 0 0 60px
+  &__list
+    display: flex
+    flex-wrap: wrap
+    margin-bottom: 58px
+    justify-content: space-between
+  &__add-to-cart-block-center
+    display: flex
+    justify-content: center
+    align-items: center
+  &__all-product
+    display: block
+    padding: 18px 24px
+    @include font(16px, 700, #ffffff)
+    background-color: $color-pink
+    text-decoration: none
+    transition: border-color 0.5s, background-color 0.5s, color 0.5s
+    &:hover
+      padding: 17px 23px
+      background-color: #ffffff
+      border: 1px solid $color-pink
+      color: $color-pink
+  &__arrow
+    margin-left: 9px
+
+
+
+.item
+  width: 261px
+  min-height: 364px
+  margin: 0 0 39px
+  transition: transform 0.5s
+  position: relative
+  &:hover
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.16)
+    transform: scale(1.05, 1.05)
+  &:hover .item__add-to-cart
+    opacity: 1
+  &:hover .item__img
+    filter: brightness(50%)
+  &__description
+    margin: 0
+    padding: 20px 14px
+  &__img
+    width: 100%
+    height: 280px
+  &__link
+    position: relative
+    display: block
+    text-decoration: none
+  &__add-to-cart-block
+    position: absolute
+    top: 98px
+    text-align: center
+    width: 100%
+  &__add-to-cart
+    display: inline-block
+    opacity: 0
+    border: 1px solid #ffffff
+    background-color:  rgba(255, 255, 255, 0)
+    @include font(15px, 700, #ffffff)
+    padding: 15px
+    cursor: pointer
+    box-sizing: border-box
+    transition: opacity 0.25s
+  &__arrow
+    margin-right: 8px
+  &__name
+    @include font(13px, 400, $color-black)
+    text-transform: uppercase
+    padding: 0
+    margin: 0 0 16px
+  &__cost
+    @include font(16px, 700, $color-pink)
+
+
+.discont-offer
+  display: flex
+  height: 530px
+  background-color: #222224
+  margin-bottom: 97px
+
+
+.discont-offer-left
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  padding-top: 146px
+  padding-left: 39px
+  width: 767px
+  background: url(../lesson5/img/offer_main.png) no-repeat
+  &__logo-up
+    @include font(54px, 700, #ffffff)
+  &__logo-word
+    @include font(54px, 700, $color-pink)
+  &__logo-down
+    @include font(32px, 700, #ffffff)
+
+
+.discont-offer-right
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  width: $site-width - 767px
+  &__privilege
+    display: flex
+    margin-left: 36px
+    margin-right: 43px
+    align-items: flex-start
+  &__logo1
+    margin-right: 30px
+  &__logo2
+    margin-right: 35px
+  &__logo3
+    margin-right: 32px
+
+.privilege
+  &__flex
+    display: flex
+    flex-direction: column
+  &__caption
+    margin: 0
+    @include font(20px, 700, #fbfbfb)
+  &__text
+    @include font(14px, 300, #fbfbfb)
+
+
+.subscribe-container
+  min-width: $site-width
+  position: relative
+  height: 438px
+  background: url("../lesson5/img/subscribe.png") no-repeat center
+  -webkit-background-size: cover
+  background-size: cover
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(242, 242, 242, 0.5)
+  .subscribe
+    height: inherit
+    position: relative
+    z-index: 1
+    display: flex
+
+
+.subscribe-left
+  height: 100%
+  position: relative
+  width: $site-width / 2
+  border-right: 1px solid #ffffff
+  box-sizing: border-box
+  padding-top: 111px
+
+.slides
+  min-height: 137px
+  position: relative
+  width: inherit
+  &__controls
+    margin-left: 106px
+    position: absolute
+    bottom: -35px
+  &__label
+    cursor: pointer
+    display: inline-block
+    height: 4px
+    margin-right: 13px
+    width: 38px
+    background-color: #d6d6d6
+  &__input
+    display: none
+
+
+.slides-slide
+  display: flex
+  align-items: flex-start
+  height: inherit
+  opacity: 0
+  position: absolute
+  width: inherit
+  z-index: 0
+  &__text-block
+    width: 386px
+    color: rgba(34, 34, 36, 0.67)
+    font-size: 16px
+    font-style: italic
+    line-height: 22px
+    padding: 0
+  &__foto
+    width: 83px
+    height: auto
+  &__text-position
+    margin: 12px 0 0 23px
+  &__name
+    @include font(16px, 700, $color-pink)
+    line-height: 26px
+  &__city
+    font-size: 12px
+    font-weight: 300
+    line-height: 14px
+  &__text
+    margin: 0
+    color: rgba(34, 34, 36, 0.67)
+    font-size: 16px
+    font-style: italic
+    line-height: 26px
+  &__author-block
+    display: flex
+    flex-direction: column
+    margin-top: 19px
+
+
+
+#slide1:checked ~ .slides__controls label:nth-of-type(1),
+#slide2:checked ~ .slides__controls label:nth-of-type(2),
+#slide3:checked ~ .slides__controls label:nth-of-type(3)
+  background: $color-pink
+
+
+#slide1:checked ~ .slide1,
+#slide2:checked ~ .slide2,
+#slide3:checked ~ .slide3
+  opacity: 1
+  z-index: 1
+
+
+.subscribe-right
+  height: 100%
+  width: $site-width / 2
+  padding-top: 148px
+
+.subscribe-form
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 122px
+  &__caption
+    margin: 0
+    @include font(24px, 400, rgba(34, 34, 36, 0.67))
+    line-height: 54px
+    text-transform: uppercase
+  &__text
+    @include font(14px, 400, rgba(34, 34, 36, 0.67))
+    line-height: 24px
+    margin: 0 0 23px
+
+
+.email-form
+  min-width: 386px
+  display: flex
+  justify-content: center
+  align-items: center
+  border: none
+  padding: 0 15px
+  &__email-field
+    width: 280px
+    padding: 11px 16px 11px 16px
+    box-sizing: border-box
+    background-color: #e1e1e1
+    -moz-box-sizing: border-box
+    border-bottom-left-radius: 50px
+    border-top-left-radius: 50px
+    @include font(14px, 400, rgba(34, 34, 36, 0.67))
+    padding-left: 18px
+  &__submit-field
+    background-color: $color-pink
+    width: 104px
+    padding: 11px 20px 11px 20px
+    border-bottom-right-radius: 50px
+    border-top-right-radius: 50px
+    @include font(14px, 400, #ffffff)
+    transition: border-color 0.5s, background-color 0.5s, color 0.5s
+    &:hover
+      cursor: pointer
+      background-color: #ffffff
+      border: 1px solid $color-pink
+      color: $color-pink
+      padding: 10px 19px 10px 19px
+

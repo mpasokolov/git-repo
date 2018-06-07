@@ -1,0 +1,86 @@
+@import "mixin"
+@import "vars"
+
+.footer-menu
+  width: $site-width - 427px
+  display: flex
+  justify-content: space-around
+  &__col
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+  &__caption
+    @include font(18px, 700, $color-pink)
+    line-height: 26px
+    margin: 0 0 45px
+  &__list
+    list-style-type: none
+    height: 179px
+    padding: 0
+    margin: 0
+  &__link
+    text-decoration: none
+    @include font(16px, 400, #898989)
+    line-height: 42px
+  &__point
+    transition: opacity 0.5s
+    &:hover
+      opacity: 0.5
+
+.footer-up
+  display: flex
+  margin-bottom: 89px
+  &__about
+    margin-top: 109px
+  &__nav
+    margin-top: 123px
+
+.footer-low
+  min-height: 79px
+  background-color: #e6e6e6
+  &__flex
+    display: flex
+    justify-content: space-between
+    align-items: center
+    min-height: 79px
+  &__copiryght
+    @include font(16px, 400, #7a7a7a)
+
+.footer-about
+  &__text
+    width: 427px
+    @include font(14px, 300, #898989)
+    line-height: 24px
+    margin: 29px 0 0
+
+
+.social
+  display: flex
+  &__link
+    display: block
+    width: 32px
+    height: 32px
+    color: #b2b2b2
+    background-color: #ffffff
+    margin-right: 8px
+    text-align: center
+    padding: 6px 0
+    box-sizing: border-box
+    transition: background-color 0.5s, color 0.5s
+
+    &:last-child
+      margin-right: 0
+    &:hover
+      background-color: $color-pink
+      color: #f7f7f8
+  > .social_icon
+    display: block
+    width: 32px
+    height: 32px
+    color: #b2b2b2
+    background-color: #ffffff
+    margin-right: 8px
+    text-align: center
+    opacity: 0.5
+    padding: 6px 0
+    box-sizing: border-box

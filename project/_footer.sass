@@ -1,0 +1,89 @@
+@import "SASS/mixin"
+@import "SASS/vars"
+
+.footer
+  height: 458px
+  .footer-low
+    height: 79px
+    background-color: #e6e6e6
+
+.footer-nav
+  width: $site-width - 427px
+  display: flex
+  justify-content: space-around
+  margin-top: 123px
+
+.footer-up
+  display: flex
+  margin-bottom: 89px
+  &__about
+    margin-top: 109px
+
+
+.footer-about
+  &__text
+    width: 427px
+    @include font(14px, 300, #898989)
+    line-height: 24px
+    margin: 29px 0 0
+
+.footer-menu
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  h3
+    @include font(18px, 700, $color-pink)
+    line-height: 26px
+    margin: 0 0 45px
+  ul
+    list-style-type: none
+    height: 179px
+    padding: 0
+    margin: 0
+  li:hover
+    opacity: 0.5
+  a
+    text-decoration: none
+    @include font(16px, 400, #898989)
+    line-height: 42px
+
+
+
+.footer-low
+  height: 79px
+  background-color: #e6e6e6
+  .footer-low-flex
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 79px
+  .copiryght
+    @include font(16px, 400, #7a7a7a)
+  .social
+    display: flex
+    > a
+      display: block
+      width: 32px
+      height: 32px
+      color: #b2b2b2
+      background-color: #ffffff
+      margin-right: 8px
+      text-align: center
+      padding: 6px 0
+      box-sizing: border-box
+      &:last-child
+        margin-right: 0
+      &:hover
+        background-color: $color-pink
+        color: #f7f7f8
+    > span
+      display: block
+      width: 32px
+      height: 32px
+      color: #b2b2b2
+      background-color: #ffffff
+      margin-right: 8px
+      text-align: center
+      opacity: 0.5
+      padding: 6px 0
+      box-sizing: border-box

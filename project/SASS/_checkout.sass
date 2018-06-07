@@ -1,0 +1,192 @@
+html, body
+  height: 100%
+
+.footer-flex
+  display: flex
+  flex-direction: column
+  min-height: 100%
+
+.content
+  flex: 1
+
+
+.order
+  margin: 89px 0
+
+.old-user
+  width: $site-width / 2
+
+.new-user
+  width: $site-width / 2
+
+
+.shipping-adress
+  border-bottom: 1px solid #ebebeb
+  transition: height 1s
+  overflow: hidden
+  &[open]
+    height: 562px
+  &:not([open])
+    height: 82px
+  &[open] .shipping-adress__caption
+    padding-bottom: 0
+  &:last-child
+    margin-bottom: 93px
+  &__caption
+    display: inline-block
+    box-sizing: border-box
+    width:  $site-width
+    outline: none
+    cursor: pointer
+    @include font(16px, 700, $color-black)
+    text-transform: uppercase
+    padding: 33px
+    transition: color 0.5s
+    &::-webkit-details-marker
+      display: none
+    &:hover
+      color: $color-pink
+  &__flex
+    display: flex
+    justify-content: space-between
+    padding: 35px 35px 79px
+
+
+.old-user-form
+  display: flex
+  flex-direction: column
+  padding-top: 32px
+  padding-bottom: 32px
+  &__input
+    border: 1px solid #eaeaea
+    box-sizing: border-box
+    width: 390px
+    height: 45px
+    margin-bottom: 22px
+    @include font(16px, 300, $color-black)
+    padding: 10px
+    color: $color-black
+    transition: color 0.5s, border-color 0.5s
+    &:hover
+      border: 1px solid $color-pink
+      color: $color-pink
+  &__label
+    @include font(12px, 400, $color-black)
+    margin-bottom: 16px
+  &__label-required
+    @include font(17px, 400, #ff0d0d)
+  &__required
+    padding: 0
+    margin: 0 0 32px
+    @include font(13px, 400, #ff0d0d)
+  &__bottom-block
+    display: flex
+    align-items: center
+  &__bottom
+    padding: 19px 54px
+    @include font(14px, 700, #4a4a4a)
+    border: 1px solid #eaeaea
+    text-transform: uppercase
+    transition: color 0.5s, border-color 0.5s
+    cursor: pointer
+    &:hover
+      border-color: $color-pink
+      color: $color-pink
+  &__forgot-pass
+    margin-left: 32px
+    text-decoration: none
+    transition: color 0.5s
+    &:hover
+      color: $color-pink
+    @include font(14px, 400, $color-black)
+  &__caption
+    @include font(13px, 400, $color-black)
+    text-transform: uppercase
+    padding: 0
+    margin: 0 0 15px
+  &__text
+    padding: 0
+    margin: 0 0 27px
+    @include font(13px, 400, #b3b2b2)
+
+
+.new-user-form
+  display: flex
+  flex-direction: column
+  padding-top: 32px
+  padding-bottom: 32px
+  &__label
+    margin-bottom: 20px
+    text-transform: uppercase
+    @include font(12px, 400, $color-black)
+    min-width: 50px
+    &:last-of-type
+      margin-bottom: 33px
+  &__label-text
+    position: relative
+    padding: 0 0 0 28px
+    cursor: pointer
+    &:before
+      content: ''
+      position: absolute
+      top: 0px
+      left: 3px
+      width: 14px
+      height: 14px
+      border: 2px solid #555555
+      border-radius: 50%
+      background: #FFF
+      box-sizing: border-box
+    &:after
+      content: ''
+      position: absolute
+      top: 4px
+      left: 7px
+      width: 6px
+      height: 6px
+      border-radius: 50%
+      background: #000000
+      opacity: 0
+      transition: .2s
+  &__input
+    position: absolute
+    z-index: -1
+    opacity: 0
+    margin: 10px 0 0 7px
+    margin-right: 15px
+  &__advantage
+    @include font(13px, 400, #b3b2b2)
+    padding: 0
+    margin: 0 0 15px
+    &:last-child
+      margin-bottom: 0
+    &:before
+      content: "\203a\203a"
+      display: inline-block
+      height: 100%
+      line-height: 100%
+      margin-right: 4px
+  &__caption
+    @include font(13px, 400, $color-black)
+    text-transform: uppercase
+    padding: 0
+    margin: 0 0 15px
+  &__text
+    padding: 0
+    margin: 0 0 34px
+    @include font(13px, 400, #b3b2b2)
+  &__bottom
+    padding: 19px 54px
+    @include font(14px, 700, #4a4a4a)
+    border: 1px solid #eaeaea
+    text-transform: uppercase
+    margin-right: auto
+    margin-top: 38px
+    transition: color 0.5s, border-color 0.5s
+    cursor: pointer
+    &:hover
+      border: 1px solid $color-pink
+      color: $color-pink
+
+.new-user-form__label .new-user-form__input:checked + .new-user-form__label-text:after
+  opacity: 1
