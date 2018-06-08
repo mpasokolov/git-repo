@@ -11,19 +11,26 @@
         color: red;
         margin: 0;
         padding: 0;
+        font-size: 12px;
       }
       .submit {
         cursor: pointer;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 30%;
       }
     </style>
   </head>
   <body>
   <form method="get" name="myForm">
-    <label for="name"><p class="field-name">Имя: </p><input type="text" name="name" id="name"></label>
-    <label for="phone"><p class="field-name">Телефон: </p><input type="text" name="phone" id="phone"></label>
-    <label for="email"><p class="field-name">E-mail: </p><input type="text" name="email" id="email"></label>
-    <label for="text"><p class="field-name">Сообщение: </p><textarea rows="10" cols="100" id="text"></textarea></label>
-    <br><br>
+    <label for="name"><span class="field-name">Имя: </span><input type="text" name="name" id="name"></label>
+    <label for="phone"><span class="field-name">Телефон: </span><input type="text" name="phone" id="phone"></label>
+    <label for="email"><span class="field-name">E-mail: </span><input type="text" name="email" id="email"></label>
+    <label for="message"><span class="field-name">Сообщение: </span><textarea rows="10" cols="100" id="message" name="message"></textarea></label>
+    <br>
     <input type="submit" id="submit" class="submit" value="Отправить">
   </form>
   </body>

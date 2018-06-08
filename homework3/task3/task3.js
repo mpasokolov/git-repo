@@ -3,14 +3,14 @@ window.onload = function () {
   var form = document.forms.myForm;
   form.addEventListener('submit', function (ev) {
 
-    var valideNameRezalt = new Validate('name', /^[a-zа-яё]+$/i,
+    var validateNameRez = new Validate('name', /^[a-zа-яё]+$/i,
       'Имя должно содержать только буквы и не должно быть пустым').check();
-    var validePhoneRezalt = new Validate('phone', /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
+    var validatePhoneRez = new Validate('phone', /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
       'Номер телефона должен быть в формате: +7(000)000-0000').check();
-    var valideEmailRezalt = new Validate('email', /^[a-z]+[-\.]?[a-z]+@[a-z]{3,20}\.[a-z]{2,3}$/i,
+    var validateEmailRez = new Validate('email', /^[a-z]+[-\.]?[a-z]+@[a-z]{3,20}\.[a-z]{2,3}$/i,
       'Допустимые форматы для email: mymail@mail.ru, my.mail@mail.ru, my-mail@mail.ru ').check();
 
-    if (!valideNameRezalt || !validePhoneRezalt || !valideEmailRezalt) {
+    if (!validateNameRez || !validatePhoneRez || !validateEmailRez) {
       ev.preventDefault();
     }
   })
@@ -39,7 +39,7 @@ Validate.prototype.check = function() {
 };
 
 Validate.prototype.createMsg = function() {
-  var text = document.createElement('p');
+  var text = document.createElement('span');
   text.className = 'error';
   text.textContent = this.error;
 
