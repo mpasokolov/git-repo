@@ -12,16 +12,19 @@
         margin: 0;
         padding: 0;
       }
+      .submit {
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-  <form method="get">
+  <form action="#" method="post" id="form">
     <label for="name"><p class="field-name">Имя: </p><input type="text" id="name"></label>
     <label for="phone"><p class="field-name">Телефон: </p><input type="text" id="phone"></label>
     <label for="email"><p class="field-name">E-mail: </p><input type="text" id="email"></label>
     <label for="text"><p class="field-name">Сообщение: </p><textarea rows="10" cols="100" id="text"></textarea></label>
     <br><br>
-    <input type="submit" id="submit" value="Отправить">
+    <input type="submit" id="submit" class="submit" value="Отправить">
   </form>
   </body>
 </html>
