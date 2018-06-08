@@ -1,7 +1,7 @@
 //Можно было без классов, но уж очень хотелось что нибудь с классами поделать
 window.onload = function () {
   var button = document.getElementById('submit');
-  button.addEventListener('click', function (ev) {
+  button.addEventListener('click', function () {
 
     //validate name
     var name = document.getElementById('name');
@@ -35,18 +35,16 @@ window.onload = function () {
     var email = document.getElementById('email');
     var emailParent = email.parentNode;
 
-    if (!email.value.match(/^\w+[-\.]?\w+@\w+\.ru$/)) {
+    if (!email.value.match(/^[a-z]+[-\.]?[a-z]+@[a-z]{3,20}\.[a-z]{2,3}$/i)) {
       if (emailParent.childNodes.length === 2) {
         email.parentNode.appendChild(new Error('Допустимые форматы для email: mymail@mail.ru, my.mail@mail.ru, ' +
           'my-mail@mail.ru ').render());
         email.style.borderColor = 'red';
-
       }
     } else if (emailParent.childNodes.length === 3) {
       emailParent.removeChild(emailParent.lastChild);
       email.style.borderColor = '';
     }
-
   })
 };
 
