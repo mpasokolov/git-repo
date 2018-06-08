@@ -1,8 +1,7 @@
 //Можно было без классов, но уж очень хотелось что нибудь с классами поделать
 window.onload = function () {
-  var form = document.getElementById('form');
+  var form = document.forms.myForm;
   form.addEventListener('submit', function validate(ev) {
-    console.log(document.forms.form);
 
     var valideNameRezalt = new Validate('name', /^[a-zа-яё]+$/i,
       'Имя должно содержать только буквы и не должно быть пустым').check();
