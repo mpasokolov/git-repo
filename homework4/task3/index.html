@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="task3.js"></script>
+    <style>
+      .field-name {
+        padding: 0;
+        margin: 0;
+      }
+      .error {
+        color: red;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+      }
+      .submit {
+        cursor: pointer;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 30%;
+      }
+      .list-block {
+        margin-top: 2px;
+        position: relative;
+        z-index: 2;
+      }
+      #city {
+        outline: none;
+      }
+      #list {
+        position: absolute;
+        list-style-type: none;
+        margin: 0;
+        padding: 5px;
+        z-index: 3;
+        background-color: white;
+      }
+      #list > li {
+        margin-bottom: 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+  <form method="get" name="myForm" id="myForm">
+    <label for="name"><span class="field-name">Имя: </span><input type="text" name="name" id="name"></label>
+    <label for="phone"><span class="field-name">Телефон: </span><input type="text" name="phone" id="phone"></label>
+    <label for="email"><span class="field-name">E-mail: </span><input type="text" name="email" id="email"></label>
+    <label for="message"><span class="field-name">Сообщение: </span><textarea rows="10" cols="100" id="message" name="message"></textarea></label>
+    <label for="city" id="city-label"><span class="field-name">Город: </span><input type="text" id="city" name="city"
+    autocomplete="off"></label>
+    <div class="list-block">
+      <ul id="list"></ul>
+    </div>
+    <br>
+    <input type="submit" id="submit" class="submit" value="Отправить">
+  </form>
+  </body>
+</html>
