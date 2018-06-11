@@ -1,8 +1,9 @@
 //Можно было без классов, но уж очень хотелось что нибудь с классами поделать
 $(function () {
   var data = false;
+  var $city = $('#city');
 
-  $('#city').on('input', function () {
+  $city.on('input', function () {
     var value = this.value;
     var $list = $('#list');
     var $submit = $('#submit');
@@ -23,7 +24,7 @@ $(function () {
           var li = $('<li/>');
           li.on('click', function () {
             $list.empty();
-            $('#city')[0].value = item.city;
+            $city[0].value = item.city;
             $submit.css('display', "block");
           });
           $list.append(li.append(item.city));
@@ -42,7 +43,7 @@ $(function () {
       'Имя должно содержать только буквы и не должно быть пустым').check();
     var validatePhoneRez = new Validate('phone', /^\+\d\(\d{3}\)\d{3}-\d{4}$/,
       'Номер телефона должен быть в формате: +7(000)000-0000').check();
-    var validateEmailRez = new Validate('email', /^[a-z]+[-\.]?[a-z]+@[a-z]{3,20}\.[a-z]{2,3}$/i,
+    var validateEmailRez = new Validate('email', /^[a-z]+[-.]?[a-z]+@[a-z]{3,20}\.[a-z]{2,3}$/i,
       'Допустимые форматы для email: mymail@mail.ru, my.mail@mail.ru, my-mail@mail.ru ').check();
     var validateCityRez = new Validate('city', /^[а-я-]+$/i,
       'Поле не должно быть пустым и должно содержать только русские буквы').check();
