@@ -196,20 +196,20 @@
             </div>
         </div>
         <div class="order">
-            <details class="shipping-adress container" open>
+            <details class="shipping-adress container" id="shipping-address" open>
                 <summary class="shipping-adress__caption">01. Shipping Adress</summary>
                 <div class="shipping-adress__flex">
-                    <div class="new-user">
-                        <form action="#" class="new-user-form">
+                    <div class="new-user" id="new-user">
+                        <form action="#" class="new-user-form" id="new-user-form">
                             <h3 class="new-user-form__caption">Check as&nbsp;a&nbsp;guest or&nbsp;register</h3>
                             <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
                             <label class="new-user-form__label">
                                 <input class="new-user-form__input" type="radio" name="new-user-radio">
-                                <div class="new-user-form__label-text">checkout as&nbsp;guest</div>
+                                <span class="new-user-form__label-text">checkout as&nbsp;guest</span>
                             </label>
                             <label class="new-user-form__label">
                                 <input class="new-user-form__input" type="radio" name="new-user-radio" checked>
-                                <div class="new-user-form__label-text">register</div>
+                                <span class="new-user-form__label-text">register</span>
                             </label>
                             <h3 class="new-user-form__caption">register and save time!</h3>
                             <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
@@ -219,24 +219,57 @@
                             </div>
                             <button class="new-user-form__bottom">Continue</button>
                         </form>
+                        <form action="#" class="new-user-reg-form" id="new-user-reg-form" name="new-user-reg-form">
+                            <h3 class="new-user-form__caption">Create new account</h3>
+                            <p class="new-user-reg-form__text">Please enter your email address and password</p>
+                            <div class="new-user-reg-form__input-block">
+                                <label for="new-user-email" class="new-user-reg-form__label">EMAIL ADDRESS
+                                    <span class="new-user-reg-form__label-required"> *</span><br>
+                                </label>
+                                <input class="new-user-reg-form__input" type="text" name="new-user-email" id="new-user-email">
+                            </div>
+                            <div class="new-user-reg-form__input-block">
+                                <label for="new-user-pass" class="new-user-reg-form__label">PASSWORD<span
+                                  class="new-user-reg-form__label-required"> *</span> <br></label>
+                                <input class="new-user-reg-form__input" type="password" name="new-user-pass" id="new-user-pass">
+                            </div>
+                            <div class="new-user-reg-form__input-block">
+                                <label for="new-user-pass-check" class="new-user-reg-form__label">CONFIRM PASSWORD<span
+                                  class="new-user-reg-form__label-required"> *</span> <br></label>
+                                <input class="new-user-reg-form__input" type="password" name="new-user-pass-check" id="new-user-pass-check">
+                            </div>
+                            <p class="new-user-reg-form__required">*Required Fields</p>
+                            <div class="new-user-reg-form__bottom-block">
+                                <button id="new-user-reg-form__bottom" class="new-user-reg-form__bottom">Register
+                                </button>
+                                <button class="new-user-reg-form__bottom" id="new-user-reg-form__bottom-back">Back
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="old-user">
-                        <form action="#" class="old-user-form">
+                        <form action="#" class="old-user-form" id="old-user-form">
                             <h3 class="old-user-form__caption">Already registred?</h3>
                             <p class="old-user-form__text">Please log in&nbsp;below</p>
-                            <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
-                            <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
-                            <p class="old-user-form__required">*Required Fileds</p>
-                            <div class="old-user-form__bottom-block">
-                                <button class="old-user-form__bottom">Log in</button>
-                                <a href="#" class="old-user-form__forgot-pass">Forgot Password ?</a>
+                            <div class="old-user-form__input-block">
+                                <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span
+                                  class="old-user-form__label-required"> *</span> <br></label>
+                                <input id="old-user-email" type="email" class="old-user-form__input" required>
+                            </div>
+                            <div class="old-user-form__input-block">
+                                <label for="old-user-pass" class="old-user-form__label">PASSWORD<span
+                                  class="old-user-form__label-required"> *</span> <br></label>
+                                <input id="old-user-pass" type="password" class="old-user-form__input" required>
+                            </div>
+                            <p class="old-user-form__required">*Required Fields</p>
+                            <div class="old-user-form__bottom-block" id="login-block">
+                                <button class="old-user-form__bottom" id="login">Log in</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </details>
+            <!--
             <details class="shipping-adress container">
                 <summary class="shipping-adress__caption">01. Shipping Adress</summary>
                 <div class="shipping-adress__flex">
@@ -442,6 +475,7 @@
                     </div>
                 </div>
             </details>
+            -->
         </div>
         <div class="subscribe-container">
             <div class="container subscribe">
@@ -558,6 +592,6 @@
         </div>
     </footer>
 </div>
-<script> </script>
+<script src="js/checkout.js"></script>
 </body>
 </html>

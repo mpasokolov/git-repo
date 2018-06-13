@@ -324,7 +324,7 @@ header {
     border-left: none;
     min-width: 37px;
     height: 100%;
-    background: url(../lesson5/img/search.svg) 50% no-repeat;
+    background: url(../img/search.svg) 50% no-repeat;
     background-size: 14px 14px;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
@@ -493,7 +493,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    background: url(../lesson5/img/menu_man.png) no-repeat;
+    background: url(../img/menu_man.png) no-repeat;
     height: 99px;
     padding: 10px;
     margin-top: 22px; }
@@ -1446,12 +1446,15 @@ html, body {
   flex-direction: column;
   padding-top: 32px;
   padding-bottom: 32px; }
+  .old-user-form__input-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px; }
   .old-user-form__input {
     border: 1px solid #eaeaea;
     box-sizing: border-box;
     width: 390px;
     height: 45px;
-    margin-bottom: 22px;
     font-size: 16px;
     font-weight: 300;
     color: #222222;
@@ -1513,6 +1516,13 @@ html, body {
     font-size: 13px;
     font-weight: 400;
     color: #b3b2b2; }
+  .old-user-form__error {
+    display: block;
+    width: 390px;
+    color: red;
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: 12px; }
 
 .new-user-form {
   display: flex;
@@ -1535,7 +1545,7 @@ html, body {
     .new-user-form__label-text:before {
       content: "";
       position: absolute;
-      top: 0px;
+      top: 0;
       left: 3px;
       width: 14px;
       height: 14px;
@@ -1558,8 +1568,7 @@ html, body {
     position: absolute;
     z-index: -1;
     opacity: 0;
-    margin: 10px 0 0 7px;
-    margin-right: 15px; }
+    margin: 10px 15px 0 7px; }
   .new-user-form__advantage {
     font-size: 13px;
     font-weight: 400;
@@ -1601,6 +1610,85 @@ html, body {
     .new-user-form__bottom:hover {
       border: 1px solid #f16d7f;
       color: #f16d7f; }
+
+.new-user-reg-form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  padding-bottom: 32px; }
+  .new-user-reg-form__input-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px; }
+  .new-user-reg-form__input {
+    border: 1px solid #eaeaea;
+    box-sizing: border-box;
+    width: 390px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #222222;
+    padding: 10px;
+    color: #222222;
+    transition: color 0.5s, border-color 0.5s; }
+    .new-user-reg-form__input:hover {
+      border: 1px solid #f16d7f;
+      color: #f16d7f; }
+  .new-user-reg-form__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #222222;
+    margin-bottom: 16px; }
+  .new-user-reg-form__label-required {
+    font-size: 17px;
+    font-weight: 400;
+    color: #ff0d0d; }
+  .new-user-reg-form__required {
+    padding: 0;
+    margin: 0 0 32px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #ff0d0d; }
+  .new-user-reg-form__bottom-block {
+    display: flex;
+    align-items: center; }
+  .new-user-reg-form__bottom {
+    padding: 19px 54px;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4a4a4a;
+    border: 1px solid #eaeaea;
+    text-transform: uppercase;
+    transition: color 0.5s, border-color 0.5s;
+    cursor: pointer; }
+    .new-user-reg-form__bottom:hover {
+      border-color: #f16d7f;
+      color: #f16d7f; }
+  .new-user-reg-form__caption {
+    font-size: 13px;
+    font-weight: 400;
+    color: #222222;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0 0 15px; }
+  .new-user-reg-form__text {
+    padding: 0;
+    margin: 0 0 27px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #b3b2b2; }
+  .new-user-reg-form__error {
+    display: block;
+    width: 390px;
+    color: red;
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: 12px; }
+  .new-user-reg-form__success {
+    color: green;
+    width: 390px; }
 
 .new-user-form__label .new-user-form__input:checked + .new-user-form__label-text:after {
   opacity: 1; }

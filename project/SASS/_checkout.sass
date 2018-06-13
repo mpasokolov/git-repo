@@ -1,3 +1,6 @@
+@import "mixin"
+@import "vars"
+
 html, body
   height: 100%
 
@@ -57,12 +60,15 @@ html, body
   flex-direction: column
   padding-top: 32px
   padding-bottom: 32px
+  &__input-block
+    display: flex
+    flex-direction: column
+    margin-bottom: 22px
   &__input
     border: 1px solid #eaeaea
     box-sizing: border-box
     width: 390px
     height: 45px
-    margin-bottom: 22px
     @include font(16px, 300, $color-black)
     padding: 10px
     color: $color-black
@@ -108,6 +114,13 @@ html, body
     padding: 0
     margin: 0 0 27px
     @include font(13px, 400, #b3b2b2)
+  &__error
+    display: block
+    width: 390px
+    color: red
+    margin: 5px 0 0
+    padding: 0
+    font-size: 12px
 
 
 .new-user-form
@@ -129,7 +142,7 @@ html, body
     &:before
       content: ''
       position: absolute
-      top: 0px
+      top: 0
       left: 3px
       width: 14px
       height: 14px
@@ -152,8 +165,7 @@ html, body
     position: absolute
     z-index: -1
     opacity: 0
-    margin: 10px 0 0 7px
-    margin-right: 15px
+    margin: 10px 15px 0 7px
   &__advantage
     @include font(13px, 400, #b3b2b2)
     padding: 0
@@ -187,6 +199,72 @@ html, body
     &:hover
       border: 1px solid $color-pink
       color: $color-pink
+
+.new-user-reg-form
+  display: flex
+  flex-direction: column
+  padding-top: 32px
+  padding-bottom: 32px
+  &__input-block
+    display: flex
+    flex-direction: column
+    margin-bottom: 22px
+  &__input
+    border: 1px solid #eaeaea
+    box-sizing: border-box
+    width: 390px
+    height: 45px
+    @include font(16px, 300, $color-black)
+    padding: 10px
+    color: $color-black
+    transition: color 0.5s, border-color 0.5s
+    &:hover
+      border: 1px solid $color-pink
+      color: $color-pink
+  &__label
+    display: block
+    @include font(12px, 400, $color-black)
+    margin-bottom: 16px
+  &__label-required
+    @include font(17px, 400, #ff0d0d)
+  &__required
+    padding: 0
+    margin: 0 0 32px
+    @include font(13px, 400, #ff0d0d)
+  &__bottom-block
+    display: flex
+    align-items: center
+  &__bottom
+    padding: 19px 54px
+    margin-right: 20px
+    @include font(14px, 700, #4a4a4a)
+    border: 1px solid #eaeaea
+    text-transform: uppercase
+    transition: color 0.5s, border-color 0.5s
+    cursor: pointer
+    &:hover
+      border-color: $color-pink
+      color: $color-pink
+  &__caption
+    @include font(13px, 400, $color-black)
+    text-transform: uppercase
+    padding: 0
+    margin: 0 0 15px
+  &__text
+    padding: 0
+    margin: 0 0 27px
+    @include font(13px, 400, #b3b2b2)
+  &__error
+    display: block
+    width: 390px
+    color: red
+    margin: 5px 0 0
+    padding: 0
+    font-size: 12px
+  &__success
+    color: green
+    width: 390px
+
 
 .new-user-form__label .new-user-form__input:checked + .new-user-form__label-text:after
   opacity: 1
