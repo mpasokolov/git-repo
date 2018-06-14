@@ -47,7 +47,7 @@ function buildCart() {
     items.forEach(function(item) {
       total += +item.price * +item.quantity;
       var $li = $('<li/>', {
-        text: item.name + ': ' + item.price + ' rub',
+        text: item.name + ': ' + item.price + ' rub' + '(' +item.quantity + ')',
         'data-id': item.id,
         'data-quantity': item.quantity
       });
@@ -55,6 +55,8 @@ function buildCart() {
         text: 'Delete',
         class: 'delete',
         'data-id': item.id,
+        'data-price': item.price,
+        'data-name': item.name,
         'data-quantity': item.quantity
       });
       $li.append($delButton);
@@ -104,12 +106,35 @@ function buildCart() {
       event.preventDefault();
     });
 
-    $('#cart-list').on('click', '.delete', function (event) {
-      console.log(this);
+    $('#cart').on('click', '.delete', function (event) {
+      if (+$(this).attr('data-quantity') === 1) {
+        $.ajax({
+          url: 'http://localhost:3000/cart/' + $(this).attr('data-id').toString(),
+          type: 'DELETE',
+          success: function() {
+            buildCart();
+          }
+        })
+      } else if (+$(this).attr('data-quantity') > 1) {
+        var cartGood = $('#cart li[data-id="' + $(this).attr('data-id') + '"]');
+        var good = {
+          id: $(this).attr('data-id'),
+          name: $(this).attr('data-name'),
+          price: $(this).attr('data-price')
+
+        };
+        good.quantity = +cartGood.eq(0).attr('data-quantity') - 1;
+        $.ajax({
+          url: 'http://localhost:3000/cart/' + good.id,
+          type: 'PUT',
+          data: good,
+          success: function() {
+            buildCart();
+          }
+        })
+      }
       event.preventDefault();
     })
 
   });
 })(jQuery);
-
-console.log($('#cart-list'));
