@@ -26,7 +26,7 @@
       "id": 3,
       "name": "iPhone 7",
       "price": 50000,
-      "quantity": "22"
+      "quantity": "7"
     }
   ],
   "cart": [
@@ -34,7 +34,7 @@
       "id": "3",
       "name": "iPhone 7",
       "price": "50000",
-      "quantity": "12"
+      "quantity": "31"
     }
   ]
 }

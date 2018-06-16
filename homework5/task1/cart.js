@@ -74,7 +74,7 @@ function buildCart() {
 
     $('#goods').on('click', '.buy', function(event) {
       if(+$(this).attr('data-quantity') < 1) {
-        alert('Недостаточно товара');
+        alert('Недостаточно товаров');
         return;
       }
       var good = {

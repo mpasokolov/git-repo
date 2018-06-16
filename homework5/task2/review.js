@@ -128,6 +128,7 @@ function buildModerateList() {
 
     $reviewList.on('click', '.add-review', function (event) {
       event.preventDefault();
+      $('#add-review-error').css('display', 'none');
       $('#add-review-done').css('display', 'none');
       $('#add-review-form').css('display', 'flex');
     });
