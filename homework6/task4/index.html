@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="cart.js"></script>
+    <script src="jQueryUI/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
+    <style>
+      .cart-block, .goods-block {
+        padding: 10px;
+        border: 1px solid black;
+        width: 300px;
+      }
+      .cart-block {
+        margin-bottom: 100px;
+      }
+      .text {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="cart-block" id="cart-block">
+    <p class="text">Корзина:</p>
+    <div class="cart" id="cart"></div>
+  </div>
+  <div class="goods-block" id="goods-block">
+    <p class="text">Магазин:</p>
+    <ul id="goods" class="goods"></ul>
+  </div>
+  </body>
+</html>
