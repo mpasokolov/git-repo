@@ -195,7 +195,7 @@
                 </nav>
             </div>
         </div>
-        <div class="order">
+        <div class="order" id="order">
             <details class="shipping-adress container" id="shipping-address" open>
                 <summary class="shipping-adress__caption">01. Shipping Adress</summary>
                 <div class="shipping-adress__flex">
@@ -247,7 +247,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="old-user">
+                    <div class="old-user" id="old-user">
                         <form action="#" class="old-user-form" id="old-user-form">
                             <h3 class="old-user-form__caption">Already registred?</h3>
                             <p class="old-user-form__text">Please log in&nbsp;below</p>
@@ -269,9 +269,8 @@
                     </div>
                 </div>
             </details>
-            <!--
-            <details class="shipping-adress container">
-                <summary class="shipping-adress__caption">01. Shipping Adress</summary>
+            <details class="shipping-adress container" id="billing-information">
+                <summary class="shipping-adress__caption">02. Billing Information</summary>
                 <div class="shipping-adress__flex">
                     <div class="new-user">
                         <form action="#" class="new-user-form">
@@ -299,9 +298,9 @@
                             <h3 class="old-user-form__caption">Already registred?</h3>
                             <p class="old-user-form__text">Please log in&nbsp;below</p>
                             <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
+                            <input id="old-user-email2" type="email" class="old-user-form__input" required>
                             <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
+                            <input id="old-user-pass2" type="password" class="old-user-form__input" required>
                             <p class="old-user-form__required">*Required Fileds</p>
                             <div class="old-user-form__bottom-block">
                                 <button class="old-user-form__bottom">Log in</button>
@@ -311,6 +310,7 @@
                     </div>
                 </div>
             </details>
+            <!--
             <details class="shipping-adress container">
                 <summary class="shipping-adress__caption">01. Shipping Adress</summary>
                 <div class="shipping-adress__flex">

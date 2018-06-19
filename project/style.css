@@ -642,7 +642,7 @@ html, body {
   height: 614px; }
   .main-slider__image {
     height: 100%;
-    background: url(../lesson5/img/man.png) -300px -51px; }
+    background: url(./img/man.png) -300px -51px; }
   .main-slider__text {
     float: left;
     margin-top: 224px;
@@ -696,16 +696,16 @@ html, body {
     padding: 16px 19px;
     box-sizing: border-box; }
   .offers__man {
-    background: url(../lesson5/img/offer-for-man.png);
+    background: url(./img/offer-for-man.png);
     border: 1px solid #ffffff; }
   .offers__accesories {
-    background: url(../lesson5/img/offers-acc.png);
+    background: url(./img/offers-acc.png);
     border: 1px solid #ffffff; }
   .offers__woman {
-    background: url(../lesson5/img/offers-woman.png);
+    background: url(./img/offers-woman.png);
     border: 1px solid #ffffff; }
   .offers__kids {
-    background: url(../lesson5/img/offers-kids.png);
+    background: url(./img/offers-kids.png);
     border: 1px solid #ffffff; }
   .offers__logo-man {
     background-color: #ffffff;
@@ -819,7 +819,7 @@ html, body {
     box-sizing: border-box;
     transition: opacity 0.25s; }
   .item__arrow {
-    margin-right: 8px; }
+    margin-left: 8px; }
   .item__name {
     font-size: 13px;
     font-weight: 400;
@@ -845,7 +845,7 @@ html, body {
   padding-top: 146px;
   padding-left: 39px;
   width: 767px;
-  background: url(../lesson5/img/offer_main.png) no-repeat; }
+  background: url(./img/offer_main.png) no-repeat; }
   .discont-offer-left__logo-up {
     font-size: 54px;
     font-weight: 700;
@@ -893,7 +893,7 @@ html, body {
   min-width: 1140px;
   position: relative;
   height: 438px;
-  background: url("../lesson5/img/subscribe.png") no-repeat center;
+  background: url("../img/subscribe.png") no-repeat center;
   -webkit-background-size: cover;
   background-size: cover; }
   .subscribe-container:after {
@@ -1523,6 +1523,10 @@ html, body {
     margin: 5px 0 0;
     padding: 0;
     font-size: 12px; }
+  .old-user-form__error_form {
+    width: 390px;
+    color: red;
+    font-size: 12px; }
 
 .new-user-form {
   display: flex;
@@ -1685,6 +1689,10 @@ html, body {
     color: red;
     margin: 5px 0 0;
     padding: 0;
+    font-size: 12px; }
+  .new-user-reg-form__error_form {
+    width: 390px;
+    color: red;
     font-size: 12px; }
   .new-user-reg-form__success {
     color: green;

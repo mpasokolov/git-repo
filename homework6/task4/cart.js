@@ -1,6 +1,30 @@
+(function($) {
+  $(function() {
+    buildCart();
+    buildGoodsList();
+
+    $('#cart-block').droppable({
+      drop: function (event, ui) {
+        buyGood(ui.draggable[0].firstElementChild);
+      }
+    });
+
+    $('#goods').on('click', '.buy', function(event) {
+      event.preventDefault();
+      buyGood(this);
+    });
+
+    $('#cart').on('click', '.delete', function (event) {
+      event.preventDefault();
+      delFromCart(this);
+    })
+
+  });
+})(jQuery);
+
 
 function buildGoodsList() {
-  $.get('http://localhost:3000/goods', {}, function(goods) {
+  $.get('http://localhost:3000/goods', function(goods) {
     $('#goods').empty();
     goods.forEach(function(good) {
       var $button = $('<button/>', {
@@ -14,6 +38,9 @@ function buildGoodsList() {
       $('<li/>', {
         text: good.name + ' (' + good.quantity + ')',
         class: 'good'
+      }).draggable({
+        revert: true,
+        appendTo: '#cart',
       }).append($button).appendTo('#goods');
     });
   }, 'json');
@@ -28,6 +55,82 @@ function reduceCountAndBuildGoods(id, count) {
       buildGoodsList()
     }
   })
+}
+
+function buyGood(item) {
+  var count = +$(item).attr('data-quantity');
+
+  if(+$(item).attr('data-quantity') < 1) {
+    alert('Недостаточно товара');
+    return;
+  }
+
+  var good = {
+    id: $(item).attr('data-id'),
+    name: $(item).attr('data-name'),
+    price: $(item).attr('data-price')
+  };
+
+  var cartGood = $('#cart li[data-id="' + $(item).attr('data-id') + '"]');
+  if(cartGood.length) {
+    good.quantity = +cartGood.eq(0).attr('data-quantity') + 1;
+    $.ajax({
+      url: 'http://localhost:3000/cart/' + good.id,
+      type: 'PUT',
+      data: good,
+      success: function() {
+        reduceCountAndBuildGoods(good.id, count);
+        buildCart();
+      }
+    })
+  } else {
+    good.quantity = 1;
+    $.post('http://localhost:3000/cart', good, function() {
+      reduceCountAndBuildGoods(good.id, count);
+      buildCart();
+    }, 'json');
+  }
+}
+
+function delFromCart(item) {
+  if (+$(item).attr('data-quantity') === 1) {
+    $.ajax({
+      url: 'http://localhost:3000/cart/' + $(item).attr('data-id'),
+      type: 'DELETE',
+      success: function() {
+        buildCart();
+        addToGoods(item);
+      }
+    })
+  } else if (+$(item).attr('data-quantity') > 1) {
+    var cartGood = $('#cart li[data-id="' + $(item).attr('data-id') + '"]');
+    var quantity = +cartGood.eq(0).attr('data-quantity') - 1;
+    $.ajax({
+      url: 'http://localhost:3000/cart/' + $(item).attr('data-id'),
+      type: 'PATCH',
+      data: {'quantity': quantity},
+      success: function() {
+        buildCart();
+        buildGoodsList();
+        addToGoods(item);
+      }
+    })
+  }
+}
+
+function addToGoods(item) {
+  $.get('http://localhost:3000/goods/' + $(item).attr('data-id'), function(response) {
+    var inStock = response.quantity;
+    $.ajax({
+      url: 'http://localhost:3000/goods/' + $(item).attr('data-id'),
+      type: 'PATCH',
+      data: {'quantity': +inStock + 1},
+      success: function () {
+        buildCart();
+        buildGoodsList();
+      }
+    })
+  }, 'json')
 }
 
 function buildCart() {
@@ -61,93 +164,3 @@ function buildCart() {
     cart.append('Total: ' + total + ' rub.')
   }, 'json');
 }
-
-(function($) {
-  $(function() {
-    buildCart();
-    buildGoodsList();
-
-    $('#cart-block').droppable({
-      drop: function () {
-        console.log(this);
-      }
-    });
-
-    $('.good').each(function (i, good) {
-      console.log(good);
-    });
-
-    console.log(document.getElementsByClassName('good'));
-    console.log($('.good').eq(0));
-    console.log($('.good').eq(1));
-
-
-    $('.good').eq(0).draggable();
-
-
-
-    $('#goods').on('click', '.buy', function(event) {
-      event.preventDefault();
-
-      var count = +$(this).attr('data-quantity');
-
-      if(+$(this).attr('data-quantity') < 1) {
-        alert('Недостаточно товара');
-        return;
-      }
-
-      var good = {
-        id: $(this).attr('data-id'),
-        name: $(this).attr('data-name'),
-        price: $(this).attr('data-price')
-      };
-
-      var cartGood = $('#cart li[data-id="' + $(this).attr('data-id') + '"]');
-      if(cartGood.length) {
-        good.quantity = +cartGood.eq(0).attr('data-quantity') + 1;
-        $.ajax({
-          url: 'http://localhost:3000/cart/' + good.id,
-          type: 'PUT',
-          data: good,
-          success: function() {
-            reduceCountAndBuildGoods(good.id, count);
-            buildCart();
-          }
-        })
-      } else {
-        good.quantity = 1;
-        $.post('http://localhost:3000/cart', good, function() {
-          reduceCountAndBuildGoods(good.id, count);
-          buildCart();
-        }, 'json');
-      }
-    });
-
-    $('#cart').on('click', '.delete', function (event) {
-      if (+$(this).attr('data-quantity') === 1) {
-        $.ajax({
-          url: 'http://localhost:3000/cart/' + $(this).attr('data-id'),
-          type: 'DELETE',
-          success: function() {
-            buildCart();
-          }
-        })
-      } else if (+$(this).attr('data-quantity') > 1) {
-        var cartGood = $('#cart li[data-id="' + $(this).attr('data-id') + '"]');
-        var quantity = +cartGood.eq(0).attr('data-quantity') - 1;
-        $.ajax({
-          url: 'http://localhost:3000/cart/' + $(this).attr('data-id'),
-          type: 'PATCH',
-          data: {'quantity': quantity},
-          success: function() {
-            buildCart();
-            buildGoodsList();
-
-          }
-        })
-      }
-      event.preventDefault();
-    })
-
-  });
-})(jQuery);

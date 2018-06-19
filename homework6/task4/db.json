@@ -14,27 +14,39 @@
       "id": 1,
       "name": "iPhone X",
       "price": 70000,
-      "quantity": "0"
+      "quantity": "23"
     },
     {
       "id": 2,
       "name": "iPhone 8",
       "price": 60000,
-      "quantity": "0"
+      "quantity": "35"
     },
     {
       "id": 3,
       "name": "iPhone 7",
       "price": 50000,
-      "quantity": "6"
+      "quantity": "36"
     }
   ],
   "cart": [
     {
+      "id": "1",
+      "name": "iPhone X",
+      "price": "70000",
+      "quantity": "26"
+    },
+    {
+      "id": "2",
+      "name": "iPhone 8",
+      "price": "60000",
+      "quantity": "7"
+    },
+    {
       "id": "3",
       "name": "iPhone 7",
       "price": "50000",
-      "quantity": "26"
+      "quantity": "20"
     }
   ]
 }
