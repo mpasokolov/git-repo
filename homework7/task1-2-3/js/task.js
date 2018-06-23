@@ -1,4 +1,5 @@
-$(function () {
+(function($) {
+  $(function () {
     $('#slick').slick({
       centerMode: true,
       variableWidth: true,
@@ -11,4 +12,5 @@ $(function () {
       slidesToScroll: 3,
       swipeToSlide: true
     });
-});
+  });
+})(jQuery);

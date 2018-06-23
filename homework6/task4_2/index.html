@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+```
+<html lang="en">
+<head>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<meta charset="UTF-8">
+<title>HELP</title> 
+<link rel="stylesheet" href="style.css"> 
+<style> 
+body{
+margin: 0; 
+padding: 0;
+} 
+.btn{
+height: 50px; 
+width: 50px;
+display: block;
+
+background: red; 
+text-align: center;
+
+text-decoration: none; 
+border-radius: 50%; 
+float: right;
+
+transition: 2sec
+} 
+.btnactive{
+background: orange;
+} 
+.block{
+width:52px; 
+height: 100vh; 
+background-color: green; 
+transition: 2s;
+} 
+.block-button_active{
+width:300px;
+} 
+.text1{
+display: none;
+}
+
+</style>
+</head>
+<body>
+<div class="block">
+<a href="#" class="btn">TAP</a>
+
+    <div class="text1">
+        этот текст должен исчезать и появляться по нажатию
+    </div> 
+</div> 
+<script> 
+var a=0; 
+$('.btn').on('click', function(e) {
+$(this).toggleClass('btnactive'); 
+$('.block').toggleClass('block-button_active');   
+$('.text1').show(1000);     
+    $('.btnactive').on('click', function(e) {
+     $('.text1').hide(1000);    
+ });
+}); 
+</script>
+</body>
+</html>

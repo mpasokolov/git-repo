@@ -4,7 +4,6 @@ var path = require('path');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync');
 var minifyCss = require('gulp-minify-css');
-var minifyHtml = require('gulp-minify-html');
 
 var src = {
   sass: path.resolve(__dirname, 'SASS', '*.sass'),
