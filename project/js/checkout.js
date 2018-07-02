@@ -1,9 +1,3 @@
-window.onload = function () {
-  var allCookies = document.cookie;
-
-};
-
-
 document.getElementsByClassName('new-user-form__bottom')[0].addEventListener('click', function (ev) {
 
 	ev.preventDefault();

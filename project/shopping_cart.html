@@ -58,48 +58,10 @@
                             <div class="my-acc-block__arrow2"></div>
                             <div class="my-acc-menu">
                                 <table class="my-acc-menu__table">
-                                    <tr class="my-acc-menu__table-row">
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-img-block">
-                                            <a href="single_page.html"><img class="my-acc-menu__item-img" src="img/cart_img1.png" alt="cart-item"></a>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell">
-                                            <h3 class="my-acc-menu__item-caption">Rebox Zane</h3>
-                                            <p class="my-acc-menu__item-rate">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                            </p>
-                                            <p class="my-acc-menu__item-price">1&nbsp;x $250</p>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-del">
-                                            <button class="my-acc-menu__item-del-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="my-acc-menu__table-row">
-                                        <td class="my-acc-menu__table-cell">
-                                            <a href="single_page.html"><img class="my-acc-menu__item-img" src="img/cart_img2.png" alt="cart-item"></a>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell">
-                                            <h3 class="my-acc-menu__item-caption">Rebox Zane</h3>
-                                            <p class="my-acc-menu__item-rate">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                            </p>
-                                            <p class="my-acc-menu__item-price">1&nbsp;x $250</p>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-del">
-                                            <button class="my-acc-menu__item-del-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
                                 </table>
                                 <div class="my-acc-menu__price">
                                     <p class="my-acc-menu__price-text">TOTAL</p>
-                                    <p class="my-acc-menu__price-text">$500.00</p>
+                                    <p class="my-acc-menu__price-text" id="my-acc-menu-price">$500.00</p>
                                 </div>
                                 <a class="my-acc-menu__button" href="checkout.html">Checkout</a>
                                 <a class="my-acc-menu__button" href="shopping_cart.html">Go&nbsp;to&nbsp;cart</a>
@@ -195,7 +157,7 @@
             </div>
         </div>
         <div class="shopping-list container">
-            <table class="shopping-list__table bought-table">
+            <table class="shopping-list__table bought-table" id="shopping-list__table">
                 <tr class="bought-table__row">
                     <th class="bought-table__cell-head bought-table__col1">Product Details</th>
                     <th class="bought-table__cell-head bought-table__col2">unite Price</th>
@@ -204,91 +166,10 @@
                     <th class="bought-table__cell-head bought-table__col5">Subtotal</th>
                     <th class="bought-table__cell-head bought-table__col6">ACTION</th>
                 </tr>
-                <tr class="bought-table__row bought-item">
-                    <td class="bought-item__block bought-item__product-details">
-                        <a class="bought-item__link" href="single_page.html">
-                            <img class="bought-item__img" src="img/cart-item1.jpg" alt="">
-                        </a>
-                        <div class="bought-item__info">
-                            <a class="bought-item__link"  href="single_page.html"><p class="bought-item__name">Mango People T-shirt</p></a>
-                            <p class="bought-item__color">Color: <span class="bought-item__color_info">Red</span></p>
-                            <p class="bought-item__size">Size: <span class="bought-item__size_info">Xll</span></p>
-                        </div>
-                    </td>
-                    <td class="bought-item__block">
-                        $150
-                    </td>
-                    <td class="bought-item__block">
-                        <input class="bought-item__block_number" type="number" min="1" value="1" step="1">
-                    </td>
-                    <td class="bought-item__block">
-                        FREE
-                    </td>
-                    <td class="bought-item__block">
-                        $300
-                    </td>
-                    <td class="bought-item__block">
-                        <button class="bought-item__block_action"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
-                <tr class="bought-table__row bought-item">
-                    <td class="bought-item__block bought-item__product-details">
-                        <a class="bought-item__link" href="single_page.html">
-                            <img class="bought-item__img" src="img/cart-item2.jpg" alt="">
-                        </a>
-                        <div class="bought-item__info">
-                            <a class="bought-item__link"  href="single_page.html"><p class="bought-item__name">Mango People T-shirt</p></a>
-                            <p class="bought-item__color">Color: <span class="bought-item__color_info">Red</span></p>
-                            <p class="bought-item__size">Size: <span class="bought-item__size_info">Xll</span></p>
-                        </div>
-                    </td>
-                    <td class="bought-item__block">
-                        $150
-                    </td>
-                    <td class="bought-item__block">
-                        <input class="bought-item__block_number" type="number" min="1" value="1" step="1">
-                    </td>
-                    <td class="bought-item__block">
-                        FREE
-                    </td>
-                    <td class="bought-item__block">
-                        $300
-                    </td>
-                    <td class="bought-item__block">
-                        <button class="bought-item__block_action"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
-                <tr class="bought-table__row bought-item">
-                    <td class="bought-item__block bought-item__product-details">
-                        <a class="bought-item__link" href="single_page.html">
-                            <img class="bought-item__img" src="img/cart-item3.jpg" alt="">
-                        </a>
-                        <div class="bought-item__info">
-                            <a class="bought-item__link"  href="single_page.html"><p class="bought-item__name">Mango People T-shirt</p></a>
-                            <p class="bought-item__color">Color: <span class="bought-item__color_info">Red</span></p>
-                            <p class="bought-item__size">Size: <span class="bought-item__size_info">Xll</span></p>
-                        </div>
-                    </td>
-                    <td class="bought-item__block">
-                        $150
-                    </td>
-                    <td class="bought-item__block">
-                        <input class="bought-item__block_number" type="number" min="1" value="1" step="1">
-                    </td>
-                    <td class="bought-item__block">
-                        FREE
-                    </td>
-                    <td class="bought-item__block">
-                        $300
-                    </td>
-                    <td class="bought-item__block">
-                        <button class="bought-item__block_action"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
             </table>
             <div class="shopping-list__button-flex">
-                <button class="shopping-list__button">cLEAR SHOPPING CART</button>
-                <button class="shopping-list__button">cONTINUE sHOPPING</button>
+                <button class="shopping-list__button" id="clear-cart-button">cLEAR SHOPPING CART</button>
+                <a href="index.html" class="shopping-list__button">cONTINUE sHOPPING</a>
             </div>
             <div class="shopping-list__form">
                 <div class="form-adress">
@@ -312,8 +193,12 @@
                     <button class="form-discont__button" form="form-discont">Apply coupon</button>
                 </div>
                 <div class="form-checkout">
-                    <h4 class="form-checkout__caption-h4">Sub total<span class="form-checkout__caption-h4-price">$900</span></h4>
-                    <h3 class="form-checkout__caption-h3">GRAND TOTAL<span class="form-checkout__caption-h3-price">$900</span></h3>
+                    <h4 class="form-checkout__caption-h4">Sub total<span class="form-checkout__caption-h4-price"
+                                                                         id="cart-sub-price">
+                        $0</span></h4>
+                    <h3 class="form-checkout__caption-h3">GRAND TOTAL<span class="form-checkout__caption-h3-price"
+                                                                           id="cart-price-total">
+                        $0</span></h3>
                     <hr class="form-checkout__hr">
                     <a href="checkout.html" class="form-checkout__button">proceed to&nbsp;checkout</a>
                 </div>
@@ -434,6 +319,7 @@
         </div>
     </footer>
 </div>
-<script> </script>
+<script src="js/shoppingCart.js"></script>
+<script src="js/shoppingCartLittle.js"></script>
 </body>
 </html>

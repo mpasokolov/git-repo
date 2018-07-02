@@ -189,7 +189,6 @@ header {
   top: 40px;
   left: -18px;
   width: 262px;
-  min-height: 440px;
   border-radius: 5px;
   background-color: #ffffff;
   padding: 20px;
@@ -241,6 +240,8 @@ header {
     padding: 0;
     color: #c0c0c0;
     font-size: 16px; }
+    .my-acc-menu__item-del-button:hover {
+      color: #f16d7f; }
   .my-acc-menu__price {
     display: flex;
     justify-content: space-between; }
@@ -324,7 +325,7 @@ header {
     border-left: none;
     min-width: 37px;
     height: 100%;
-    background: url(../img/search.svg) 50% no-repeat;
+    background: url(./img/search.svg) 50% no-repeat;
     background-size: 14px 14px;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
@@ -493,7 +494,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    background: url(../img/menu_man.png) no-repeat;
+    background: url(./img/menu_man.png) no-repeat;
     height: 99px;
     padding: 10px;
     margin-top: 22px; }
@@ -893,7 +894,7 @@ html, body {
   min-width: 1140px;
   position: relative;
   height: 438px;
-  background: url("../img/subscribe.png") no-repeat center;
+  background: url("./img/subscribe.png") no-repeat center;
   -webkit-background-size: cover;
   background-size: cover; }
   .subscribe-container:after {
@@ -1994,6 +1995,7 @@ html, body {
 
 .shopping-list__button {
   padding: 20px 39px;
+  text-decoration: none;
   text-transform: uppercase;
   border: 1px solid #eaeaea;
   box-sizing: border-box;
@@ -2173,6 +2175,10 @@ html, body {
   width: 100%;
   border-collapse: collapse;
   table-layout: auto; }
+  .bought-table__bought-block {
+    width: inherit;
+    border-collapse: collapse;
+    table-layout: auto; }
   .bought-table__cell-head {
     text-align: center;
     text-transform: uppercase;
