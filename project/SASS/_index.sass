@@ -209,6 +209,36 @@ html, body
     margin: 0 0 16px
   &__cost
     @include font(16px, 700, $color-pink)
+  &__info
+    display: flex
+    justify-content: space-between
+  &__select
+    //border: 1px solid #eaeaea
+    border-radius: 0
+    box-sizing: border-box
+    //padding: 0 5px
+    text-align-last: center // для Хром
+    text-align: center // для FF
+    background-color: #ffffff
+    color:  #222222 !important
+    @include font(13px, 400, #bcbcbc)
+    -webkit-appearance: none
+    line-height: 1em
+    /* for FF */
+    -moz-appearance: none
+    text-indent: 0.01px
+    text-overflow: ''
+    /* for IE */
+    -ms-appearance: none
+    appearance: none!important
+    outline: none
+    cursor: pointer
+    transition: border-color 0.5s, color 0.5s
+    &::-ms-expand
+      display: none
+    &:hover
+      color: $color-pink
+      border-color: $color-pink
 
 
 .discont-offer

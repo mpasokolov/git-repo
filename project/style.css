@@ -221,7 +221,7 @@ header {
     color: #e4af48;
     padding: 0;
     margin: 0 0 12px; }
-  .my-acc-menu__item-price {
+  .my-acc-menu__item-info {
     font-size: 12px;
     font-weight: normal;
     color: #f16d7f;
@@ -832,6 +832,36 @@ html, body {
     font-size: 16px;
     font-weight: 700;
     color: #f16d7f; }
+  .item__info {
+    display: flex;
+    justify-content: space-between; }
+  .item__select {
+    border-radius: 0;
+    box-sizing: border-box;
+    text-align-last: center;
+    text-align: center;
+    background-color: #ffffff;
+    color: #222222 !important;
+    font-size: 13px;
+    font-weight: 400;
+    color: #bcbcbc;
+    -webkit-appearance: none;
+    line-height: 1em;
+    /* for FF */
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    /* for IE */
+    -ms-appearance: none;
+    appearance: none !important;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.5s, color 0.5s; }
+    .item__select::-ms-expand {
+      display: none; }
+    .item__select:hover {
+      color: #f16d7f;
+      border-color: #f16d7f; }
 
 .discont-offer {
   display: flex;

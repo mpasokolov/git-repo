@@ -92,7 +92,7 @@ function buildCart() {
 
           var productNameColorText = document.createElement('span');
           productNameColorText.className = 'bought-item__color_info';
-          productNameColorText.textContent = 'Red';
+          productNameColorText.textContent = item.color;
 
           productNameColorBlock.appendChild(productNameColorText);
 
@@ -102,7 +102,7 @@ function buildCart() {
 
           var productSizeColorText = document.createElement('span');
           productSizeColorText.className = 'bought-item__size_info';
-          productSizeColorText.textContent = 'Xll';
+          productSizeColorText.textContent = item.size;
 
           productSizeColorBlock.appendChild(productSizeColorText);
 
