@@ -37,7 +37,7 @@ function itemDelete(button) {
   }
 }
 
-function addToCartItem(data, id) {
+function addToCartItem(data, count, id) {
   if (typeof (data) === 'object') {
     var itemsTable = document.getElementsByClassName('my-acc-menu__table');
     itemsTable[0].appendChild(createItem(data, id))
@@ -45,8 +45,8 @@ function addToCartItem(data, id) {
     var el = document.querySelector('button.my-acc-menu__item-del-button[data-id="' + data + '"]');
     var quantity = +el.getAttribute('data-quantity');
     var priceBlock = document.querySelector('span#item-quantity[data-id="' + data + '"]');
-    priceBlock.textContent = (quantity + 1).toString();
-    el.setAttribute('data-quantity', quantity + 1);
+    priceBlock.textContent = (quantity + +count).toString();
+    el.setAttribute('data-quantity', quantity + +count);
   }
 }
 
@@ -86,7 +86,7 @@ function sendGoodToCart(id, size, color, quantity, count) {
                     if (getGood.status === 200) {
                       var response = JSON.parse(getGood.responseText);
                       var id = response[0].id;
-                      addToCartItem(good, id);
+                      addToCartItem(good, 1, id);
                       calcSumLittleCart();
                     }
                   }
@@ -95,7 +95,7 @@ function sendGoodToCart(id, size, color, quantity, count) {
             }
           }
         } else {
-          good.quantity = count + +quantity;
+          good.quantity = +count + +quantity;
           var getGood2 = new XMLHttpRequest();
           getGood2.open('GET', 'http://localhost:3000/cart?good_id=' + good.good_id + '&color=' + good.color + '&size=' + good.size, true);
           getGood2.send();
@@ -110,7 +110,7 @@ function sendGoodToCart(id, size, color, quantity, count) {
                 putItemToCart.onreadystatechange = function () {
                   if (putItemToCart.readyState === XMLHttpRequest.DONE) {
                     if (putItemToCart.status === 200) {
-                      addToCartItem(id);
+                      addToCartItem(id, quantity);
                       calcSumLittleCart();
                     }
                   }
@@ -320,15 +320,15 @@ function createGood(item) {
   itemSize.id = 'item-size';
   itemSize.className = 'item__select item__select_size';
   itemSize.setAttribute('data-id', item.id);
-  var flag = false;
-  var count = 1;
   for (var size in item.quantity) {
+    var flag = false;
+    var count = 1;
     var sizeOption = document.createElement('option');
     for (var color in item.quantity[size]) {
       if (count > 1) {
         break
       }
-      if (item.quantity[size][color] > 0) {
+      if (+item.quantity[size][color] > 0) {
         var colorOption = document.createElement('option');
         colorOption.text = color;
         itemColor.appendChild(colorOption);

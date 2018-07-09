@@ -6,7 +6,7 @@ getGoods.send();
 
 getGoods.onreadystatechange = function () {
   if (getGoods.readyState === XMLHttpRequest.DONE) {
-    if (getGoods.status === 200) {
+    if (getGoods.status === 200 || getGoods.status === 304) {
       var response = JSON.parse(getGoods.responseText);
       var count = 1;
       response.forEach(function (item) {
@@ -37,7 +37,6 @@ getGood.onreadystatechange = function () {
 
 function addGoodEvent() {
   var button = document.getElementsByClassName('product-description__to-cart');
-  console.log(button);
   button[0].addEventListener('click', function () {
     var item = this;
     var id = item.getAttribute('data-id');
@@ -72,9 +71,7 @@ function addGoodsEvent() {
       var item = this;
       var id = item.getAttribute('data-id');
       var itemColorValue = document.querySelector('select.item__select_color[data-id="' + id + '"]').value;
-      console.log(itemColorValue);
       var itemSizeValue = document.querySelector('select.item__select_size[data-id="' + id + '"]').value;
-      console.log(itemSizeValue);
       var addButtonEvent = new XMLHttpRequest();
       addButtonEvent.open('GET', 'http://localhost:3000/cart?good_id=' + id + '&size=' + itemSizeValue + '&color=' + itemColorValue, true);
       addButtonEvent.send();
@@ -83,7 +80,6 @@ function addGoodsEvent() {
         if (addButtonEvent.readyState === XMLHttpRequest.DONE) {
           if (addButtonEvent.status === 200 || addButtonEvent.status === 304) {
             var response = JSON.parse(addButtonEvent.responseText);
-            console.log(response);
             if (response.length === 1) {
               sendGoodToCart(id, itemSizeValue, itemColorValue, 1, response[0].quantity);
             } else {
@@ -288,40 +284,3 @@ function buildGood(good) {
 
 }
 
-/*
-<section class="product-description container">
-  <h2 class="product-description__h2">WOMEN COLLECTION</h2>
-<h3 class="product-description__h3">Moschino Cheap And Chic</h3>
-<p class="product-description__text">Compellingly actualize fully researched processes before proactive outsourcing. Progressively syndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.</p>
-<ul class="product-description__made">
-  <li class="product-description__made-list"><span>MATERIAL:</span> COTTON</li>
-<li class="product-description__made-list"><span>DESIGNER:</span> BINBURHAN</li>
-</ul>
-<span class="product-description__price">
-  $561
-  </span>
-  <hr class="product-description__hr">
-  <form action="#" class="item-description-form">
-  <div class="item-description-form__group">
-    <label for="color" class="item-description-form__label item-description-form__arrow">CHOOSE COLOR</label>
-    <select id="color" class="item-description-form__select">
-      <option value="red">Red</option>
-      <option value="green">Green</option>
-    </select>
-  </div>
-  <div class="item-description-form__group">
-    <label for="size" class="item-description-form__label item-description-form__arrow">CHOOSE SIZE</label>
-    <select id="size" name="size" class="item-description-form__select">
-      <option value="XXL">XXL</option>
-      <option value="XL">XL</option>
-    </select>
-  </div>
-  <div class="item-description-form__group">
-  <label for="quantity" class="item-description-form__label">QUANTITY</label>
-  <input type="number" id="quantity" value="1" min="1" max="100" class="item-description-form__input">
-  </div>
-
-  </form>
-  <a href="#" class="product-description__to-cart"><i class="fa fa-shopping-cart product-description__to-cart-basket" aria-hidden="true"></i>Add to&nbsp;Cart</a>
-</section>
-*/

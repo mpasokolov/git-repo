@@ -38,9 +38,6 @@ document.getElementsByClassName('new-user-form__bottom')[0].addEventListener('cl
 			' регистре').check();
     var validatePassConfirm = passwordCompare(document.getElementById('new-user-pass'), document.getElementById('new-user-pass-check'));
 
-    console.log(validateEmailRez);
-    console.log(validatePassRez);
-    console.log(validatePassConfirm);
     if (!validateEmailRez || !validatePassRez || !validatePassConfirm) {
       return false;
     }
@@ -58,7 +55,6 @@ document.getElementsByClassName('new-user-form__bottom')[0].addEventListener('cl
           var response = JSON.parse(xhr.responseText);
           if (response.find(function (value) { return value.email === email })) {
             if(!document.getElementsByClassName('new-user-reg-form__error_form').length) {
-              console.log('odin');
               addErrorMsg('new-user-reg-form', 'Пользователь с таким email уже зарегестрирован');
               document.getElementById('new-user-email').value = '';
             }
@@ -190,7 +186,6 @@ function Validate(id, regex, error) {
 Validate.prototype.check = function() {
   var el = document.getElementById(this.id);
   var elParent = el.parentNode;
-  console.dir(elParent);
   if (!el.value.match(this.regex)) {
     if (elParent.children.length === 2) {
       elParent.appendChild(this.createMsg());

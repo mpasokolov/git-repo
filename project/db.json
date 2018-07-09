@@ -1,29 +1,6 @@
 {
   "users": [],
-  "cart": [
-    {
-      "good_id": 3,
-      "name": "MANGO PEOPLE T-SHIRT3",
-      "price": "54",
-      "color": "RED",
-      "size": "S",
-      "img": "item3.png",
-      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "good_id": 4,
-      "name": "MANGO PEOPLE T-SHIRT4",
-      "price": "55",
-      "color": "RED",
-      "size": "S",
-      "img": "item4.png",
-      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
-      "quantity": 1,
-      "id": 4
-    }
-  ],
+  "cart": [],
   "goods": [
     {
       "id": 1,
