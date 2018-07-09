@@ -1,16 +1,33 @@
 {
-  "users": [
+  "users": [],
+  "cart": [
     {
-      "id": 1,
-      "email": "mpasokolov@gmail.com",
-      "pass": "pomnhl63"
+      "good_id": 3,
+      "name": "MANGO PEOPLE T-SHIRT3",
+      "price": "54",
+      "color": "RED",
+      "size": "S",
+      "img": "item3.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "good_id": 4,
+      "name": "MANGO PEOPLE T-SHIRT4",
+      "price": "55",
+      "color": "RED",
+      "size": "S",
+      "img": "item4.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
+      "quantity": 1,
+      "id": 4
     }
   ],
-  "cart": [],
   "goods": [
     {
       "id": 1,
-      "name": "MANGO PEOPLE T-SHIRT",
+      "name": "MANGO PEOPLE T-SHIRT1",
       "price": "52",
       "img": "item1.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing.Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallelcore competencies rather than exceptional portals.",
@@ -31,11 +48,11 @@
           "GREEN": 100
         },
         "XL": {
-          "RED": 100,
-          "GREEN": 100
+          "RED": 0,
+          "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -43,7 +60,7 @@
     {
       "id": 2,
       "name": "MANGO PEOPLE T-SHIRT2",
-      "price": "52",
+      "price": "53",
       "img": "item2.png",
       "about": "Compellingly actualize fullyx researched processes before proactive outsourcing.Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -63,7 +80,7 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
@@ -75,7 +92,7 @@
     {
       "id": 3,
       "name": "MANGO PEOPLE T-SHIRT3",
-      "price": "52",
+      "price": "54",
       "img": "item3.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -95,7 +112,7 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
@@ -107,7 +124,7 @@
     {
       "id": 4,
       "name": "MANGO PEOPLE T-SHIRT4",
-      "price": "52",
+      "price": "55",
       "img": "item4.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel core competencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -127,11 +144,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -139,7 +156,7 @@
     {
       "id": 5,
       "name": "MANGO PEOPLE T-SHIRT5",
-      "price": "52",
+      "price": "56",
       "img": "item5.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -159,11 +176,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -171,7 +188,7 @@
     {
       "id": 6,
       "name": "MANGO PEOPLE T-SHIRT6",
-      "price": "52",
+      "price": "57",
       "img": "item6.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -191,11 +208,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -203,7 +220,7 @@
     {
       "id": 7,
       "name": "MANGO PEOPLE T-SHIRT7",
-      "price": "52",
+      "price": "58",
       "img": "item7.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -223,11 +240,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -235,7 +252,7 @@
     {
       "id": 8,
       "name": "MANGO PEOPLE T-SHIRT8",
-      "price": "52",
+      "price": "59",
       "img": "item8.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "WOMEN COLLECTION",
@@ -255,11 +272,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -267,7 +284,7 @@
     {
       "id": 9,
       "name": "MANGO PEOPLE T-SHIRT9",
-      "price": "52",
+      "price": "60",
       "img": "item8.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "MAN COLLECTION",
@@ -287,11 +304,11 @@
           "GREEN": 0
         },
         "XL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }
@@ -299,7 +316,295 @@
     {
       "id": 10,
       "name": "MANGO PEOPLE T-SHIRT10",
-      "price": "52",
+      "price": "61",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "MAN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 200,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "MANGO PEOPLE T-SHIRT11",
+      "price": "62",
+      "img": "item5.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "WOMEN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "MANGO PEOPLE T-SHIRT12",
+      "price": "63",
+      "img": "item6.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "WOMEN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "MANGO PEOPLE T-SHIRT13",
+      "price": "64",
+      "img": "item7.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "WOMEN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "MANGO PEOPLE T-SHIRT14",
+      "price": "65",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "WOMEN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "MANGO PEOPLE T-SHIRT15",
+      "price": "66",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "MAN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "MANGO PEOPLE T-SHIRT16",
+      "price": "67",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "MAN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 200,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "MANGO PEOPLE T-SHIRT17",
+      "price": "68",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "MAN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 200,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "MANGO PEOPLE T-SHIRT18",
+      "price": "69",
+      "img": "item8.png",
+      "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
+      "collection": "MAN COLLECTION",
+      "material": "COTTON",
+      "designer": "BINBURHAN",
+      "quantity": {
+        "S": {
+          "RED": 200,
+          "GREEN": 0
+        },
+        "M": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "L": {
+          "RED": 100,
+          "GREEN": 0
+        },
+        "XL": {
+          "RED": 0,
+          "GREEN": 0
+        },
+        "XXL": {
+          "RED": 0,
+          "GREEN": 0
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "MANGO PEOPLE T-SHIRT19",
+      "price": "70",
       "img": "item8.png",
       "about": "Compellingly actualize fully researched processes before proactive outsourcing. Progressivelysyndicate collaborative architectures before cutting-edge services. Completely visualize parallel corecompetencies rather than exceptional portals.",
       "collection": "MAN COLLECTION",
@@ -323,7 +628,7 @@
           "GREEN": 0
         },
         "XXL": {
-          "RED": 100,
+          "RED": 0,
           "GREEN": 0
         }
       }

@@ -71,7 +71,6 @@ function sendGoodToCart(id, size, color, quantity, count) {
 
         var putItemToCart = new XMLHttpRequest();
         if (!count) {
-          console.log('2-1');
           good.quantity = quantity;
           putItemToCart.open('POST', 'http://localhost:3000/cart', true);
           putItemToCart.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -137,7 +136,7 @@ function createItem(item, id) {
 
   var img = document.createElement('img');
   img.className = 'my-acc-menu__item-img';
-  img.src = 'img/cart_img' + item.good_id + '.png';
+  img.src = 'img/' + item.img;
   img.alt = 'cart-item';
 
   imgLink.appendChild(img);

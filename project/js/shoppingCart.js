@@ -18,7 +18,8 @@ window.onload = function () {
     countFields[j].addEventListener('change', function (ev) {
       ev.preventDefault();
       var element = this;
-      var value = this.value;
+      var value = element.value;
+      var oldValue = this.getAttribute('data-value');
       if (+value > 0 && parseInt(value) === +value) {
         changeCartItemCount(element.getAttribute('data-id'), +element.value, +element.getAttribute('data-value'));
         element.setAttribute('data-value', element.value);
@@ -26,7 +27,6 @@ window.onload = function () {
         xhr.open('PATCH', 'http://localhost:3000/cart/' + this.getAttribute('data-id'), true);
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.send(JSON.stringify({quantity:  this.value}));
-
       } else {
         this.value = oldValue;
       }
@@ -38,6 +38,29 @@ window.onload = function () {
     clearCart();
   })
 };
+
+function calcSumCart() {
+  var cartSum = 0;
+
+  var elements = document.querySelectorAll('button.product-del-button');
+  elements.forEach(function (value) {
+    cartSum = cartSum + (+value.getAttribute('data-price') * +value.getAttribute('data-quantity'));
+  });
+
+  var subPrice = document.getElementById('cart-sub-price');
+  var totalPrice = document.getElementById('cart-price-total');
+
+  totalPrice.textContent = '$' + cartSum;
+  totalPrice.setAttribute('data-price' , cartSum.toString());
+
+  subPrice.textContent = '$' + cartSum;
+  subPrice.setAttribute('data-price' , cartSum.toString());
+
+
+  var cartSumElement = document.getElementById('my-acc-menu-price');
+  cartSumElement.textContent = '$' + cartSum;
+  cartSumElement.setAttribute('data-price', cartSum.toString());
+}
 
 function buildCart() {
   var cartBlock = document.getElementById('shopping-list__table');
@@ -68,7 +91,7 @@ function buildCart() {
 
           var img = document.createElement('img');
           img.className = 'bought-item__img';
-          img.src = 'img/cart-item' + item.id + '.jpg';
+          img.src = 'img/' + item.img;
           img.alt = 'item-img';
 
           imgLink.appendChild(img);
@@ -159,6 +182,8 @@ function buildCart() {
           productDelButton.className = 'bought-item__block_action product-del-button';
           productDelButton.setAttribute('data-quantity', item.quantity);
           productDelButton.setAttribute('data-id', item.id);
+          productDelButton.setAttribute('data-price', item.price);
+
 
 
           var productDelIcon = document.createElement('i');
@@ -187,10 +212,18 @@ function buildCart() {
 function delItem(element) {
   var productBlock = document.getElementById('shopping-list__table');
   var xhrDel = new XMLHttpRequest();
-  productBlock.removeChild(element.parentNode.parentNode);
   xhrDel.open('DELETE', 'http://localhost:3000/cart/' + element.getAttribute('data-id'), true);
-  xhrDel.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhrDel.send();
+
+  xhrDel.onreadystatechange = function () {
+    if (xhrDel.readyState === XMLHttpRequest.DONE) {
+      if (xhrDel.status === 200 || xhrDel.status === 304) {
+        productBlock.removeChild(element.parentNode.parentNode);
+        calcSumCart();
+      }
+
+    }
+  }
 }
 
 function changeCartItemCount(id, count, oldCount) {
@@ -212,6 +245,7 @@ function changeCartItemCount(id, count, oldCount) {
 
   var el = document.querySelector('button[data-id="' + id + '"]');
   el.setAttribute('data-quantity', count.toString());
+
 }
 
 function clearCart() {
@@ -232,4 +266,6 @@ function clearCart() {
   while (itemsList.lastChild && itemsList.childElementCount > 1) {
       itemsList.removeChild(itemsList.lastChild);
   }
+
+  document.getElementById('my-acc-menu-price').textContent = '0';
 }

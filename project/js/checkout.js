@@ -38,6 +38,9 @@ document.getElementsByClassName('new-user-form__bottom')[0].addEventListener('cl
 			' регистре').check();
     var validatePassConfirm = passwordCompare(document.getElementById('new-user-pass'), document.getElementById('new-user-pass-check'));
 
+    console.log(validateEmailRez);
+    console.log(validatePassRez);
+    console.log(validatePassConfirm);
     if (!validateEmailRez || !validatePassRez || !validatePassConfirm) {
       return false;
     }
@@ -51,10 +54,11 @@ document.getElementsByClassName('new-user-form__bottom')[0].addEventListener('cl
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
+        if (xhr.status === 200 || xhr.status === 304) {
           var response = JSON.parse(xhr.responseText);
-          if (response.filter(function (value) { return value.email === email})) {
+          if (response.find(function (value) { return value.email === email })) {
             if(!document.getElementsByClassName('new-user-reg-form__error_form').length) {
+              console.log('odin');
               addErrorMsg('new-user-reg-form', 'Пользователь с таким email уже зарегестрирован');
               document.getElementById('new-user-email').value = '';
             }
@@ -96,10 +100,9 @@ document.getElementById('login').addEventListener('click', function (ev) {
         var user = response.filter(function (value) { return (value.email === email.value && value.pass === pass.value)});
         if (!user.length) {
           if(!document.getElementsByClassName('old-user-form__error_form').length) {
-            addErrorLoginMsg('old-user-form', 'Неверный e-mail адрес или пароль.');
+            addErrorMsg('old-user-form', 'Неверный e-mail адрес или пароль.');
           }
         } else {
-          document.cookie = user[0].email + '=' + user[0].pass;
           toSecondStep();
         }
       }
@@ -107,12 +110,15 @@ document.getElementById('login').addEventListener('click', function (ev) {
   };
 });
 
+
+
 function toSecondStep() {
   var billingInfo = document.getElementById('billing-information');
   var shippingAddressBlock = document.getElementById('shipping-address');
 
   shippingAddressBlock.open = false;
   billingInfo.open = true;
+  shippingAddressBlock.style.height = '82px';
   shippingAddressBlock.onclick = function (ev1) {
     ev1.preventDefault();
   }
@@ -129,12 +135,13 @@ function passwordCompare(a, b) {
       elParent.appendChild((text));
       return false
     }
-  } else if (elParent.children.length === 3) {
-      elParent.removeChild(elParent.lastChild);
-      b.style.borderColor = '#eaeaea';
+  } else {
+      if (elParent.children.length === 3) {
+        elParent.removeChild(elParent.lastChild);
+        b.style.borderColor = '#eaeaea';
+      }
       return true
     }
-	return true;
 }
 
 function getRadioChoose () {
@@ -165,7 +172,7 @@ function addSuccessRegMsg() {
   document.getElementById('new-user-reg-form').style.display = 'none';
 }
 
-function addErrorLoginMsg(id, error) {
+function addErrorMsg(id, error) {
   var form = document.getElementById(id);
   var errorMsg = document.createElement('p');
   errorMsg.className = id + '__error_form';
@@ -183,18 +190,20 @@ function Validate(id, regex, error) {
 Validate.prototype.check = function() {
   var el = document.getElementById(this.id);
   var elParent = el.parentNode;
+  console.dir(elParent);
   if (!el.value.match(this.regex)) {
     if (elParent.children.length === 2) {
       elParent.appendChild(this.createMsg());
       el.style.borderColor = 'red';
       return false;
     }
-  } else if (elParent.children.length === 3) {
-    elParent.removeChild(elParent.lastChild);
-    el.style.borderColor = '#eaeaea';
+  } else {
+    if (elParent.children.length === 3) {
+      elParent.removeChild(elParent.lastChild);
+      el.style.borderColor = '#eaeaea';
+    }
     return true;
   }
-  return true;
 };
 
 Validate.prototype.createMsg = function() {
@@ -205,52 +214,3 @@ Validate.prototype.createMsg = function() {
 
   return text;
 };
-
-
-/*
-function displayRegForm(el) {
-var form = document.createElement('form');
-form.className = 'new-user-reg-form';
-form.action = '#';
-form.method = 'get';
-
-var caption = document.createElement('h3');
-caption.className = 'new-user-reg-form__caption';
-
-var emailLabel = document.createElement('label');
-emailLabel.className = 'new-user-reg-form__label';
-
-var emailInput = document.createElement('input');
-emailInput.className = 'new-user-form__input';
-emailInput.type = 'text';
-emailInput.name ='new-user-reg-email';
-
-var emailText = document.createElement('span');
-emailText.className = 'new-user-reg-form__label-text';
-emailText.textContent = 'Email: ';
-
-emailLabel.appendChild(emailInput);
-emailLabel.appendChild(emailText);
-
-form.appendChild(caption);
-form.appendChild(emailLabel);
-
-var passwordLabel = Object.create(emailLabel);
-
-var passwordInput = document.createElement('input');
-passwordInput.className = 'new-user-form__input';
-passwordInput.type = 'text';
-passwordInput.name = 'new-user-reg-pass';
-
-var passwordText = document.createElement('span');
-passwordText.textContent = 'Пароль: ';
-passwordText.className = 'new-user-reg-form__label-text';
-
-passwordLabel.appendChild(passwordInput);
-passwordLabel.appendChild(passwordText);
-
-form.appendChild(passwordLabel);
-
-return form;
-}
-*/

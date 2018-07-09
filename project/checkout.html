@@ -59,48 +59,10 @@
                             <div class="my-acc-block__arrow2"></div>
                             <div class="my-acc-menu">
                                 <table class="my-acc-menu__table">
-                                    <tr class="my-acc-menu__table-row">
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-img-block">
-                                            <a href="single_page.html"><img class="my-acc-menu__item-img" src="img/cart_img1.png" alt="cart-item"></a>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell">
-                                            <h3 class="my-acc-menu__item-caption">Rebox Zane</h3>
-                                            <p class="my-acc-menu__item-rate">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                            </p>
-                                            <p class="my-acc-menu__item-price">1&nbsp;x $250</p>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-del">
-                                            <button class="my-acc-menu__item-del-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="my-acc-menu__table-row">
-                                        <td class="my-acc-menu__table-cell">
-                                            <a href="single_page.html"><img class="my-acc-menu__item-img" src="img/cart_img2.png" alt="cart-item"></a>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell">
-                                            <h3 class="my-acc-menu__item-caption">Rebox Zane</h3>
-                                            <p class="my-acc-menu__item-rate">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                            </p>
-                                            <p class="my-acc-menu__item-price">1&nbsp;x $250</p>
-                                        </td>
-                                        <td class="my-acc-menu__table-cell my-acc-menu__item-del">
-                                            <button class="my-acc-menu__item-del-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
                                 </table>
                                 <div class="my-acc-menu__price">
                                     <p class="my-acc-menu__price-text">TOTAL</p>
-                                    <p class="my-acc-menu__price-text">$500.00</p>
+                                    <p class="my-acc-menu__price-text" id="my-acc-menu-price">$0</p>
                                 </div>
                                 <a class="my-acc-menu__button" href="checkout.html">Checkout</a>
                                 <a class="my-acc-menu__button" href="shopping_cart.html">Go&nbsp;to&nbsp;cart</a>
@@ -116,7 +78,7 @@
                         <a class="main-nav__link main-nav__link_active" href="index.html">Home</a>
                     </li>
                     <li class="main-nav__item">
-                        <a class="main-nav__link" href="product.html">Man</a>
+                        <a class="main-nav__link" href="product.html#1">Man</a>
                     </li>
                     <li class="main-nav__item">
                         <a class="main-nav__link mega-menu-yes" href="#">Women</a>
@@ -310,172 +272,6 @@
                     </div>
                 </div>
             </details>
-            <!--
-            <details class="shipping-adress container">
-                <summary class="shipping-adress__caption">01. Shipping Adress</summary>
-                <div class="shipping-adress__flex">
-                    <div class="new-user">
-                        <form action="#" class="new-user-form">
-                            <h3 class="new-user-form__caption">Check as&nbsp;a&nbsp;guest or&nbsp;register</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio">
-                                <div class="new-user-form__label-text">checkout as&nbsp;guest</div>
-                            </label>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio" checked>
-                                <div class="new-user-form__label-text">register</div>
-                            </label>
-                            <h3 class="new-user-form__caption">register and save time!</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <div class="new-user-form__advantages">
-                                <p class="new-user-form__advantage">Fast and easy checkout</p>
-                                <p class="new-user-form__advantage">Easy access to&nbsp;your order history and status</p>
-                            </div>
-                            <button class="new-user-form__bottom">Continue</button>
-                        </form>
-                    </div>
-                    <div class="old-user">
-                        <form action="#" class="old-user-form">
-                            <h3 class="old-user-form__caption">Already registred?</h3>
-                            <p class="old-user-form__text">Please log in&nbsp;below</p>
-                            <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
-                            <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
-                            <p class="old-user-form__required">*Required Fileds</p>
-                            <div class="old-user-form__bottom-block">
-                                <button class="old-user-form__bottom">Log in</button>
-                                <a href="#" class="old-user-form__forgot-pass">Forgot Password ?</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </details>
-            <details class="shipping-adress container">
-                <summary class="shipping-adress__caption">01. Shipping Adress</summary>
-                <div class="shipping-adress__flex">
-                    <div class="new-user">
-                        <form action="#" class="new-user-form">
-                            <h3 class="new-user-form__caption">Check as&nbsp;a&nbsp;guest or&nbsp;register</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio">
-                                <div class="new-user-form__label-text">checkout as&nbsp;guest</div>
-                            </label>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio" checked>
-                                <div class="new-user-form__label-text">register</div>
-                            </label>
-                            <h3 class="new-user-form__caption">register and save time!</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <div class="new-user-form__advantages">
-                                <p class="new-user-form__advantage">Fast and easy checkout</p>
-                                <p class="new-user-form__advantage">Easy access to&nbsp;your order history and status</p>
-                            </div>
-                            <button class="new-user-form__bottom">Continue</button>
-                        </form>
-                    </div>
-                    <div class="old-user">
-                        <form action="#" class="old-user-form">
-                            <h3 class="old-user-form__caption">Already registred?</h3>
-                            <p class="old-user-form__text">Please log in&nbsp;below</p>
-                            <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
-                            <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
-                            <p class="old-user-form__required">*Required Fileds</p>
-                            <div class="old-user-form__bottom-block">
-                                <button class="old-user-form__bottom">Log in</button>
-                                <a href="#" class="old-user-form__forgot-pass">Forgot Password ?</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </details>
-            <details class="shipping-adress container">
-                <summary class="shipping-adress__caption">01. Shipping Adress</summary>
-                <div class="shipping-adress__flex">
-                    <div class="new-user">
-                        <form action="#" class="new-user-form">
-                            <h3 class="new-user-form__caption">Check as&nbsp;a&nbsp;guest or&nbsp;register</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio">
-                                <div class="new-user-form__label-text">checkout as&nbsp;guest</div>
-                            </label>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio" checked>
-                                <div class="new-user-form__label-text">register</div>
-                            </label>
-                            <h3 class="new-user-form__caption">register and save time!</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <div class="new-user-form__advantages">
-                                <p class="new-user-form__advantage">Fast and easy checkout</p>
-                                <p class="new-user-form__advantage">Easy access to&nbsp;your order history and status</p>
-                            </div>
-                            <button class="new-user-form__bottom">Continue</button>
-                        </form>
-                    </div>
-                    <div class="old-user">
-                        <form action="#" class="old-user-form">
-                            <h3 class="old-user-form__caption">Already registred?</h3>
-                            <p class="old-user-form__text">Please log in&nbsp;below</p>
-                            <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
-                            <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
-                            <p class="old-user-form__required">*Required Fileds</p>
-                            <div class="old-user-form__bottom-block">
-                                <button class="old-user-form__bottom">Log in</button>
-                                <a href="#" class="old-user-form__forgot-pass">Forgot Password ?</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </details>
-            <details class="shipping-adress container">
-                <summary class="shipping-adress__caption">01. Shipping Adress</summary>
-                <div class="shipping-adress__flex">
-                    <div class="new-user">
-                        <form action="#" class="new-user-form">
-                            <h3 class="new-user-form__caption">Check as&nbsp;a&nbsp;guest or&nbsp;register</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio">
-                                <div class="new-user-form__label-text">checkout as&nbsp;guest</div>
-                            </label>
-                            <label class="new-user-form__label">
-                                <input class="new-user-form__input" type="radio" name="new-user-radio" checked>
-                                <div class="new-user-form__label-text">register</div>
-                            </label>
-                            <h3 class="new-user-form__caption">register and save time!</h3>
-                            <p class="new-user-form__text">Register with&nbsp;us for future convenience</p>
-                            <div class="new-user-form__advantages">
-                                <p class="new-user-form__advantage">Fast and easy checkout</p>
-                                <p class="new-user-form__advantage">Easy access to&nbsp;your order history and status</p>
-                            </div>
-                            <button class="new-user-form__bottom">Continue</button>
-                        </form>
-                    </div>
-                    <div class="old-user">
-                        <form action="#" class="old-user-form">
-                            <h3 class="old-user-form__caption">Already registred?</h3>
-                            <p class="old-user-form__text">Please log in&nbsp;below</p>
-                            <label for="old-user-email" class="old-user-form__label">EMAIL&nbsp;ADDRESS<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-email" type="email" class="old-user-form__input" required>
-                            <label for="old-user-pass" class="old-user-form__label">PASSWORD<span class="old-user-form__label-required"> *</span> <br></label>
-                            <input id="old-user-pass" type="password" class="old-user-form__input" required>
-                            <p class="old-user-form__required">*Required Fileds</p>
-                            <div class="old-user-form__bottom-block">
-                                <button class="old-user-form__bottom">Log in</button>
-                                <a href="#" class="old-user-form__forgot-pass">Forgot Password ?</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </details>
-            -->
         </div>
         <div class="subscribe-container">
             <div class="container subscribe">
@@ -592,6 +388,7 @@
         </div>
     </footer>
 </div>
+<script src="js/js.js"></script>
 <script src="js/checkout.js"></script>
 </body>
 </html>

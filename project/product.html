@@ -77,7 +77,7 @@
                         <a class="main-nav__link main-nav__link_active" href="index.html">Home</a>
                     </li>
                     <li class="main-nav__item">
-                        <a class="main-nav__link" href="product.html">Man</a>
+                        <a class="main-nav__link" href="product.html#1">Man</a>
                     </li>
                     <li class="main-nav__item">
                         <a class="main-nav__link mega-menu-yes" href="#">Women</a>
@@ -243,32 +243,38 @@
                         </fieldset>
                         <fieldset class="product-form__block price">
                             <legend class="price__caption">PRICE</legend>
-                            <input type="range" name="price_range" id="range" min="42" max="400" step="1" class="price__range" onchange="document.getElementById('range').innerHTML =
-                                   this.value;">
+                            <input type="range" name="price_range" id="range" step="1" class="price__range">
+                            </span>
                             <div class="price__field">
                                 <div class="range-start">
-                                    <output class="price__output" name="range-start" for="range">0</output><span class="price__dollar-simbol">$</span>
+                                    <output class="price__output" name="range-start" for="range"
+                                            id="price-range-output-min">0</output>
+                                    <span class="price__dollar-simbol">$</span>
                                 </div>
                                 <div class="range-end">
-                                    <output class="price__output range-price" name="range_price" for="range">42</output><span class="price__dollar-simbol">$</span>
+                                    <output class="price__output range-price" name="range_price" for="range"
+                                            id="price-range-output-max">42
+                                    </output><span class="price__dollar-simbol">$</span>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
                     <form action="#" class="product-form__bottom">
                         <div class="sort-block">
-                            <label class="sort-block__label" for="show">Show</label>
+                            <label class="sort-block__label" for="show" id="sort-block-button">Show</label>
                             <select class="sort-block__select" name="show" id="show">
-                                <option value="Name">Name</option>
-                                <option value="Cost">Cost</option>
+                                <option value="Name" id="sort-block-name">Name</option>
+                                <option value="Cost" id="sort-block-price">Cost</option>
                             </select>
                             <div class="sort-block__arrow"></div>
                         </div>
                         <div class="sort-block">
-                            <label class="sort-block__label" for="sort-by">Sort By</label>
+                            <label class="sort-block__label" for="sort-by" id="sort-count-block-button">Sort By</label>
                             <select class="sort-block__select" name="sort-by" id="sort-by">
-                                <option value="09">09</option>
-                                <option value="08">08</option>
+                                <option value="9">9</option>
+                                <option value="6">6</option>
+                                <option value="3">3</option>
+
                             </select>
                             <div class="sort-block__arrow"></div>
                         </div>
@@ -278,16 +284,6 @@
                 </div>
                 <nav class="product-item-list-nav product-right__nav">
                     <ul class="product-item-list-nav__list">
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">&lt;</a></li>
-                        <li class="product-item-list-nav__list-point product-item-list-nav__list-point_active-page"><a class="product-item-list-nav__link" href="">1</a>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">2</a></li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">3</a></li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">4</a></li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">5</a></li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">6</a></li>
-                        <li class="product-item-list-nav__list-point">....</li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">20</a></li>
-                        <li class="product-item-list-nav__list-point"><a class="product-item-list-nav__link" href="">&gt;</a></li>
                     </ul>
                     <a href="#" class="view-all">View All</a>
                 </nav>

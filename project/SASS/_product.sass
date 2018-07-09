@@ -163,6 +163,14 @@ html, body
   &__output
     @include font(14px, 400, #6f6e6e)
     margin-top: 21px
+  &__slider
+    display: inline-block
+    width: 300px
+    border: 1px solid #ccc
+    border-radius: 2px
+    height: 16px
+    position: relative
+
 
 .size
   width: ($site-width - 50px - $product-sidebar-width) / 3
@@ -228,6 +236,7 @@ html, body
     background-color: #ffffff
     @include font(14px, 400, #6f6e6e)
     margin: 0
+    cursor: pointer
   &__arrow
     position: relative
     width: 0
@@ -265,14 +274,13 @@ html, body
     text-decoration: none
     transition: color 0.5s
     @include font(16px, 300, #c4c4c4)
+    cursor: pointer
   &__list-point
     margin-right: 16px
     color:  #c4c4c4
-    &_active-page .product-item-list-nav__link
+    &_active-page
       color:  $color-pink
-    &:nth-child(8)
-      margin-right: 0
-    &:nth-child(7)
+    &:last-child
       margin-right: 0
     &:hover .product-item-list-nav__link
       color:  $color-pink
