@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея</title>
+    <style>
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+        }
+        .gallery__img {
+            display: block;
+            width: 300px;
+            height: 200px;
+        }
+        .gallery__block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .gallery__text {
+            text-align: center;
+        }
+        .gallery__views {
+            font-size: 0.7em;
+            font-weight: normal;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+<div class="gallery">
+    {% for val in gallery %}
+    <div class='gallery__block'>
+        <p class='gallery__text'>{{val.name}}</p>
+        <a href='index.php?id={{val.id}}' target='_blank'>
+            <img src="{{val.src}}" alt="{{val.name}}" class='gallery__img'>
+        </a>
+        <p class="gallery__views">Просмотров: {{val.views}}</p>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

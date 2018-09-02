@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея</title>
+    <style>
+        .image {
+            text-align: center;
+        }
+        .caption {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .views {
+            text-align: center;
+            font-size: 0.7em;
+        }
+    </style>
+</head>
+<body>
+<figure class='image'>
+    <img src="{{image.src}}">
+    <figcaption class="caption">{{image.name}}</figcaption>
+</figure>
+<p class="views">Просмотров: {{image.views}}</p>
+</body>
+</html>
