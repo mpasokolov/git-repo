@@ -1,0 +1,5 @@
+RewriteEngine on
+#Все, что не является файлом или директорией, перенаправляем на index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
