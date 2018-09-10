@@ -1,0 +1,36 @@
+.red {
+    color: red;
+    font-size: 0.6em;
+}
+.registration {
+    text-decoration: none;
+    color: black;
+}
+.form {
+    display: flex;
+    justify-content: center;
+}
+input {
+    min-width: 200px;
+    margin-bottom: 10px;
+}
+
+input.remember {
+    min-width: unset;
+}
+label {
+    display: block;
+    width: 200px;
+}
+h2 {
+    text-align: center;
+}
+.navigate {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+}
+.link {
+    text-decoration: none;
+}

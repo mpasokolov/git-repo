@@ -1,0 +1,20 @@
+body {
+    padding: 10px;
+}
+h1 {
+    text-align: center;
+}
+.navigate {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+}
+.link {
+    text-decoration: none;
+}
+
+.history {
+
+    list-style-type: disc;
+}

@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+<h1>Личный кабинет</h1>
+<div class="navigate">
+    <div><a href="index" class="link">В магазин</a></div>
+</div>
+<div class="message">
+    Вы вошли как <b>{{content_data.user_name}}</b>. Приветствуем вас!
+</div>
+<form method="post">
+    <input type="submit" name="exit" value="Выйти">
+</form>
+<span>Вы недавно смотрели: </span>
+<ul class="history">
+    {% for link in history %}
+    <li>{{link}}</li>
+    {% endfor %}
+</ul>
+{% include 'footer.html' %}

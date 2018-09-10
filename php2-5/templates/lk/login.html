@@ -1,0 +1,27 @@
+{% include 'header.html' %}
+<h2>Форма авторизации</h2>
+<div class="form">
+    <form method="post">
+        <div>
+            <label>Логин:
+                <input type="text" name="login" required>
+            </label>
+        </div>
+        <span class="red">{{content_data.login_error}}</span>
+        <div>
+            <label>Пароль:
+                <input type="password" name="password" required>
+            </label>
+        </div>
+        <span class="red">{{content_data.password_error}}</span>
+        <div>
+            <label>Запомнить мой вход:
+                <input type="checkbox" class="remember" name="rememberMe">
+            </label>
+        </div>
+        <div>
+            <input type="submit" id="login" value="Войти">
+        </div>
+    </form>
+</div>
+{% include 'footer.html' %}
