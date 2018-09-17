@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row row-m-t">
+        {% for good in catalog %}
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="../assets/img/{{ good.id }}.jpg" alt="{{ good.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ good.name }}</h5>
+                        <p class="card-text">Price: {{ good.price }} rub.</p>
+                        <p class="card-text">In stock: {{ good.quantity }}</p>
+                        <a href="catalog\add?id={{ good.id }}" class="btn btn-primary">Add to cart</a>
+                        <a href="good?id={{ good.id }}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

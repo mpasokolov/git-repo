@@ -1,0 +1,16 @@
+<div class="container cart">
+    <div class="row row-m-t catalog">
+        {% for good in data %}
+            <div class="col-4 good" data-id = "{{ good.id }}">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ good.name }}</h5>
+                        <p class="card-text">Price: {{ good.price }}</p>
+                        <p class="card-text">Quantity: <span class="goodQuantity">{{ good.quantity }}</span></p>
+                        <a href="#" class="card-link deleteGood" data-id="{{ good.id }}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

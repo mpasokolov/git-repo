@@ -1,0 +1,34 @@
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Name</label>
+        <input name="Catalog[name]" type="text" class="form-control" value="{{ page.title }}" required>
+        <small class="text-danger">{{ page.errors.title }}</small>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input name="Catalog[price]" type="number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input name="Catalog[quantity]" type="number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <input name="Catalog[shop_category_id]" type="number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <input name="Catalog[status]" type="number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="Catalog[description]" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label>Image</label>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+        <input name="Catalog[image]" type="file" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
