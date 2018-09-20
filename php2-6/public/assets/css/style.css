@@ -11,3 +11,7 @@ html, body {
 .good {
     width: 100%;
 }
+
+small.login-error {
+    color: red !important;
+}

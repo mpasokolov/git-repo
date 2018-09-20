@@ -3,7 +3,7 @@
   "description": "GeekBrains MVC app template",
   "type": "project",
   "require": {
-    "php": ">7.*",
+    "php": ">7",
     "twig/twig": "^2.4",
     "ext-json": "*"
   },
@@ -13,5 +13,13 @@
       "name": "Artyom Manchenkov",
       "email": "artyom@manchenkoff.me"
     }
-  ]
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
 }

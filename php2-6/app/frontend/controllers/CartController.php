@@ -15,7 +15,7 @@ class CartController extends Controller
     if (!User::alreadyLoggedId() && !User::checkAuthWithCookie()) {
       App::$current -> request -> redirect('lk/login');
     }
-    $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    $cart = isset($_SESSION['user']['cart']) ? $_SESSION['user']['cart'] : [];
     $this -> render('index', ['data' => $cart]);
   }
   public function actionBuy() {

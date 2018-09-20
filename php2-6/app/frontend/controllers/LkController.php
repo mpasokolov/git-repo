@@ -48,7 +48,7 @@ class LkController extends Controller {
         if ($result === 1) {
           App::$current -> request -> redirect('lk');
         } else {
-          $data = ['login' => $login -> login, 'password' => $login -> password];
+          $data = ['login' => $login -> login, 'password' => $login -> password, 'error' => $login -> errors];
         }
       }
     }
