@@ -33,8 +33,9 @@ class LoginTest extends TestCase
       array('-1','-1', false),
     );
   }
-  //  @dataProvider addDataProvider
+  
   /**
+   * @dataProvider addDataProvider
    */
   public function testAuthWithLoginPassword()
   {
