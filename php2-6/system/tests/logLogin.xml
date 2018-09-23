@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="LoginTest" file="/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/tests/LoginTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.036394">
+    <testsuite name="LoginTest::testAuthWithLoginPassword" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.036394">
+      <testcase name="testAuthWithLoginPassword with data set #0" class="LoginTest" classname="LoginTest" file="/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/tests/LoginTest.php" line="48" assertions="1" time="0.036394"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -49,18 +49,21 @@ class App extends BaseObject {
         }
     }
 
+
     /**
      * Start main loop
+     * @param bool $withRouting
+     * @param string $ENV
      */
-    public function start() {
-        // connect to DB
-        $this->connection = $this->getConnection();
+    public function start($ENV, $withRouting = true) {
+      // connect to DB
+      $this->connection = $this->getConnection();
+      // get current request
+      $this->request = new Request();
 
-        // get current request
-        $this->request = new Request();
-
+      if ($withRouting) {
         // check user role
-        if (ENV === 'backend') {
+        if ($ENV === 'backend') {
           $auth = new Auth();
           $auth->checkAuth();
         }
@@ -69,6 +72,7 @@ class App extends BaseObject {
         $router = new Router($this->request->route);
         // start routing
         $router->route();
+      }
     }
 
     /**
@@ -79,11 +83,12 @@ class App extends BaseObject {
 
         $host = $settings['host'];
         $user = $settings['user'];
+        $port = $settings['port'];
         $password = $settings['password'];
         $database = $settings['database'];
 
         try {
-            $dbh = new \PDO("mysql:host={$host};dbname={$database}", $user, $password);
+            $dbh = new \PDO("mysql:host={$host};port={$port};dbname={$database}", $user, $password);
             return $dbh;
         } catch (\PDOException $error) {
             echo $error->getMessage();

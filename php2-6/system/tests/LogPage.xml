@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="PageTest" file="/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/tests/PageTest.php" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.066781">
+    <testsuite name="PageTest::testCreateNewPage" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.066781">
+      <testcase name="testCreateNewPage with data set #0" class="PageTest" classname="PageTest" file="/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/tests/PageTest.php" line="33" assertions="1" time="0.066781">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">PageTest::testCreateNewPage with data set #0 (array('Test page from PHPUnit', 'key1', 'key2', 'myContent'))
+Failed asserting that false is not false.
+
+/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/tests/PageTest.php:39
+</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>

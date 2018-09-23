@@ -1,16 +1,12 @@
 <?php
 
-require '../bootstrap.php';
+require '/Users/home/Desktop/geekbrains/php lvl2/homework/lesson6/system/bootstrap.php';
 require '../../vendor/autoload.php';
-require '../../app/common/models/Login.php';
 
 
 use app\common\models\Login;
 use PHPUnit\Framework\TestCase;
 use system\components\App;
-
-define('ENV', 'frontend');
-
 
 class LoginTest extends TestCase
 {
@@ -18,36 +14,38 @@ class LoginTest extends TestCase
 
   protected function setUp()
   {
+    $ENV = 'frontend';
+
     $this->fixture = new Login();
-  }
 
-  protected function tearDown()
-  {
-    $this->fixture = NULL;
-  }
-
-  public function addDataProvider() {
-    return array(
-      array('1','2','3', false),
-      array('mpasokolov@gmail.com', 'pomnhl63', false),
-      array('-1','-1', false),
-    );
-  }
-  
-  /**
-   * @dataProvider addDataProvider
-   */
-  public function testAuthWithLoginPassword()
-  {
     $config = array_merge(
       include '../../system/config/main.php',
       include '../../system/config/database.php'
     );
 
     $app = new App($config);
-    $app->start();
+    $app->start($ENV,false);
+  }
 
-    $login = $this -> fixture;
-    $this -> assertEquals('1', $login -> AuthWithLoginPassword('mpasokolov@gmail.com', 'pomnhl63', false));
+  protected function tearDown() {
+    $_SESSION = null;
+    $_COOKIE = null;
+  }
+
+
+  public function addDataProvider() {
+    return array(
+      array('mpasokolov@gmail.com', 'test', false),
+      //array('1','2','3', false),
+      //array('-1','-1', false),
+    );
+  }
+
+  /**
+   * @dataProvider addDataProvider
+   */
+  public function testAuthWithLoginPassword($a, $b, $flag)
+  {
+    $this -> assertEquals('1', $this -> fixture -> AuthWithLoginPassword($a, $b, $flag));
   }
 }

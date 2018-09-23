@@ -1,4 +1,6 @@
 <?php
+// start session
+session_start();
 
 // application root directory
 define('ROOT', dirname(__DIR__));
@@ -10,9 +12,6 @@ if (DEBUG) {
     ini_set('display_errors', 'on');
 }
 
-// start session
-session_start();
-
 // register class loader
 spl_autoload_register(function ($className) {
     $class = str_replace("\\", DIRECTORY_SEPARATOR, $className);
@@ -20,8 +19,5 @@ spl_autoload_register(function ($className) {
 
     if (file_exists($class)) {
         require_once $class;
-    } else {
-        //echo "Class '<b>{$className}</b>' not found!";
-        //die();
     }
 });

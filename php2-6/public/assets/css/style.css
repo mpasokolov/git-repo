@@ -15,3 +15,10 @@ html, body {
 small.login-error {
     color: red !important;
 }
+
+.testFiled {
+    margin-right: 10px;
+}
+.testBlock {
+    margin-left: 30px;
+}

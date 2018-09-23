@@ -3,7 +3,7 @@
 return [
     'defaultRoute' => 'site/index',
 
-    'controllerNamespace' => 'app\\'.ENV.'\controllers',
+    'controllerNamespace' => 'app\\'.$ENV.'\controllers',
 
     'app' => [
         'name' => 'GeekShop',
@@ -11,7 +11,7 @@ return [
 
     'components' => [
         'twig' => [
-            'templates' => ROOT . '/app/'. ENV .'/views',
+            'templates' => ROOT . '/app/'. $ENV .'/views',
             //'cache' => ROOT.'/system/cache',
             'cache' => false,
         ]

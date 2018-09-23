@@ -1,6 +1,6 @@
 <?php
 
-define('ENV', 'frontend');
+$ENV = 'frontend';
 
 // load auto loaders for classes
 require_once '../vendor/autoload.php';
@@ -17,4 +17,4 @@ use system\components\App;
 
 // start new app instance
 $app = new App($config);
-$app->start();
+$app->start($ENV);
