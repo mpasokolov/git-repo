@@ -64,13 +64,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $now = getdate();
+
         $model = new Calendar();
 
         if (!\Yii::$app->request->get('day')
             or !\Yii::$app->request->get('year')
+            or \Yii::$app->request->get('year') < $now['year']
             or \Yii::$app->request->get('day') > 365
             or \Yii::$app->request->get('day') < 0
-            or \Yii::$app->request->get('year') - getdate()['year'] > 1)
+            or (\Yii::$app->request->get('year') == $now['year'] && \Yii::$app->request->get('day') <$now['yday'])
+            or \Yii::$app->request->get('year') - $now['year'] > 1)
         {
             $data = $model -> getStartDay();
             $day = $data['day'];

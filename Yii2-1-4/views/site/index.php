@@ -18,8 +18,8 @@ $now = getdate();
             echo Nav::widget([
                 'options' => ['class' => 'calendar__nav'],
                 'items' => [
-                ['label' => '<', 'url' => Url::to(['/site/index', 'day' => $day, 'action' => 'prev'])],
-                ['label' => '>', 'url' => Url::to(['/site/index', 'day' => $day, 'action' => 'next'])],
+                ['label' => '<', 'url' => Url::to(['/site/index', 'day' => $day, 'year' => $year, 'action' => 'prev'])],
+                ['label' => '>', 'url' => Url::to(['/site/index', 'day' => $day, 'year' => $year, 'action' => 'next'])],
                 ]]);
         ?>
     </div>
