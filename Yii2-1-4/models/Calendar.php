@@ -16,20 +16,10 @@ class Calendar extends Model {
     public $day;
 
     public function getDates($action, $day, $month) {
-        //$date = getdate();
-
-        //$month = $date['mon'];
-        //$day = $this -> day or $date['mday'];
-        //$year = $date['year'];
-
-        //$monthName = date("F",mktime(0,0,0,$month, $day, $year));
-
         $data = $this -> getStartDay($action, $day, $month);
         $day = $data['monday'];
         $month = $data['month'];
         $year = $data['year'];
-
-        //$monthName = date("F",mktime(0,0,0,$month, $day, $year));
 
         $dates = [];
 
