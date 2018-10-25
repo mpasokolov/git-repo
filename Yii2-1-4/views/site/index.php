@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use \app\assets\CalendarAsset;
 
@@ -13,7 +14,7 @@ $now = getdate();
 ?>
 <div class="calendar">
     <div class="calendar__head">
-        <div class="calendar__month"><?= $dates[1]['month'] . ' ' . $dates[1]['year'] . ' г.'?> </div>
+        <div class="calendar__month"><?=  Html::encode($dates[1]['month']) . ' ' .  Html::encode($dates[1]['year']) . ' г.'?> </div>
         <?php
             echo Nav::widget([
                 'options' => ['class' => 'calendar__nav'],
@@ -37,9 +38,9 @@ $now = getdate();
             <div class="calendar__day day">
                 <div class="day__head">
                     <?php if ($date['day'] === $now['mday'] && $date['month'] === $now['month'] && $date['year'] === $now['year']): ?>
-                        <div class="day__date day__date_now"><?= $date['day'] ?> <?= $date['month'] ?></div>
+                        <div class="day__date day__date_now"><?= Html::encode($date['day']) ?> <?=  Html::encode($date['month']) ?></div>
                     <?php else: ?>
-                        <div class="dat__date"><?= $date['day'] ?> <?= $date['month'] ?></div>
+                        <div class="dat__date"><?=  Html::encode($date['day']) ?> <?=  Html::encode($date['month']) ?></div>
                     <?php endif; ?>
                     <a href="<?= Url::to(['./activity', 'id' => 1]) ?>" class="day__event">Тестовое событие</a>
                 </div>
