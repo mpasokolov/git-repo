@@ -1,0 +1,68 @@
+.calendar__title {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 2vw;
+}
+.calendar__flex {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr) ;
+    grid-gap: 2vw;
+    margin-bottom: 10px;
+}
+
+.calendar__title > div {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.calendar__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calendar__month {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.calendar__nav {
+    font-size: 2em;
+    display: flex;
+}
+
+
+.day {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 5px;
+    height: 110px;
+    border: 1px solid #8c8c8c;
+}
+
+.day__date {
+    font-size: 0.8em;
+    position: relative;
+}
+
+.day__date_now {
+    font-weight: bold;
+    color: red;
+    font-size: 1.2em;
+}
+
+.day__create {
+    font-size: 2em;
+    align-self: flex-end;
+}
+
+.day__event {
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    position: relative; /* Относительное позиционирование */
+}
