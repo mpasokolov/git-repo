@@ -31,12 +31,22 @@ class Calendar extends ActiveRecord {
         $endDay = null;
 
         for ($i = 1; $i <= 28; $i++) {
+            $id = \Yii::$app->user->id;
+            $sql = 'SELECT a.* FROM links l 
+                    INNER JOIN activity a ON l.id_activity=a.id 
+                    INNER JOIN day d on d.id=l.id_day 
+                    WHERE d.date=:days AND l.id_user=:user';
             if (checkdate($month, $day, $year)) {
                 $monthName = date("F",mktime(0,0,0,$month, $day, $year));
                 $date = ['month' => $monthName, 'day' => $day, 'year' => $year];
-                $dayUnix = strtotime($date['day'].' '.$date['month'].' '.$date['year']);
+                $dayUnix = (string) mktime(0, 0, 0, (int)$month, (int)$date['day'], (int)$date['year']);
+                $params = [':user' => $id, ':days' => $dayUnix];
+                $db = \Yii::$app -> db;
+                $activities = $db->createCommand($sql)
+                    ->bindValues($params)
+                    ->queryAll();
                 //$activities = static::findOne(['date' => $dayUnix])->activities2;
-                //$date['activities'] = $activities;
+                $date['activities'] = $activities;
                 array_push($dates, $date);
                 $day ++;
             } else {
@@ -48,6 +58,14 @@ class Calendar extends ActiveRecord {
                 $day = 1;
                 $monthName = date("F",mktime(0,0,0,$month, $day, $year));
                 $date = ['month' => $monthName, 'day' => $day, 'year' => $year];
+                $dayUnix = (string) mktime(0, 0, 0, (int)$month, (int)$date['day'], (int)$date['year']);
+                $params = [':user' => $id, ':days' => $dayUnix];
+                $db = \Yii::$app -> db;
+                $activities = $db->createCommand($sql)
+                    ->bindValues($params)
+                    ->queryAll();
+                //$activities = static::findOne(['date' => $dayUnix])->activities2;
+                $date['activities'] = $activities;
                 array_push($dates, $date);
                 $day ++;
             }

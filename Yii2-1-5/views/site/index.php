@@ -43,7 +43,11 @@ $now = getdate();
                     <?php else: ?>
                         <div class="dat__date"><?=  Html::encode($date['day']) ?> <?=  Html::encode($date['month']) ?></div>
                     <?php endif; ?>
-                    <a href="<?= Url::to(['activity', 'id' => 1]) ?>" class="day__event">Тестовое событие</a>
+                    <?php if (count($date['activities']) > 0): ?>
+                        <?php foreach ($date['activities'] as $activity): ?>
+                            <a href="<?= Url::to(['/activity', 'id' => $activity['id']]) ?>" class="day__event"><?= $activity['title'] ?></a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
                 <a href="<?= Url::toRoute('activity/create') ?>" class="day__create">+</a>
             </div>

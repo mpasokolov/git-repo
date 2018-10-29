@@ -18,7 +18,7 @@ class Activity extends ActiveRecord
      * Название активности
      * @var string
      */
-    public $title;
+    public $name;
 
     /**
      * День начала события. Хранится в Unix timestamp
@@ -42,7 +42,7 @@ class Activity extends ActiveRecord
      * Описание события
      * @var string
      */
-    public $body;
+    public $text;
 
     /**
      * Повторяется событие или нет

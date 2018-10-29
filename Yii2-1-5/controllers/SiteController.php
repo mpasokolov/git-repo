@@ -94,12 +94,7 @@ class SiteController extends Controller
             $this -> redirect(Url::to(['/site/index', 'day' => $day, 'year' => $year]));
         }
 
-        //$day = Activity::findOne(['id' => 29])->calendar;
-        //$daysId = Calendar::findOne(['date' => '1540846800'])->dayActivities;
-        $days = Calendar::findOne(['date' => '1540846800'])->activities2;
-
-
-        return $this -> render('index', ['model' => $model, 'days' => $days]);
+        return $this -> render('index', ['model' => $model]);
     }
 
     /**

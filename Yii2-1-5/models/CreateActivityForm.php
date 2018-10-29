@@ -27,12 +27,6 @@ class CreateActivityForm extends ActiveRecord
     public $end;
 
     /**
-     * ID автора, создавшего события
-     * @var int
-     */
-    public $author;
-
-    /**
      * Описание события
      * @var string
      */
@@ -60,7 +54,7 @@ class CreateActivityForm extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'end', 'start'], 'required' , 'message' => 'Пожалуйста, заполните поле!'],
+            [['name'], 'required' , 'message' => 'Пожалуйста, заполните поле!'],
             [['name', 'text'], 'string', 'message' => 'Некорректные данные!'],
             [['start', 'end'], 'date', 'format' => 'php:Y-m-d', 'message' => 'Некорректные данные!'],
             [['activityFiles'], 'file', 'maxFiles' => 0, 'message' => 'Некорректные данные!'],
@@ -98,19 +92,23 @@ class CreateActivityForm extends ActiveRecord
     }
 
     public function activityDateCompare() {
-        if (strtotime($this->end) <= strtotime($this->start)) {
+        if (strtotime($this->end) < strtotime($this->start)) {
             $this -> addError('end', 'Дата окончания события должна быть больше или равна дате начала');
         }
     }
 
     public function insertActivity() {
+        $date = getdate();
+        $dayUnix = mktime(0, 0, 0, (int)$date['mon'], (int)$date['mday'], (int)$date['year']);
+        $startDay = $this -> start ? strtotime($this -> start) : $dayUnix;
+        $endDay = $this -> start ? strtotime($this -> start) : $dayUnix;
         $db = \Yii::$app -> db;
         $transaction = $db -> beginTransaction();
         try {
             $db -> createCommand() -> insert('activity', [
                 'title' => $this -> name,
-                'start_day' => strtotime($this -> start),
-                'end_day' => strtotime($this -> end),
+                'start_day' => $startDay,
+                'end_day' => $endDay,
                 'is_repeat' => $this -> repeat,
                 'is_block' => $this -> block,
                 'body' => $this -> text,
@@ -120,14 +118,23 @@ class CreateActivityForm extends ActiveRecord
             $days = (strtotime($this -> end) - strtotime($this -> start)) / (60 * 60 * 24) + 1;
             \Yii::info('days = '.$days);
             $day = strtotime($this -> start);
+            $userId = \Yii::$app->user->id;
             for ($i = 1; $i <= $days; $i++) {
                 $date = getDate($day);
 
-                $db->createCommand()->insert('day', [
-                    'id_activity' => $id,
-                    'id_user' => '1',
+                $db->createCommand()->upsert('day', [
                     'date' => $day,
                     'weekend_day' => $date['weekday'] ? true : false,
+                ])->execute();
+
+                $idDay = $db->createCommand("SELECT id FROM day WHERE date=:day")
+                    ->bindValue(':day', $day)
+                    ->queryOne();
+
+                $db -> createCommand() -> insert('links', [
+                    'id_activity' => $id,
+                    'id_user' => $userId,
+                    'id_day' => $idDay['id'],
                 ])->execute();
 
                 $day = $day + (60 * 60 * 24);
@@ -137,6 +144,7 @@ class CreateActivityForm extends ActiveRecord
             return true;
 
         } catch (\Exception $exception) {
+            //var_dump($exception);
             $transaction -> rollBack();
             return false;
         }
