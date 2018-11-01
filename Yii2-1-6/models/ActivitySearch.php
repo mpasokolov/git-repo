@@ -12,6 +12,7 @@ use app\models\Activity;
  */
 class ActivitySearch extends Activity
 {
+    public $username;
     /**
      * {@inheritdoc}
      */
@@ -19,7 +20,7 @@ class ActivitySearch extends Activity
     {
         return [
             [['id', 'start_day', 'end_day', 'is_repeat', 'is_block', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'body'], 'safe'],
+            [['title', 'body', 'users'], 'safe'],
         ];
     }
 
@@ -41,20 +42,13 @@ class ActivitySearch extends Activity
      */
     public function search($params)
     {
-        $query = Activity::find();
+        $query = Activity::find()->innerJoinWith('users', true);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['attributes' => ['username', 'id', 'start_day', 'end_day', 'is_repeat', 'is_block', 'title', 'body']]
         ]);
-
-        $dataProvider->sort->attributes['users'] = [
-            'asc' => ['links.username' => SORT_ASC],
-            'desc' => ['links.username' => SORT_DESC],
-        ];
-
-        $query->joinWith('users');
-
 
         $this->load($params);
 
@@ -63,8 +57,6 @@ class ActivitySearch extends Activity
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        //var_dump($this->username);
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -78,7 +70,8 @@ class ActivitySearch extends Activity
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'body', $this->body]);
+            ->andFilterWhere(['like', 'body', $this->body])
+            ->andFilterWhere(['like', 'username', $this->username]);
 
         return $dataProvider;
     }

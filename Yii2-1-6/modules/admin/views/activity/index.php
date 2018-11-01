@@ -26,13 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
+                'label' => 'Username',
+                'format' => 'ntext',
                 'attribute' => 'username',
                 'value' => function($model){
                     $items = [];
                     foreach($model->users as $user){
                         $items[] = $user->username;
                     }
-                    return implode(', ', $items);
+                    return implode('\n', $items);
                 }],
             'id',
             'title',
@@ -40,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end_day:datetime',
             'is_repeat',
             //'is_block',
-            //'body',
+            'body',
             //'created_at',
             //'updated_at',
 

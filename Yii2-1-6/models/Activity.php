@@ -106,6 +106,6 @@ class Activity extends ActiveRecord
     }
 
     public function getUsers() {
-        return $this->hasMany(User::class, ['id' => 'id_user'])->viaTable('Links', ['id_activity' => 'id']);
+        return $this->hasMany(User::class, ['id' => 'id_user'])->viaTable('links', ['id_activity' => 'id']);
     }
 }
