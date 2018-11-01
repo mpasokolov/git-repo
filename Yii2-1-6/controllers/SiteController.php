@@ -6,6 +6,7 @@ use app\models\Calendar;
 use app\models\Activity;
 use app\models\CreateUserForm;
 use Yii;
+use yii\bootstrap\Html;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -173,10 +174,10 @@ class SiteController extends Controller
             $result = $model->signUp();
             if ($result) {
                 $message = $result->new_password ?
-                    'Вы успешно зерегистрировались! Ваш пароль: ' . $result->new_password :
-                    'Вы успешно зерегистрировались!';
+                    'Вы успешно зерегистрировались! Ваш пароль: ' . $result->new_password . '! ' .  Html::a('Авторизоваться', ['@web/site/login']) :
+                    'Вы успешно зерегистрировались! ' .  Html::a('Авторизоваться', ['@web/site/login']);
                 \Yii::$app->session->setFlash('success', $message);
-                return $this -> redirect(Url::to('@web/site/login'));
+                //return $this -> redirect(Url::to('@web/site/login'));
             }
         }
         return $this->render('registration', ['model' => $model]);

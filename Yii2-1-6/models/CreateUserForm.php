@@ -23,8 +23,9 @@ class CreateUserForm extends Model {
 
             [['username', 'email'],'required', 'message' => 'Пожалуйста, заполните поле!'],
             [['username', 'email'], 'string', 'message' => 'Некорректные данные'],
+            [['password', 'password_repeat'], 'string'],
 
-            //['password', 'compare', 'compareAttribute' => 'password_repeat', 'message' => 'Пароли не совпадают'],
+            ['password', 'compare', 'compareAttribute' => 'password_repeat', 'message' => 'Пароли не совпадают'],
             ['email', 'email'],
             ['username', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'username', 'message' => 'Логин уже занят'],
             ['email', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email', 'message' => 'Данный email уже зарегестрирован'],
@@ -50,10 +51,12 @@ class CreateUserForm extends Model {
 
         $user -> generatePassword();
 
-        if (!$user->password) {
+        if (!$this->password) {
+            \Yii::info('no_password');
             $user->trigger(User::GENERATE_PASSWORD);
             $user->password = $user->new_password;
         } else {
+            \Yii::info('yes_password');
             $user->password = $this->password;
         }
 

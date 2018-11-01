@@ -131,6 +131,7 @@ class User extends ActiveRecord implements IdentityInterface {
 
     public function generatePassword() {
         $this->on(self::GENERATE_PASSWORD, function($event) {
+            \Yii::info('generate_password');
             $this->new_password = \Yii::$app->security->generateRandomString();
         });
     }
