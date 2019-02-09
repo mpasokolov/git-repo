@@ -8,7 +8,7 @@
 
 namespace console\controllers;
 
-use common\models\Ratchet;
+use console\models\Ratchet;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;

@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace console\models;
 
 use common\models\History;
 use Ratchet\MessageComponentInterface;
