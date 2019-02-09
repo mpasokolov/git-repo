@@ -114,7 +114,7 @@ class Chat {
             data: data,
             dataType : "json",
             success: result => {
-                if (result.status === 1) {
+                if (result.status == 1) {
                     data.id = result.id;
                     this._renderMessage(data);
                     this.socket.send(JSON.stringify(data));
@@ -136,8 +136,8 @@ class Chat {
 
     _renderMessage(data) {
         let $message = new _Message(data.id, data.message, data.userName, data.time).render();
-        $('.media:last').after($message);
         let $chat = $('.msg-wrap');
+        $message.appendTo($chat);
         $chat.scrollTop($chat.prop('scrollHeight'));
     }
 
