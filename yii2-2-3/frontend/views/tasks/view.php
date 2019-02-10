@@ -72,8 +72,6 @@ $this -> params['breadcrumbs'][] = $this -> title;
     ]
 ]) ?>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
 <div class="container" id="chat">
 </div>
 
