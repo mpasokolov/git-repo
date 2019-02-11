@@ -2,15 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: pc
- * Date: 2019-01-11
- * Time: 19:05
+ * Date: 2019-02-10
+ * Time: 18:53
  */
 
-namespace common\modules\lk\controllers;
+namespace frontend\controllers;
 
 
 use common\models\Invites;
 use common\models\Tasks;
+use common\models\TasksSearch;
 use common\models\Teams;
 use common\models\TeamsSearch;
 use common\models\User;
@@ -20,7 +21,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class TeamController extends Controller {
+class TeamsController extends Controller {
     public function behaviors() {
         return [
             'access' => [
@@ -67,15 +68,28 @@ class TeamController extends Controller {
 
         $users = User::find() -> where(['t.id_team' => null]) -> joinWith('teams t') -> asArray() -> all();
 
-        $teamsSearchModel = new TeamsSearch();
-        $teamsDataProvider = $teamsSearchModel -> searchUsersByTeam(\Yii::$app -> request ->queryParams, $id);
+        $team = Teams::find() -> where(['teams.id' => $id]) -> joinWith('parentTeam pt') -> one();
 
-        return $this -> render('view',
-            [
-                'users' => $users,
-                'invites' => $invites,
-                'teamsDataProvider' => $teamsDataProvider,
-                'team' => $id]);
+        $data = [
+            'team' => $team,
+            'teamId' => $id,
+            'users' => $users,
+            'invites' => $invites,
+        ];
+
+        if (\Yii::$app -> user -> can('teamLeadPermission')) {
+            $teamsSearchModel = new TeamsSearch();
+            $teamsDataProvider = $teamsSearchModel -> searchUsersByTeam(\Yii::$app -> request ->queryParams, $id);
+
+            $tasksSearchModel = new TasksSearch();
+            $tasksDataProvider = $tasksSearchModel -> searchByTeam(\Yii::$app -> request -> queryParams, $id);
+
+            $data['teamsDataProvider'] = $teamsDataProvider;
+            $data['tasksSearchModel'] = $tasksSearchModel;
+            $data['tasksDataProvider'] = $tasksDataProvider;
+        }
+
+        return $this -> render('view', $data);
     }
 
     public function actionDelete($id, $team) {
@@ -112,7 +126,7 @@ class TeamController extends Controller {
 
 
     public function actionDeleteAll($team) {
-        if (!Teams ::checkAccess($team)) {
+        if (!Teams::checkAccess($team)) {
             throw new NotFoundHttpException('У вас нет доступа для просмотра данной страницы');
         }
 
@@ -141,5 +155,13 @@ class TeamController extends Controller {
         }
 
         return $this -> redirect(Url ::to(['team/view', 'id' => $team]));
+    }
+
+    protected function findModel($id) {
+        if (($model = Teams::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('Данной страницы не существует');
     }
 }

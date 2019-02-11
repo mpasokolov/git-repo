@@ -11,5 +11,8 @@ use yii\bootstrap\Html;
         <?= Html::a('Управление задачами', '@web/tasks/index',
             ['class' => 'list-group-item list-group-item-action list-group-item-secondary'])
         ?>
+        <?= Html::a('Управление проектами', '@web/teams/index',
+            ['class' => 'list-group-item list-group-item-action list-group-item-secondary'])
+        ?>
     </div>
 </div>

@@ -91,7 +91,7 @@ use yii\widgets\DetailView;
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}',
                 'urlCreator' => function ($action, $model, $key, $index) {
-                    return Url::to(['team/'. $action, 'id' => $model -> teams -> id]);
+                    return Url::to(['/../teams/'. $action, 'id' => $model -> teams -> id]);
                 },
 
             ],

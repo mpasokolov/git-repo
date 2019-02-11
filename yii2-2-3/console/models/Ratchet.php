@@ -10,20 +10,20 @@ use yii\helpers\Json;
 
 class Ratchet extends Model implements MessageComponentInterface {
 
-    private $users;
-    private $history = [];
-
-    public function __construct() {
-        $this -> users = new \SplObjectStorage();
-    }
+    private $clients = [];
 
     public function onOpen(ConnectionInterface $conn) {
         echo "New connection! ({$conn -> resourceId})\n";
-        $this -> users -> attach($conn);
+
+        $queryString = $conn -> httpRequest -> getUri() -> getQuery();
+        $data = explode('=', $queryString);
+        $room = $data[1];
+        $this -> clients[$room][] = $conn;
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        foreach ($this -> users as $user) {
+        $data = Json::decode($msg);
+        foreach ($this -> clients[$data['room']] as $user) {
             if ($from !== $user) {
                 // The sender is not the receiver, send to each client connected
                 $user -> send($msg);
@@ -32,12 +32,27 @@ class Ratchet extends Model implements MessageComponentInterface {
     }
 
     public function onClose(ConnectionInterface $conn) {
+        foreach ($this -> clients as $room) {
+            $arr = array_filter($room, function ($user) use($conn) { return $user -> id == $conn -> resourceId;});
+            if (!empty($arr)) {
+                $key = key($arr);
+                array_splice($room, $key, 1);
+                echo "Connection {$conn -> resourceId} has deleted\n";
+            }
+        }
         echo "Connection {$conn -> resourceId} has disconnected\n";
-        $this -> users -> detach($conn);
         $conn -> close();
     }
 
     public function onError(ConnectionInterface $conn, \Exception $e) {
+        foreach ($this -> clients as $room) {
+            $arr = array_filter($room, function ($user) use($conn) { return $user -> id == $conn -> resourceId;});
+            if (!empty($arr)) {
+                $key = key($arr);
+                array_splice($room, $key, 1);
+                echo "Connection {$conn -> resourceId} has deleted\n";
+            }
+        }
         echo "An error has occurred: {$e -> getMessage()}\n";
         $conn -> close();
     }

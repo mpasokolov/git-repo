@@ -29,7 +29,7 @@ class TasksSearch extends Tasks {
 
     public function rules() {
         return [
-            [['name', 'description', 'id_admin', 'id_user', 'finish', 'id_team', 'finish_time'], 'safe'],
+            [['name', 'description', 'id_admin', 'id_user', 'finish', 'id_team', 'finish_time', 'created_at'], 'safe'],
             [['deadline'], 'match',
                 'pattern' => '/^\d{4}(-\d{2})?(-\d{2})?$/',
                 'message' => 'Дата должна быть в формате Y-m-d'
@@ -163,6 +163,49 @@ class TasksSearch extends Tasks {
             $sevenDaysAgoTime = $nowTime - 86400 * 6;
             $query -> andFilterWhere(['=', 'finish', '1'])
                 -> andFilterWhere(['>=', 'finish_time', $sevenDaysAgoTime]);
+        }
+
+        return $dataProvider;
+    }
+
+    public function searchByTeam($params, $id) {
+        $query = Tasks::find()
+            -> where(['id_team' => $id])
+            -> joinWith('teams t')
+            -> joinWith('users u')
+            -> joinWith('admins a');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5
+            ],
+        ]);
+
+        $this -> load($params);
+
+        if (!$this -> validate()) {
+            return $dataProvider;
+        };
+
+        $query -> andFilterWhere(['tasks.id' => $this -> id]);
+
+        $query -> andFilterWhere(['like', 'tasks.name', $this -> name])
+            -> andFilterWhere(['like', 'description', $this -> description])
+            -> andFilterWhere(['like', 'a.username', $this -> id_admin])
+            -> andFilterWhere(['like', 'u.username', $this -> id_user])
+            -> andFilterWhere(['like', 't.name', $this -> id_team])
+            -> andFilterWhere(['like', 'finish', $this -> finish]);
+
+        if ($this -> deadline) {
+            $filter = $this -> getDateFilterPeriod($this -> deadline);
+
+            $query -> andFilterWhere(['between', 'deadline', $filter['startDay'], $filter['finishDay']]);
+        }
+
+        if ($this -> finish_time) {
+            $filter = $this -> getDateFilterPeriod($this -> finish_time);
+            $query -> andFilterWhere(['between', 'finish_time', $filter['startDay'], $filter['finishDay']]);
         }
 
         return $dataProvider;

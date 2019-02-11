@@ -88,7 +88,6 @@ use yii\helpers\Url;
                 }
             ]
         ]
-
     ]
 ]);
 ?>

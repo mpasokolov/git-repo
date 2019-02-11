@@ -15,6 +15,8 @@ class m190108_181743_teams extends Migration
             'id' => $this -> primaryKey(),
             'name' => $this -> string(45) -> notNull() -> unique(),
             'teamlead' => $this -> integer() -> notNull(),
+            'status' => $this -> boolean() ->defaultValue(true),
+            'parent_id' => $this -> integer() -> defaultValue(null),
             'created_at' => $this -> integer(10) -> notNull(),
             'updated_at' => $this -> integer(10)
         ]);

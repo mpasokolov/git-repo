@@ -33,7 +33,7 @@ class UserController extends Controller {
         $user = $this -> findModel($userId);
 
         $teamsSearchModel = new TeamsSearch();
-        $teamsDataProvider = $teamsSearchModel -> search(\Yii::$app -> request -> queryParams);
+        $teamsDataProvider = $teamsSearchModel -> searchTeamsByUser(\Yii::$app -> request -> queryParams);
 
         $inviteSearchModel = new InvitesSerach();;
         $invitesDataProvider = $inviteSearchModel -> search(\Yii::$app -> request -> queryParams);

@@ -80,7 +80,7 @@ use yii\helpers\Url;
                 'buttons' => [
                     'finish' => function ($url, $model, $key) {
                         if (!$model -> finish) {
-                            return Html ::a('', $url, ['class' => 'glyphicon glyphicon-ok']);
+                            return Html::a('', $url, ['class' => 'glyphicon glyphicon-ok']);
                         }
                     },
                 ]

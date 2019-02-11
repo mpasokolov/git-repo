@@ -5,20 +5,24 @@ class Chat {
     }
 
     _init() {
-        $(window).on("beforeunload", () => {
-            this._saveUserHistory();
-        });
+        this.task = this._findGetParam('id');
 
-        let $container = $(`#${this.elemId}`);
-        let socket = new WebSocket('ws://localhost:8080');
+        let socket = new WebSocket('ws://localhost:8080?room=task_' + this.task);
         socket.onmessage = event => {
             this._renderMessage(JSON.parse(event.data));
         };
 
         this.socket = socket;
-        this._render($container);
 
-        this.task = this._findGetParam('id');
+        $(window).on("beforeunload", () => {
+            this._saveUserHistory();
+            this.socket.onclose = function () {}; // disable onclose handler first
+            this.socket.close()
+        });
+
+        let $container = $(`#${this.elemId}`);
+
+        this._render($container);
 
         $.ajax({
             url: 'http://project-a:8888/chat/get-data',
@@ -102,6 +106,7 @@ class Chat {
         let message = $('#message').val();
         let data = {
             task: this.task,
+            room: 'task_' + this.task,
             message: message,
             userId: this.user.id,
             userName: this.user.username,
