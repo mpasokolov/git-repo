@@ -9,5 +9,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'bot' => [
+            'class' => 'SonkoDmitry\Yii\TelegramBot\Component',
+            'apiToken' => '721195595:AAH609acx9jLf3kDimeAJjoUygxoqyP0jO0',
+        ],
     ],
 ];

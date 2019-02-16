@@ -68,6 +68,7 @@ use yii\widgets\Pjax;
                 : ''
         ]) ?>
     <?= $form -> field($model, 'description') -> textarea() ?>
+    <?= $form -> field($model, 'id_admin') -> hiddenInput(['value'=> \Yii::$app -> user -> id]) ?>
 
     <?= Html::submitButton($this -> title === 'Редактирование задачи'
         ? 'Обновить задачу'

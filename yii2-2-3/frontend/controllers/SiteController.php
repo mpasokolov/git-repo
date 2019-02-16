@@ -134,25 +134,8 @@ class SiteController extends Controller {
     }
 
     public function actionTest() {
-        $obj1 = new \stdClass();
-        $obj1 -> id = 1;
-        $obj2 = new \stdClass();
-        $obj2 -> id = 2;
-        $obj3 = new \stdClass();
-        $obj3 -> id = 3;
-        $array = [
-            $obj1,
-            $obj2,
-            $obj3
-        ];
+        $key = strtotime('');
 
-        $arr = array_filter($array, function ($conn) { return $conn -> id == 2;});
-        $key = key($arr);
-
-        array_splice($array, $key, 1);
-
-        //$query = Teams::find() -> joinWith('teams') -> asArray() -> all()[0];
-
-        return $this ->render('test', ['key' => $key, 'arr' => $array]);
+        return $this ->render('test', ['key' => $key]);
     }
 }

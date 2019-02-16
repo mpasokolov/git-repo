@@ -57,7 +57,6 @@ class Tasks extends ActiveRecord {
                 $this -> finish = true;
                 $this -> finish_time = time();
             } else {
-                $this -> id_admin = \Yii::$app -> user -> id;
                 $this -> deadline = strtotime($this -> deadline);
             }
 

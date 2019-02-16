@@ -14,6 +14,7 @@ use common\models\TeamsSearch;
 use common\models\User;
 use common\models\UsersTeams;
 use Facebook\WebDriver\Net\URLChecker;
+use yii\base\Event;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -47,8 +48,9 @@ class TeamsController extends Controller {
     public function actionCreate() {
         $model = new Teams();
         if ($model -> load(\Yii::$app -> request -> post()) && $model -> save()) {
-            $message = 'Команда успешно создана!' . '<a href="' . Url::to('index') . '"> К списку команд</a>';
-            \Yii::$app -> session -> setFlash('success', $message);
+            $model -> trigger(Teams::EVENT_CREATE_TEAM);
+            $message = 'Команда успешно создана!' . '<a href="' . Url ::to('index') . '"> К списку команд</a>';
+            \Yii ::$app -> session -> setFlash('success', $message);
             return $this -> refresh();
         }
 

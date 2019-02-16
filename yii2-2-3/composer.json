@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "cboden/ratchet": "^0.4.1",
-        "ext-json": "*"
+        "ext-json": "*",
+        "sonko-dmitry/yii2-telegram-bot-api": "*",
+      "ext-curl": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

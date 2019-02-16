@@ -9,10 +9,19 @@
 namespace common\models;
 
 
+use SonkoDmitry\Yii\TelegramBot\Component;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 class Teams extends ActiveRecord {
+
+    const EVENT_CREATE_TEAM = 'new_team';
+
+    public function init() {
+        parent::init();
+        $this -> on(self::EVENT_CREATE_TEAM, [$this, 'sendTelegramNotify']);
+    }
+
     public function behaviors() {
         return [
             'class' => TimestampBehavior::class,
@@ -37,6 +46,18 @@ class Teams extends ActiveRecord {
                 'message' => 'Команда с таким именем уже существует'
             ]
         ];
+    }
+
+    public function sendTelegramNotify($event) {
+        $users = TelegramSubscribe::find() -> asArray() -> all();
+        foreach ($users as $user) {
+            /** @var Component $bot */
+            $bot = \Yii::$app -> bot;
+            $bot -> sendMessage(
+                $user['telegram_chat_id'],
+                'Создана новая задача с именем: ' . $event -> sender -> getAttribute('name'));
+        }
+
     }
 
     public function getTeams() {
