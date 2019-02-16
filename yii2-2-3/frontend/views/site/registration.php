@@ -1,10 +1,12 @@
 <?php
     use yii\bootstrap\ActiveForm;
     use yii\helpers\Html;
+use yii\widgets\Pjax;
 
-    $this -> title = 'Зарегистрироваться';
-    $this -> params['breadcrumbs'][] = $this -> title;
+$this -> title = 'Зарегистрироваться';
+$this -> params['breadcrumbs'][] = $this -> title;
 ?>
+
 
 <div class="createUser">
     <?php $form = ActiveForm::begin([

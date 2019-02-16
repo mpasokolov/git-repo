@@ -4,8 +4,8 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
+<?php \yii\widgets\Pjax::begin(); ?>
 <?= $this -> render('_search', ['model' => $searchModel]) ?>
-
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -91,3 +91,4 @@ use yii\helpers\Url;
     ]
 ]);
 ?>
+<?php \yii\widgets\Pjax::end(); ?>

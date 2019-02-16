@@ -4,6 +4,7 @@ namespace common\modules\lk\controllers;
 
 use common\models\Invites;
 use common\models\InvitesSerach;
+use common\models\Tasks;
 use common\models\TeamsSearch;
 use common\models\User;
 use common\models\UsersTeams;
@@ -28,26 +29,12 @@ class UserController extends Controller {
     }
 
     public function actionIndex() {
-        $userId = \Yii::$app -> user -> id;
-
-        $user = $this -> findModel($userId);
-
-        $teamsSearchModel = new TeamsSearch();
-        $teamsDataProvider = $teamsSearchModel -> searchTeamsByUser(\Yii::$app -> request -> queryParams);
-
-        $inviteSearchModel = new InvitesSerach();;
-        $invitesDataProvider = $inviteSearchModel -> search(\Yii::$app -> request -> queryParams);
-
-        return $this -> render('index', [
-            'teamsSearchModel' => $teamsSearchModel,
-            'teamsDataProvider' => $teamsDataProvider,
-            'invitesDataProvider' => $invitesDataProvider,
-            'user' => $user
-        ]);
+        return $this -> renderIndex();
     }
 
     public function actionAccept($team, $invite) {
         $user = new UsersTeams();
+
         $transaction = UsersTeams::getDb() -> beginTransaction();
 
         try {
@@ -57,7 +44,6 @@ class UserController extends Controller {
             $user -> save();
 
             $currentRole =  \Yii::$app -> authManager -> getRolesByUser(\Yii::$app -> user -> id);
-            \Yii::info($currentRole);
 
             if ($currentRole['name'] === 'guest') {
                 $userRole = \Yii::$app -> authManager -> getRole('user');
@@ -75,7 +61,11 @@ class UserController extends Controller {
             throw $e;
         }
 
-        return $this -> redirect(Url ::to(['@web/lk/user']));
+        if (\Yii::$app->request->isAjax) {
+            return $this -> renderIndex();
+        } else {
+            return $this -> redirect(['index']);
+        }
     }
 
     public function actionUpdate($id) {
@@ -95,8 +85,30 @@ class UserController extends Controller {
     public function actionReject($id) {
         Invites::findOne($id) -> delete();
 
-        \Yii::$app -> session ->setFlash('success', 'Приглашение отклонено!');
-        return $this -> redirect(Url ::to(['@web/lk/user']));
+        if (\Yii::$app->request->isAjax) {
+            return $this -> renderIndex();
+        } else {
+            return $this -> redirect(['index']);
+        }
+    }
+
+    protected function renderIndex() {
+        $userId = \Yii::$app -> user -> id;
+
+        $user = $this -> findModel($userId);
+
+        $teamsSearchModel = new TeamsSearch();
+        $teamsDataProvider = $teamsSearchModel -> searchTeamsByUser(\Yii::$app -> request -> queryParams);
+
+        $inviteSearchModel = new InvitesSerach();;
+        $invitesDataProvider = $inviteSearchModel -> search(\Yii::$app -> request -> queryParams);
+
+        return $this -> render('index', [
+            'teamsSearchModel' => $teamsSearchModel,
+            'teamsDataProvider' => $teamsDataProvider,
+            'invitesDataProvider' => $invitesDataProvider,
+            'user' => $user
+        ]);
     }
 
     protected function findModel($id) {

@@ -6,10 +6,22 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 ?>
 <div class="tasks-form">
-    <?php $form = ActiveForm::begin() ?>
+    <?php Pjax::begin(); ?>
+
+    <?php if (isset($result)): ?>
+        <div class="alert-success alert fade in"><?= $result?></div>
+    <?php endif; ?>
+
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'data-pjax' => true,
+        ]
+    ])
+    ?>
 
     <?= $form -> field($model, 'name') -> textInput() ?>
 
@@ -63,4 +75,5 @@ use yii\helpers\Url;
         ['class' => 'btn btn-success']) ?>
 
     <?php ActiveForm::end() ?>
+    <?php Pjax::end(); ?>
 </div>

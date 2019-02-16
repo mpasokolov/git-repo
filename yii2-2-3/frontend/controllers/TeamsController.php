@@ -30,7 +30,7 @@ class TeamsController extends Controller {
                     [
                         'allow' => true,
                         'roles' => ['teamLead', 'admin'],
-                        'actions' => ['delete', 'delete-all'],
+                        'actions' => ['delete', 'delete-all', 'delete-task'],
                     ],
                     [
                         'allow' => true,
@@ -47,49 +47,7 @@ class TeamsController extends Controller {
     }
 
     public function actionView($id) {
-        $invites = new Invites();
-
-        if ($invites -> load(\Yii::$app -> request ->post()) && $invites -> validate()) {
-
-            $invite = Invites::findOne([
-                'id_from' => \Yii::$app -> user -> id,
-                'id_to' => $invites -> id_to,
-                'id_team' => $invites -> id_team
-            ]);
-
-            if (!empty($invite)) {
-                \Yii::$app -> session -> setFlash('already-sent', 'Приглашение уже было отправлено ранее!');
-            } else {
-                $invites -> save(false);
-                \Yii::$app -> session -> setFlash('success', 'Приглашение успешно отправлено!');
-            }
-            return $this -> refresh();
-        }
-
-        $users = User::find() -> where(['t.id_team' => null]) -> joinWith('teams t') -> asArray() -> all();
-
-        $team = Teams::find() -> where(['teams.id' => $id]) -> joinWith('parentTeam pt') -> one();
-
-        $data = [
-            'team' => $team,
-            'teamId' => $id,
-            'users' => $users,
-            'invites' => $invites,
-        ];
-
-        if (\Yii::$app -> user -> can('teamLeadPermission')) {
-            $teamsSearchModel = new TeamsSearch();
-            $teamsDataProvider = $teamsSearchModel -> searchUsersByTeam(\Yii::$app -> request ->queryParams, $id);
-
-            $tasksSearchModel = new TasksSearch();
-            $tasksDataProvider = $tasksSearchModel -> searchByTeam(\Yii::$app -> request -> queryParams, $id);
-
-            $data['teamsDataProvider'] = $teamsDataProvider;
-            $data['tasksSearchModel'] = $tasksSearchModel;
-            $data['tasksDataProvider'] = $tasksDataProvider;
-        }
-
-        return $this -> render('view', $data);
+        return $this -> renderView($id);
     }
 
     public function actionDelete($id, $team) {
@@ -155,6 +113,70 @@ class TeamsController extends Controller {
         }
 
         return $this -> redirect(Url ::to(['team/view', 'id' => $team]));
+    }
+
+    protected function renderView($id) {
+        $invites = new Invites();
+
+        if ($invites -> load(\Yii::$app -> request ->post()) && $invites -> validate()) {
+
+            $invite = Invites::findOne([
+                'id_from' => \Yii::$app -> user -> id,
+                'id_to' => $invites -> id_to,
+                'id_team' => $invites -> id_team
+            ]);
+
+            if (!empty($invite)) {
+                \Yii::$app -> session -> setFlash('already-sent', 'Приглашение уже было отправлено ранее!');
+            } else {
+                $invites -> save(false);
+                \Yii::$app -> session -> setFlash('success', 'Приглашение успешно отправлено!');
+            }
+            return $this -> refresh();
+        }
+
+        $users = User::find() -> where(['t.id_team' => null]) -> joinWith('teams t') -> asArray() -> all();
+
+        $team = Teams::find() -> where(['teams.id' => $id]) -> joinWith('parentTeam pt') -> one();
+
+        $data = [
+            'team' => $team,
+            'teamId' => $id,
+            'users' => $users,
+            'invites' => $invites,
+        ];
+
+        if (\Yii::$app -> user -> can('teamLeadPermission')) {
+            $teamsSearchModel = new TeamsSearch();
+            $teamsDataProvider = $teamsSearchModel -> searchUsersByTeam(\Yii::$app -> request ->queryParams, $id);
+
+            $tasksSearchModel = new TasksSearch();
+            $tasksDataProvider = $tasksSearchModel -> searchByTeam(\Yii::$app -> request -> queryParams, $id);
+
+            $data['teamsDataProvider'] = $teamsDataProvider;
+            $data['tasksSearchModel'] = $tasksSearchModel;
+            $data['tasksDataProvider'] = $tasksDataProvider;
+        }
+
+        return $this -> render('view', $data);
+    }
+
+    public function actionDeleteTask($id, $task) {
+        $model = Tasks::findOne($id);
+
+        if (!Tasks::checkAccess($model)) {
+            throw new MethodNotAllowedHttpException('У вас нет прав для данного действия');
+        }
+
+        $model -> delete();
+
+        \Yii::$app -> session -> setFlash('success', 'Задача успешно удалена');
+
+        if (\Yii::$app->request->isAjax) {
+            return $this -> renderView($task);
+        } else {
+            return $this -> goBack();
+        }
     }
 
     protected function findModel($id) {

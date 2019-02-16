@@ -18,7 +18,11 @@ class Ratchet extends Model implements MessageComponentInterface {
         $queryString = $conn -> httpRequest -> getUri() -> getQuery();
         $data = explode('=', $queryString);
         $room = $data[1];
+
         $this -> clients[$room][] = $conn;
+
+        var_dump($this->clients[$room]);
+
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
@@ -36,6 +40,8 @@ class Ratchet extends Model implements MessageComponentInterface {
             $arr = array_filter($room, function ($user) use($conn) { return $user -> id == $conn -> resourceId;});
             if (!empty($arr)) {
                 $key = key($arr);
+                var_dump($key);
+                var_dump($conn -> resourceId);
                 array_splice($room, $key, 1);
                 echo "Connection {$conn -> resourceId} has deleted\n";
             }

@@ -87,9 +87,7 @@ class TasksController extends Controller {
         }
 
         if ($model -> load(\Yii::$app -> request -> post()) && $model -> save()) {
-            \Yii::$app -> session -> setFlash('success', 'Задача успешно обновлена');
-
-            return $this->goBack(\Yii::$app -> request -> referrer);
+            return $this -> render('update', ['model' => $model, 'result' => 'Задача успешно обновлена']);
         }
 
         return $this -> render('update', ['model' => $model]);
@@ -105,7 +103,8 @@ class TasksController extends Controller {
         $model -> delete();
 
         \Yii::$app -> session -> setFlash('success', 'Задача успешно удалена');
-        return $this->goBack(\Yii::$app->request->referrer);
+
+        return $this -> goBack(\Yii::$app -> request -> referrer);
     }
 
     public function actionView($id) {

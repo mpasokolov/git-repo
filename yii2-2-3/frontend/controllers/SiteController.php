@@ -112,20 +112,25 @@ class SiteController extends Controller {
     public function actionRegistration() {
         $user = new User();
 
-        if (Yii::$app -> request -> isAjax && $user -> load(Yii::$app->request->post())) {
-            Yii::$app -> response -> format = Response::FORMAT_JSON;
-            return ActiveForm::validate($user);
-        }
-
         if ($user -> load(\Yii::$app -> request -> post()) && $user -> save()) {
             $message = 'Вы успешно зарегистрировались, ' . '<a href="' .  Url::to('login') . '"> Авторизоваться</a>';
             \Yii::$app -> session -> setFlash('success', $message);
+
             $guestRole = \Yii::$app -> authManager -> getRole('guest');
             \Yii::$app -> authManager -> assign($guestRole, $user -> id);
             return $this -> refresh();
         }
 
         return $this -> render('registration', ['model' => $user]);
+    }
+
+    public function actionRegistrationValidate() {
+        $user = new User();
+
+        if (Yii::$app -> request -> isAjax && $user -> load(Yii::$app->request->post()))  {
+            Yii::$app -> response -> format = Response::FORMAT_JSON;
+            return ActiveForm::validate($user);
+        }
     }
 
     public function actionTest() {

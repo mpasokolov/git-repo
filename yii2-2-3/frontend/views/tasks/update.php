@@ -2,11 +2,13 @@
 
 $this -> title = 'Редактирование задачи';
 $this -> params['breadcrumbs'][] = ['label' => 'Tasks', 'url' => 'index'];
-$this -> params['breadcrumbs'][] = ['label' => $model -> id, 'url' => ['view', 'id' => $model -> id]];
+$this -> params['breadcrumbs'][] = ['label' => $model -> name, 'url' => ['view', 'id' => $model -> id]];
 $this -> params['breadcrumbs'][] = $this -> title;
+
+use yii\widgets\Pjax;
 
 ?>
 
 <div class="task_update">
-    <?= $this -> render('_form', ['model' => $model]) ?>
+    <?= $this -> render('_form', ['model' => $model, 'result' => isset($result) ? $result : null]) ?>
 </div>

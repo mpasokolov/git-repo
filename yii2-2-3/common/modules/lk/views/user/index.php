@@ -4,6 +4,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 ?>
 
@@ -22,6 +23,7 @@ use yii\widgets\DetailView;
 <?= Html::a('Изменить данные', ['update', 'id' => $user -> id], ['class' => 'btn btn-success']); ?>
 <br>
 
+<?php Pjax::begin(['enablePushState' => false]); ?>
 <?= GridView::widget([
     'dataProvider' => $invitesDataProvider,
     'showOnEmpty' => false,
@@ -31,12 +33,14 @@ use yii\widgets\DetailView;
         [
             'attribute' => 'username',
             'value' => 'reporterUser.username',
-            'label' => 'Имя отправителя'
+            'label' => 'Имя отправителя',
+            'format' => 'raw'
         ],
         [
             'attribute' => 'name',
             'value' => 'team.name',
-            'label' => 'Название команды'
+            'label' => 'Название команды',
+            'format' => 'raw'
         ],
         [
             'class' => 'yii\grid\ActionColumn',
@@ -46,14 +50,19 @@ use yii\widgets\DetailView;
                     return Html::a('Принять',
                         Url::to(
                             ['accept', 'team' => $model -> id_team, 'invite' => $model -> id]),
-                            ['class' => 'btn btn-success btn-xs']
+                            [
+                                'class' => 'btn btn-success btn-xs',
+                                'title' => Yii::t('yii', 'Delete'),
+                                'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            ]
                         );
                 },
                 'reject' => function ($url,$model,$key) {
                     return Html::a('Отклонить',
-                        Url::to(
-                            ['reject', 'id' => $model -> id]),
-                            ['class' => 'btn btn-danger btn-xs']
+                        Url::to(['reject', 'id' => $model -> id]),
+                            [
+                                'class' => 'btn btn-danger btn-xs',
+                            ]
                         );
                 },
             ],
@@ -61,6 +70,7 @@ use yii\widgets\DetailView;
     ],
     ])
 ?>
+<?php Pjax::end(); ?>
 
 <?= GridView::widget([
         'dataProvider' => $teamsDataProvider,
@@ -93,9 +103,9 @@ use yii\widgets\DetailView;
                 'urlCreator' => function ($action, $model, $key, $index) {
                     return Url::to(['/../teams/'. $action, 'id' => $model -> teams -> id]);
                 },
-
             ],
         ]
     ])
 ?>
+
 

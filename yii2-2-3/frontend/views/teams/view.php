@@ -5,6 +5,7 @@ use yii\bootstrap\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 ?>
 
@@ -68,6 +69,7 @@ use yii\helpers\Url;
         <?php ActiveForm::end() ?>
     </div>
 
+    <?php Pjax::begin(); ?>
     <div class="task-list">
         <?= GridView::widget([
             'dataProvider' => $tasksDataProvider,
@@ -114,8 +116,8 @@ use yii\helpers\Url;
                 ],
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'urlCreator' => function ($action, $model, $key, $index) {
-                        return Url::to(['tasks/'. $action, 'id' => $model->id]);
+                    'urlCreator' => function ($action, $model, $key, $index) use($teamId) {
+                        return Url::to(['tasks/'. $action, 'id' => $model->id, 'task' => $teamId]);
                     },
                     'template' => '{view} {update} {delete} {finish}',
                     'buttons' => [
@@ -126,12 +128,24 @@ use yii\helpers\Url;
                         },
                         'update' => function ($url, $model, $key) {
                             if (!$model -> finish) {
-                                return Html::a('', $url, ['class' => 'glyphicon glyphicon-pencil']);
+                                return Html::a('', $url,
+                                    [
+                                        'class' => 'glyphicon glyphicon-pencil',
+                                        'data-pjax' => 0
+                                    ]
+                                );
                             }
                         },
-                        'delete' => function ($url, $model, $key) {
+                        'delete' => function ($url, $model, $key) use($teamId){
                             if (!$model -> finish) {
-                                return Html::a('', $url, ['class' => 'glyphicon glyphicon-trash']);
+                                return Html::a('',
+                                    Url::to(['teams/delete-task', 'id' => $model->id, 'task' => $teamId]),
+                                    [
+                                        'class' => 'glyphicon glyphicon-trash',
+                                        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                        'data-pjax' => 1
+                                    ]
+                                );
                             }
                         },
                     ]
@@ -139,5 +153,6 @@ use yii\helpers\Url;
             ]
         ]) ?>
     </div>
+    <?php Pjax::end(); ?>
 
 <?php endif; ?>

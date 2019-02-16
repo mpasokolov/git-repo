@@ -30,7 +30,7 @@ class Teams extends ActiveRecord {
     public function rules() {
         return [
             ['name', 'string', 'max' => 50, 'message' => 'Поле не может быть длинее 50 символов'],
-            [['teamlead', 'name', 'parent_id'], 'required', 'message' => 'Поле обязательно для заполнения'],
+            [['teamlead', 'name'], 'required', 'message' => 'Поле обязательно для заполнения'],
             ['name', 'unique',
                 'targetClass' => Teams::class,
                 'targetAttribute' => 'name',
