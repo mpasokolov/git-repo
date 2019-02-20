@@ -60,7 +60,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @throws Exception
      */
     public static function findIdentityByAccessToken($token, $type = null) {
-        return static::findOne(['access_token' => $token]);
+        throw new NotSupportedException('Не поддерживается');
     }
 
     /**
@@ -101,7 +101,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return bool if password provided is valid for current user
      */
     public function validatePassword($password) {
-        if (!\Yii::$app -> security -> validatePassword($password, $this -> password)) {
+        if (!\Yii ::$app -> security -> validatePassword($password, $this -> password)) {
             $this -> addError('password', 'Логин или пароль неверны');
             return false;
         }
@@ -109,11 +109,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     public function beforeSave($insert) {
-        if (parent::beforeSave($insert)) {
-            $this -> password = \Yii::$app -> security -> generatePasswordHash($this -> password);
-            if ($this -> isNewRecord) {
-                $this -> access_token = \Yii::$app ->security-> generateRandomString();
-            }
+        if (parent ::beforeSave($insert)) {
+            $this -> password = \Yii ::$app -> security -> generatePasswordHash($this -> password);
             return true;
         } else {
             return false;

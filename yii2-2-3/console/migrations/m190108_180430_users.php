@@ -16,8 +16,7 @@ class m190108_180430_users extends Migration {
             'email' => $this -> string(100) -> notNull() -> unique(),
             'password' => $this -> string(255) -> notNull(),
             'created_at' => $this -> integer(10) -> notNull(),
-            'updated_at' => $this -> integer(10),
-            'auth_key' => $this->string() -> notNull() -> unique(),
+            'updated_at' => $this -> integer(10)
         ]);
     }
 

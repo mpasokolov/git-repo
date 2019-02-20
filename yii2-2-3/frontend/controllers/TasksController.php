@@ -32,7 +32,7 @@ class TasksController extends Controller {
                     [
                         'allow' => true,
                         'roles' => ['teamLead', 'admin'],
-                        'actions' => ['create', 'update', 'delete', 'get-users-by-team-name']
+                        'actions' => ['create', 'update', 'delete', 'ajax']
                     ],
                 ]
             ]
@@ -62,6 +62,7 @@ class TasksController extends Controller {
 
     public function actionCreate() {
         $task = new Tasks(['scenario' => Tasks::SCENARIO_CREATE]);
+
         if ($task -> load(\Yii::$app -> request -> post()) && $task -> save()) {
             $message = 'Задача успешно создана!' . '<a href="' . Url::to('index') . '"> К списку задач</a>';
             \Yii::$app -> session -> setFlash('success', $message);
@@ -132,7 +133,7 @@ class TasksController extends Controller {
         return $this -> render('finish', ['model' => $model]);
     }
 
-    public function actionGetUsersByTeamName() {
+    public function actionAjax() {
         if(\Yii::$app -> request -> isAjax){
             $id = (int)\Yii::$app -> request->post('id');
 
