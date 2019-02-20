@@ -15,6 +15,7 @@ use common\models\TelegramAuth;
 use common\models\TelegramOffset;
 use common\models\TelegramSubscribe;
 use common\models\User;
+use console\models\TelegramActions;
 use SonkoDmitry\Yii\TelegramBot\Component;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
@@ -73,109 +74,13 @@ class TelegramController extends Controller {
     }
 
     private function processCommand(Message $message) {
-        $params = explode(' ', $message -> getText());
-        $command = $params[0];
-        $response = 'unknown command';
+        $data = explode(' ', $message -> getText());
+        $command = ltrim($data[0], '/');
+        array_splice($data, 0, 1);
+        $params = $data;
 
-        switch ($command) {
-            case '/help':
-                $response = "Доступные команды \n";
-                $response .= "/help - список команд\n";
-                $response .= "/sp_create - подписка на создание проектов\n";
-                $response .= "/login ##username ##password  подписка на создание проектов\n";
-                $response .= "/task_create ##name ##team ##user ##deadline ##description - создание задачи\n";
-                break;
-            case '/sp_create':
-                $model = new TelegramSubscribe([
-                    'channel' => 'project_create',
-                    'telegram_chat_id' => $message -> getFrom() -> getId(),
-                ]);
-
-                if ($model -> save()) {
-                    $response = 'Вы подписаны на уведомления по созданию проектов';
-                } else {
-                    $response = 'При подписке произошла ошибка';
-                }
-                break;
-            case '/login':
-                if (!isset($params[1]) || !isset($params[2])) {
-                    $response = 'Команда введена неверно';
-                    break;
-                } else {
-                    $user = User::findByUsername($params[1]);
-                    if (!$user) {
-                        $response = 'Пользователя с данным логином не существует';
-                        break;
-                    }
-
-                    if (!$user -> validatePassword($params[2])) {
-                        $response = 'Пароль не верен';
-                        break;
-                    }
-
-                    $model = new TelegramAuth([
-                        'user_id' => $user -> id,
-                        'chat_id' => $message -> getFrom() -> getId()
-                    ]);
-
-                    if ($model -> save()) {
-                        $response = 'Вы успешно авторизовались';
-                    } else {
-                        $response = 'Ошибка авторизации, обратитесь к администратору';
-                    }
-                }
-                break;
-            case '/task_create':
-                $model = TelegramAuth::find() -> where(['chat_id' => $message -> getFrom() -> getId()]) -> one();
-
-                if (!$model) {
-                    $response = 'Для создания задач вы должны авторизоваться. Введите команду /login';
-                    break;
-                }
-
-                if (!isset($params[1]) || !isset($params[2]) || !isset($params[3]) || !isset($params[4]) || !isset($params[5])) {
-                    $response = 'Команда введена неверно';
-                    break;
-                }
-
-                $team = Teams::find() -> where(['name' => $params[2]]) -> one();
-
-                if (!$team) {
-                    $response = 'Команды c таким именем не существует';
-                    break;
-                }
-
-                $user = User::findByUsername($params[3]);
-
-                if (!$user) {
-                    $response = 'Пользователя c таким именем не существует';
-                    break;
-                }
-
-                $regexp = '/^\d{4}-\d{2}-\d{2}$/';
-
-                if (!preg_match($regexp, $params[4])) {
-                    $response = 'Дата должна быть в формате Y-m-d';
-                    break;
-                }
-
-                $task = new Tasks([
-                    'name' =>  $params[1],
-                    'id_admin' => $model -> user_id,
-                    'id_user' => $user -> id,
-                    'deadline' => $params[4],
-                    'description' => $params[5],
-                    'id_team' => $team -> id
-                ]);
-
-                if ($task -> save()) {
-                    $response = 'Задача успешно создана';
-                } else {
-                    $response = 'Ошибка при создании задачи';
-                }
-                break;
-
-        }
+        $actions = new TelegramActions();
+        $response = method_exists($actions, $command) ? $actions -> $command($message, $params) : 'unknown command';
 
         $this -> bot -> sendMessage($message -> getFrom() -> getId(), $response);
     }

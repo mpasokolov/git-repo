@@ -37,7 +37,7 @@ use yii\widgets\Pjax;
             'site' => '',
             'onchange' => '
                  $.post(
-                  "'. Url::toRoute('tasks/ajax') .'",
+                  "'. Url::toRoute('tasks/get-users-by-team-name') .'",
                   {id: $(this).val()},
                   function(data){
                     $("select#teams").html(data).attr("disabled", false)
@@ -68,7 +68,7 @@ use yii\widgets\Pjax;
                 : ''
         ]) ?>
     <?= $form -> field($model, 'description') -> textarea() ?>
-    <?= $form -> field($model, 'id_admin') -> hiddenInput(['value'=> \Yii::$app -> user -> id]) ?>
+    <?= $form -> field($model, 'id_admin') -> hiddenInput(['value' => \Yii::$app -> user -> id]) -> label(false); ?>
 
     <?= Html::submitButton($this -> title === 'Редактирование задачи'
         ? 'Обновить задачу'
