@@ -18,7 +18,7 @@ class Tasks extends ActiveRecord {
 
     public function scenarios() {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_CREATE] = ['name', 'id_user', 'id_team', 'deadline', 'description', 'id_admin'];
+        $scenarios[self::SCENARIO_CREATE] = ['name', 'id_user', 'id_team', 'deadline', 'description'];
         $scenarios[self::SCENARIO_FINISH] = ['finish', 'report'];
         return $scenarios;
     }
@@ -36,15 +36,17 @@ class Tasks extends ActiveRecord {
 
     public function rules() {
         return [
-            ['name', 'string', 'max' => 100],
-            ['deadline', 'date', 'format' => 'php:Y-m-d'],
-            ['description', 'string'],
-            [['name', 'id_user', 'deadline', 'description', 'id_team', 'id_admin'], 'required',
-                'message' => 'Поле обязательно для заполнения'],
+            ['name', 'string', 'max' => 100, 'on' => self::SCENARIO_CREATE],
+            [['id_user', 'id_team', 'id_admin'], 'safe', 'on' => self::SCENARIO_CREATE],
+            ['deadline', 'date', 'format' => 'php:Y-m-d', 'on' => self::SCENARIO_CREATE],
+            ['description', 'string', 'on' => self::SCENARIO_CREATE],
+            [['name', 'id_user', 'deadline', 'description', 'id_team'], 'required',
+                'message' => 'Поле обязательно для заполнения', 'on' => self::SCENARIO_CREATE],
             ['deadline', 'compareDate', 'on' => self::SCENARIO_CREATE],
             ['report', 'required',
                 'message' => 'Поле обязательно для заполнения', 'on' => self::SCENARIO_FINISH],
             ['finish', 'safe', 'on' => self::SCENARIO_FINISH],
+            ['teams_name', 'safe']
         ];
     }
 
@@ -77,6 +79,10 @@ class Tasks extends ActiveRecord {
             TagDependency::invalidate(\Yii::$app -> cache, 'user_tasks_search_' . $this -> id_user);
             return true;
         }
+    }
+
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public function getAdmins() {
