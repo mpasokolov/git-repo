@@ -1,4 +1,8 @@
 <?php
+
+use yii\rest\UrlRule;
+use yii\web\JsonParser;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -19,7 +23,7 @@ return [
     ],
     'components' => [
         'request' => [
-            'baseUrl'=>'',
+            'baseUrl' => '',
             'csrfParam' => 'csrf',
             'cookieValidationKey' => $params['cookieValidationKey'],
         ],
@@ -45,10 +49,11 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
-            'scriptUrl'=>'index.php',
+            'scriptUrl' => 'index.php',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => UrlRule::class, 'controller' => ['tasks-api'], 'pluralize' => false]
             ],
         ],
         'authManager' => [
