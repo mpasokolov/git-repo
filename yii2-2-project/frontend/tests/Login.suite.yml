@@ -1,4 +1,0 @@
-actor: LoginTester
-modules:
-    enabled:
-        - \frontend\tests\Helper\Login
