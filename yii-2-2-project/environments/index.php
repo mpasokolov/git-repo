@@ -37,15 +37,15 @@ return [
             'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
+            'api/web/assets',
+            'api/runtime',
         ],
         'setExecutable' => [
             'yii',
             'yii_test',
         ],
         'setCookieValidationKey' => [
-            'backend/config/main-local.php',
-            'common/config/codeception-local.php',
-            'frontend/config/main-local.php',
+            'common/config/params-local.php',
         ],
     ],
     'Production' => [
@@ -56,13 +56,14 @@ return [
             'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
+            'api/web/assets',
+            'api/runtime',
         ],
         'setExecutable' => [
             'yii',
         ],
         'setCookieValidationKey' => [
-            'backend/config/main-local.php',
-            'frontend/config/main-local.php',
+            'common/config/params-local.php',
         ],
     ],
 ];

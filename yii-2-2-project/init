@@ -12,13 +12,73 @@ if (!extension_loaded('openssl')) {
     die('The OpenSSL PHP extension is required by Yii2.');
 }
 
+//Получаем параметры из команды php init(по умолчанию пусто)
 $params = getParams();
 $root = str_replace('\\', '/', __DIR__);
 $envs = require "$root/environments/index.php";
+/*
+ * Получаем настройки из environments/index.php
+Array
+(
+    [Development] => Array
+        (
+            [path] => dev
+            [setWritable] => Array
+                (
+                    [0] => backend/runtime
+                    [1] => backend/web/assets
+                    [2] => console/runtime
+                    [3] => frontend/runtime
+                    [4] => frontend/web/assets
+                )
+
+            [setExecutable] => Array
+                (
+                    [0] => yii
+                    [1] => yii_test
+                )
+
+            [setCookieValidationKey] => Array
+                (
+                    [0] => backend/config/main-local.php
+                    [1] => common/config/codeception-local.php
+                    [2] => frontend/config/main-local.php
+                )
+
+        )
+
+    [Production] => Array
+        (
+            [path] => prod
+            [setWritable] => Array
+                (
+                    [0] => backend/runtime
+                    [1] => backend/web/assets
+                    [2] => console/runtime
+                    [3] => frontend/runtime
+                    [4] => frontend/web/assets
+                )
+
+            [setExecutable] => Array
+                (
+                    [0] => yii
+                )
+
+            [setCookieValidationKey] => Array
+                (
+                    [0] => backend/config/main-local.php
+                    [1] => frontend/config/main-local.php
+                )
+
+        )
+
+)
+ */
 $envNames = array_keys($envs);
 
 echo "Yii Application Initialization Tool v1.0\n\n";
 
+//Получаем имя конфигурации от пользователя
 $envName = null;
 if (empty($params['env']) || $params['env'] === true) {
     echo "Which environment do you want the application to be initialized in?\n\n";
@@ -40,14 +100,20 @@ if (empty($params['env']) || $params['env'] === true) {
     $envName = $params['env'];
 }
 
+//$envName = Development
+
+
+//Проверяем $envNames на наличие в $envNames, где хранится массив с настройками окружения
 if (!in_array($envName, $envNames, true)) {
     $envsList = implode(', ', $envNames);
     echo "\n  $envName is not a valid environment. Try one of the following: $envsList. \n";
     exit(2);
 }
 
+//Получаем настройки нужного окружения
 $env = $envs[$envName];
 
+//Проверяем согласие пользователя
 if (empty($params['env'])) {
     echo "\n  Initialize the application under '{$envNames[$answer]}' environment? [yes|no] ";
     $answer = trim(fgets(STDIN));
@@ -57,6 +123,7 @@ if (empty($params['env'])) {
     }
 }
 
+//Получаем путь к папке с нужным окружением
 $rootPath = "$root/environments/{$env['path']}";
 if (!is_dir($rootPath)) {
     printError("$rootPath directory does not exist. Check path in $envName environment.");
@@ -65,13 +132,47 @@ if (!is_dir($rootPath)) {
 
 echo "\n  Start initialization ...\n\n";
 
+//Получаем список файлов из папки выбраного окружения
 $files = getFileList($rootPath);
+/*
+ * Array
+(
+    [0] => frontend/config/test-local.php
+    [1] => frontend/config/params-local.php
+    [2] => frontend/config/main-local.php
+    [3] => frontend/config/codeception-local.php
+    [4] => frontend/web/index.php
+    [5] => frontend/web/robots.txt
+    [6] => frontend/web/index-test.php
+    [7] => yii
+    [8] => backend/config/test-local.php
+    [9] => backend/config/params-local.php
+    [10] => backend/config/main-local.php
+    [11] => backend/config/codeception-local.php
+    [12] => backend/web/index.php
+    [13] => backend/web/robots.txt
+    [14] => backend/web/index-test.php
+    [15] => common/config/test-local.php
+    [16] => common/config/params-local.php
+    [17] => common/config/main-local.php
+    [18] => common/config/codeception-local.php
+    [19] => yii_test.bat
+    [20] => yii_test
+    [21] => console/config/test-local.php
+    [22] => console/config/params-local.php
+    [23] => console/config/main-local.php
+)
+
+ */
+
+//Чекаем, не нужно ли скипнуть какие то файлы
 if (isset($env['skipFiles'])) {
     $skipFiles = $env['skipFiles'];
     array_walk($skipFiles, function(&$value) use($env, $root) { $value = "$root/$value"; });
     $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
 }
 $all = false;
+//Копируем файлы в нужные директории
 foreach ($files as $file) {
     if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
         break;
@@ -79,6 +180,10 @@ foreach ($files as $file) {
 }
 
 $callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
+//setCookieValidationKey(Путь до приложения, настройка из index.php - По путям из index.php заменяем validation key на сгенерированный
+//setWritable - Устанавливаем права доступа к папка из соответствующего поля index.php
+//setExecutable - Устанавливаем права доступа на выполнение для yii файла
+//createSymlink -
 foreach ($callbacks as $callback) {
     if (!empty($env[$callback])) {
         $callback($root, $env[$callback]);
@@ -204,7 +309,6 @@ function setExecutable($root, $paths)
 function setCookieValidationKey($root, $paths)
 {
     foreach ($paths as $file) {
-        echo "   generate cookie validation key in $file\n";
         $file = $root . '/' . $file;
         $length = 32;
         $bytes = openssl_random_pseudo_bytes($length);

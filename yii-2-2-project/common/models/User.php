@@ -1,75 +1,66 @@
 <?php
+
 namespace common\models;
 
-use Yii;
+use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
-/**
- * User model
- *
- * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
- */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    public $password_repeat;
+    public $rememberMe;
+    public $authKey;
 
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return '{{%user}}';
+    public static function tableName() {
+        return 'users';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
+    public function attributeLabels() {
         return [
-            TimestampBehavior::className(),
+            'username' => 'Логин:',
+            'password' => 'Повторите пароль:',
+            'password_repeat' => 'Пароль:',
+            'email' => 'Email:'
+        ];
+    }
+
+    public function rules() {
+        return [
+            [['username', 'password', 'email', 'password_repeat'], 'required', 'message' => 'Поле не должно быть пустым!'],
+            ['username', 'string', 'max' => '45', 'message' => 'Недопустимый формат логина!'],
+            ['username', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'username',
+                'message' => 'Пользователь с данным логином уже существует!'],
+            ['email', 'email'],
+            ['email', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email',
+                'message' => 'Пользователь с данным email уже зарегистрирован!'],
+            [['password', 'password_repeat'], 'string', 'max' => '255', 'message' => 'Недопустимый формат пароля!'],
+            ['password', 'compare', 'message' => 'Введенные пароли не совпадают!'],
+            ['rememberMe', 'boolean'],
+        ];
+    }
+
+    public function behaviors() {
+        return [
+            TimestampBehavior::class,
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
-        return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-        ];
+    public static function findIdentity($id) {
+        return static ::findOne($id);
     }
 
     /**
      * {@inheritdoc}
+     * @throws Exception
      */
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    public static function findIdentityByAccessToken($token, $type = null) {
+        return static::findOne(['access_token' => $token]);
     }
 
     /**
@@ -78,68 +69,29 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $username
      * @return static|null
      */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
-
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return bool
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
+    public static function findByUsername($username) {
+        return static ::findOne(['username' => $username]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
+    public function getId() {
+        return $this -> getPrimaryKey();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAuthKey()
-    {
-        return $this->auth_key;
+    public function getAuthKey() {
+        return $this -> authKey;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function validateAuthKey($authKey)
-    {
-        return $this->getAuthKey() === $authKey;
+    public function validateAuthKey($authKey) {
+        return $authKey === $this -> getAuthKey();
     }
 
     /**
@@ -148,42 +100,31 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
-    {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    public function validatePassword($password) {
+        if (!\Yii::$app -> security -> validatePassword($password, $this -> password)) {
+            $this -> addError('password', 'Логин или пароль неверны');
+            return false;
+        }
+        return true;
     }
 
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            $this -> password = \Yii::$app -> security -> generatePasswordHash($this -> password);
+            if ($this -> isNewRecord) {
+                $this -> access_token = \Yii::$app ->security-> generateRandomString();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+    public function setName($name) {
+        $this -> username  = $name;
     }
 
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
-    {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
-
-    /**
-     * Removes password reset token
-     */
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
+    public function getTeams() {
+        return $this -> hasMany(UsersTeams::class, ['id_user' => 'id']);
     }
 }
