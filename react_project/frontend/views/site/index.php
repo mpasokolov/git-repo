@@ -4,7 +4,6 @@ use yii\helpers\Url;
 <div class="site-index">
 
     <div class="jumbotron">
-        <h2>Добро пожаловать в Task Tracker</h2>
-        <p><a class="btn btn-sm btn-success" href="<?= Url::to('@web/tasks') ?>">Перейти к списку задач</a></p>
+        <h2>Самый лучший мессенджер разрабатывается</h2>
     </div>
 </div>

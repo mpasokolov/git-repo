@@ -12,7 +12,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name' => 'Task Tracker',
+    'name' => 'Messenger',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

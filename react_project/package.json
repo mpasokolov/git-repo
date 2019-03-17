@@ -1,0 +1,19 @@
+{
+  "name": "react_app",
+  "version": "1.0.0",
+  "description": "my first react app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack --mode development",
+    "build": "NODE_ENV=prod webpack --mode production"
+  },
+  "dependencies": {
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "assets-webpack-plugin": "^3.9.10",
+    "webpack-cli": "^3.2.3"
+  },
+  "author": "sokolik",
+  "license": "ISC"
+}
